@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
+angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch',
   'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app'])
 
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
-                    $mdIconProvider) {
+                    $mdIconProvider, $qProvider) {
     $stateProvider
       .state('home', {
         url: '',
@@ -22,6 +22,15 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
           title: 'Profile'
         }
       })
+      .state('home.biosignals', {
+        url: '/profile',
+        templateUrl: 'app/views/biosignals.html',
+        controller: 'BiosignalsController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Biosignals'
+        }
+      })
       ;
 
     $urlRouterProvider.otherwise('/profile');
@@ -36,12 +45,11 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
         })
         .warnPalette('defaultPrimary');
 
-    $mdThemingProvider.theme('dark', 'default')
-      .primaryPalette('defaultPrimary')
-      .dark();
+    $mdThemingProvider.theme('default')
+      .primaryPalette('defaultPrimary');
 
-    $mdThemingProvider.theme('grey', 'default')
-      .primaryPalette('grey');
+    $mdThemingProvider.theme('green', 'default')
+      .primaryPalette('green');
 
     $mdThemingProvider.theme('custom', 'default')
       .primaryPalette('defaultPrimary', {
@@ -50,20 +58,23 @@ angular.module('angularMaterialAdmin', ['ngAnimate', 'ngCookies', 'ngTouch',
 
     $mdThemingProvider.definePalette('defaultPrimary', {
       '50':  '#FFFFFF',
-      '100': 'rgb(255, 198, 197)',
-      '200': '#E75753',
-      '300': '#E75753',
-      '400': '#E75753',
-      '500': '#E75753',
-      '600': '#E75753',
-      '700': '#E75753',
-      '800': '#E75753',
-      '900': '#E75753',
-      'A100': '#E75753',
-      'A200': '#E75753',
-      'A400': '#E75753',
-      'A700': '#E75753'
+      '100': 'rgb(181, 236, 242)',
+      '200': '#0097A7',
+      '300': '#0097A7',
+      '400': '#0097A7',
+      '500': '#0097A7',
+      '600': '#0097A7',
+      '700': '#0097A7',
+      '800': '#0097A7',
+      '900': '#0097A7',
+      'A100': '#0097A7',
+      'A200': '#0097A7',
+      'A400': '#0097A7',
+      'A700': '#0097A7'
     });
 
     $mdIconProvider.icon('user', 'assets/images/user.svg', 64);
+    
+    $qProvider.errorOnUnhandledRejections(false);
+    
   });

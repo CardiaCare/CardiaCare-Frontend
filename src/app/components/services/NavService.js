@@ -10,19 +10,14 @@
   function navService($q){
     var menuItems = [
       {
-        name: 'Dashboard',
+        name: 'Biosignals',
         icon: 'dashboard',
-        sref: '.dashboard'
+        sref: '.biosignals'
       },
       {
         name: 'Profile',
         icon: 'person',
         sref: '.profile'
-      },
-      {
-        name: 'Table',
-        icon: 'view_module',
-        sref: '.table'
       }
     ];
 
