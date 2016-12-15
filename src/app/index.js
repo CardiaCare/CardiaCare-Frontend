@@ -23,12 +23,28 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
         }
       })
       .state('home.biosignals', {
-        url: '/profile',
+        url: '/biosignals',
         templateUrl: 'app/views/biosignals.html',
         controller: 'BiosignalsController',
         controllerAs: 'vm',
         data: {
           title: 'Biosignals'
+        }
+      })
+      .state('home.doctor-dashboard', {
+        url: '/doctor',
+        templateUrl: 'app/views/doctor-dashboard.html',
+        data: {
+          title: 'Doctor Dashboard'
+        }
+      })
+      .state('home.login', {
+        url: '/login',
+        templateUrl: 'app/views/login.html',
+        controller: 'LoginController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Login'
         }
       })
       ;
@@ -72,8 +88,12 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
       'A400': '#0097A7',
       'A700': '#0097A7'
     });
+    
+    $mdIconProvider
+      .iconSet('email', 'assets/images/box.svg', 24)
+      .iconSet('user', 'assets/images/user.svg', 64)
+      .iconSet('message', 'assets/images/comment.svg', 24);
 
-    $mdIconProvider.icon('user', 'assets/images/user.svg', 64);
     
     $qProvider.errorOnUnhandledRejections(false);
     

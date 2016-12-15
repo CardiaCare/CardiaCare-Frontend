@@ -1,9 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 (function(){
 
   angular
@@ -20,6 +14,13 @@
             name: 'Ivan',
             systolic:'120',
             diastolic:'80',
+            created_at:'12.12.2016'
+
+        },
+        {
+            name: 'Ivan',
+            systolic:'135',
+            diastolic:'95',
             created_at:'12.12.2016'
 
         }

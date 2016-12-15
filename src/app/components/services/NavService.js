@@ -19,6 +19,12 @@
         icon: 'person',
         sref: '.profile'
       }
+      ,
+      {
+        name: 'Login',
+        icon: 'person',
+        sref: '.login'
+      }
     ];
 
     return {

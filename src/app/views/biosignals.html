@@ -1,18 +1,13 @@
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-   <md-content>
-      <md-list flex>
+<md-content>
+    <md-list flex>
         <md-subheader class="md-no-sticky">Bloodpressure diary</md-subheader>
         <md-list-item class="md-3-line" ng-repeat="item in vm.bloodpressure" ng-click="null">
-          <div class="md-list-item-text" layout="column">
-            <h3>{{ item.systolic }}</h3>
-            <h4>{{ item.diastolic }}</h4>
-            <p>{{ item.created_at }}</p>
-          </div>
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ item.systolic}}</h3>
+                <h4>{{ item.diastolic}}</h4>
+                <p>{{ item.created_at}}</p>
+            </div>
         </md-list-item>
         <md-divider ></md-divider>
-      </md-list>
-   </md-content>
+    </md-list>
+</md-content>
