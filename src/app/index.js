@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch',
-  'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'basicAuthModule'])
+  'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'base64'])
 
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
                     $mdIconProvider, $qProvider) {
