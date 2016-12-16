@@ -1,0 +1,23 @@
+<md-content class="md-padding" layout="row" layout-sm="column" ng-controller="InvitesController as vm">
+        <md-input-container>
+          <label>Name</label>
+          <input>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Email</label>
+          <input>
+        </md-input-container>
+
+        <md-input-container>
+          <label>Role</label>
+          <md-select ng-model="vm.userState">
+            <md-option><em>None</em></md-option>
+            <md-option ng-repeat="role in vm.role" ng-value="role.name" >
+              {{role.name}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+    <md-button class="md-raised md-primary">Invite</md-button>
+</md-content>
+
