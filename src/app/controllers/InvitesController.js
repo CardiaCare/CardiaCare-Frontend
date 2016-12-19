@@ -18,6 +18,18 @@
             }
 
         ];
+        
+        vm.invites = [
+            {
+                name: "ivan",
+                email:"a@a"
+            },
+            {
+                name: "petr",
+                email:"b@b"
+            }
+
+        ];
 
         vm.showInvites = function(ev) {
             $mdDialog.show({
@@ -30,18 +42,24 @@
         };
 
         function DialogController($mdDialog) {
-            $scope.hide = function () {
+            this.hide = function () {
                 $mdDialog.hide();
             };
 
-            $scope.cancel = function () {
+            this.cancel = function () {
+                alert("here");
                 $mdDialog.cancel();
             };
 
-            $scope.answer = function (answer) {
+            this.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
-        }
+        };
+        
+        function deleteInvite(item) {
+            alert("item "+item);
+             vm.invites=  vm.invites.splice( vm.invites.indexOf(item), 1);
+        };
     }
 
 })();
