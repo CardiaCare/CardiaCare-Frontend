@@ -4,7 +4,7 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
   'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'base64'])
 
   .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
-                    $mdIconProvider, $qProvider, $scope) {
+                    $mdIconProvider, $qProvider) {
     $stateProvider
       .state('home', {
         url: '',
