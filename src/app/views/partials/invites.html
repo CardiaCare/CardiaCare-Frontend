@@ -19,5 +19,44 @@
           </md-select>
         </md-input-container>
     <md-button class="md-raised md-primary">Invite</md-button>
+    <md-button class="md-raised md-primary" ng-click="vm.showInvites($event)">Show invites</md-button>
 </md-content>
 
+
+
+<script type="text/ng-template" id="dialog1.tmpl.html"><md-dialog aria-label="Mango (Fruit)">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Mango (Fruit)</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-content ng-controller="InvitesController as vm">
+    <md-list flex>
+        <md-list-item ng-repeat="item in vm.invites" ng-click="goToPerson(person.name, $event)" class="noright">
+            <p>{{ item.name}} {{ item.email}}</p>
+            <md-icon md-svg-icon="email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
+            <md-icon class="md-secondary" ng-click="doSecondaryAction($event)" aria-label="Chat" md-svg-icon="message"></md-icon>
+        </md-list-item>
+        <md-divider ></md-divider>
+    </md-list>
+</md-content>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="answer('useful')">
+        Useful
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+</script>

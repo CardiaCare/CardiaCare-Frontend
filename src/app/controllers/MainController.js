@@ -3,11 +3,11 @@
     angular
             .module('app')
             .controller('MainController', [
-                'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
+                '$scope','navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
                 MainController
             ]);
 
-    function MainController(navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog) {
+    function MainController($scope, navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog) {
         var vm = this;
 
         vm.menuItems = [];
