@@ -1,0 +1,15 @@
+<md-content class="md-padding" layout="column" layout-sm="column">
+    <md-list flex>
+        <md-list-item  ng-repeat="item in vm.items" class="noright">
+            {{item.firstName}} {{item.lastName}}
+        </md-list-item>
+    </md-list>
+    <md-list flex>
+        <md-list-item ng-repeat="itemToAdd in vm.itemsToAdd">
+            <input type="text" ng-model="vm.itemToAdd.firstName"/>
+            <input type="text" ng-model="vm.itemToAdd.lastName"/>
+            <md-button ng-click="vm.add(itemToAdd)">Add</md-button>
+        </md-list-item>
+    </md-list>
+    <button ng-click="vm.addNew()">Add new</button>
+</md-content>

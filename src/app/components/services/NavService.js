@@ -24,6 +24,11 @@
         name: 'Login',
         icon: 'person',
         sref: '.login'
+      },
+      {
+        name: 'Servey',
+        icon: 'Servey',
+        sref: '.servey'
       }
     ];
 

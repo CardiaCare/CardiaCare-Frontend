@@ -31,6 +31,15 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
           title: 'Biosignals'
         }
       })
+      .state('home.servey', {
+        url: '/servey',
+        templateUrl: 'app/views/servey-designer.html',
+        controller: 'ServeyDesignerController',
+        controllerAs: 'vm',
+        data: {
+          title: 'Servey'
+        }
+      })
       .state('home.doctor-dashboard', {
         url: '/doctor',
         templateUrl: 'app/views/doctor-dashboard.html',

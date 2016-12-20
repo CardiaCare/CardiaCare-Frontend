@@ -80,8 +80,12 @@ body {
   }
 
   &-tittle {
-    color: $text-color;
+    color: $accent-color;
   }
+}
+
+.md-input-container{
+    margin: 0;
 }
 
 .options {

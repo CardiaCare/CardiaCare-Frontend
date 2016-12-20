@@ -1,5 +1,6 @@
-<md-content class="md-padding" layout="row" layout-sm="column" ng-controller="QuestionnaireAddController as vm">
-    <md-input-container>
+<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="QuestionnaireAddController as vm">
+    <md-content class="md-padding" layout="row">
+    <md-input-container flex>
         <label>Short description</label>
         <input>
     </md-input-container>
@@ -7,6 +8,21 @@
         <label>Version</label>
         <input>
     </md-input-container>
+    </md-content>
+    
     <aps-upload-file></aps-upload-file>
-    <md-button class="md-raised md-primary">Download</md-button>
+    
+    <div layout="row" layout-sm="column" layout-margin>
+    <md-button class="md-raised md-primary" flex="50" flex-sm="100">Download</md-button>
+    </div>
+    
+    <md-list flex>
+        <md-list-item ng-repeat="item in vm.questionnaires" class="noright">
+            <p flex>{{ item.description}} {{ item.version}}</p>
+            <md-icon md-svg-icon="email"  ng-click="vm.deleteQuestionnaire(item)" aria-label="Delete" class="md-secondary md-hue-3" ></md-icon>
+            <md-divider ></md-divider>
+        </md-list-item>
+    </md-list>
+    
+    
 </md-content>

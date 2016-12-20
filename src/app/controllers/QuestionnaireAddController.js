@@ -10,7 +10,7 @@
     function apsUploadFile() {
         var directive = {
             restrict: 'E',
-            template: '<input id="fileInput" type="file" class="ng-hide"><md-input-container  md-no-float><input id="textInput" ng-model="fileName" type="text" placeholder="No file chosen" ng-readonly="true"><md-button id="uploadButton" class="md-raised md-primary" aria-label="attach_file">Choose file </md-button></md-input-container>'
+            template: '<md-input-container  layout="row" md-no-float><input id="textInput" ng-model="fileName" type="text" placeholder="No file chosen" ng-readonly="true"><md-button id="uploadButton" class="md-raised md-primary" flex="20" flex-sm="100" aria-label="attach_file">Choose file </md-button></md-input-container><input id="fileInput" type="file" class="ng-hide">'
                             ,
             link: apsUploadFileLink
         };
@@ -53,7 +53,17 @@
                     data: "12345"
                 };
 
+        vm.questionnaires = [
+            {
+                description: "first",
+                version: "1.0"
+            },
+            {
+                description: "second",
+                version: "1.1"
+            }
 
+        ]
 
     }
 })();
