@@ -47,6 +47,13 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
           title: 'Doctor Dashboard'
         }
       })
+      .state('home.registration', {
+        url: '/registration',
+        templateUrl: 'app/views/registration.html',
+        data: {
+          title: 'Registration'
+        }
+      })
       .state('home.login', {
         url: '/login',
         templateUrl: 'app/views/login.html',
