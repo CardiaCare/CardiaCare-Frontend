@@ -20,9 +20,8 @@
                 return;
             }
             var credentials = {email: email, password: password};
-            AuthService.login(credentials).then(function (user) {
+            AuthService.login(credentials).then(function () {
                 $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-                // $scope.setCurrentUser(user);
             }, function () {
                 $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
             });

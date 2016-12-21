@@ -23,7 +23,6 @@
             $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode(aToken + ":");
             _token = aToken;
             _isAuthorized = true;
-            console.log('testtesttest');
         }
 
         this.login = function (credentials) {
