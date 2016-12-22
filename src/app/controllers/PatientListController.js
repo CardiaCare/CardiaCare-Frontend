@@ -2,11 +2,11 @@
 
   angular
     .module('app')
-    .controller('PatientListController', [
+    .controller('PatientListController', ['$http', '$base64',
       PatientListController
     ]);
 
-    function PatientListController() {
+    function PatientListController($http, $base64) {
         var vm = this;
 
         vm.patients = [
@@ -24,6 +24,11 @@
             }
             
         ];
+
+        $http.get('http://api.cardiacare.ru/patients/'+ 6)
+                .then(function (result) {
+                     vm.patients = result.data;
+                });
     }
 
 })();
