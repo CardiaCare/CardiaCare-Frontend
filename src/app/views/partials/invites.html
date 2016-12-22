@@ -12,7 +12,6 @@
         <md-input-container>
           <label>Role</label>
           <md-select ng-model="vm.userState">
-            <md-option><em>None</em></md-option>
             <md-option ng-repeat="role in vm.role" ng-value="role.name" >
               {{role.name}}
             </md-option>

@@ -30,17 +30,28 @@ angular
                 var index = $scope.itemsToAdd.indexOf(itemToAdd);
                 $scope.itemsToAdd.splice(index, 1);
                 $scope.items.push(angular.copy(itemToAdd))
-            }
+        };
 
-            $scope.addNew = function() {
+        $scope.addNew = function () {
 
-                $scope.itemsToAdd.push({
-                    firstName: '',
-                   lastName: ''
-                })
+            $scope.itemsToAdd.push({
+                firstName: '',
+                lastName: ''
+            })
+        };
+
+        $scope.changeSelected = function () {
+            switch ($scope.qtypes.description) {
+                case "Dichotomois":
+                    $console.log("1");
+                    break;
+                case "Open":
+                    $console.log("2");
+                    break;
             }
-                        
-            
+        };
+
+
     }
 
 })();
