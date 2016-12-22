@@ -12,8 +12,8 @@
             </md-input-container>   
             <md-input-container>
                 <label>Type</label>
-                <md-select ng-model="qtypes"  ng-change="changeSelected()">
-                    <md-option ng-repeat="type in qtypes track by $index" ng-value="type.description">
+                <md-select ng-model="chosenType">
+                    <md-option ng-repeat="type in qtypes" ng-value="type.description">
                         {{type.description}}
                     </md-option>
                 </md-select>
