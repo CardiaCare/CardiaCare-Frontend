@@ -1,15 +1,26 @@
 <md-content class="md-padding" layout="column" layout-sm="column">
     <md-list flex>
-        <md-list-item  ng-repeat="item in vm.items" class="noright">
+        <md-list-item  ng-repeat="item in items" class="noright">
             {{item.firstName}} {{item.lastName}}
         </md-list-item>
     </md-list>
     <md-list flex>
-        <md-list-item ng-repeat="itemToAdd in vm.itemsToAdd">
-            <input type="text" ng-model="vm.itemToAdd.firstName"/>
-            <input type="text" ng-model="vm.itemToAdd.lastName"/>
-            <md-button ng-click="vm.add(itemToAdd)">Add</md-button>
+        <md-list-item ng-repeat="itemToAdd in itemsToAdd">
+            <md-input-container>
+                <label>Question</label>
+                <input ng-model="itemToAdd.firstName" type="text">
+            </md-input-container>   
+            <md-input-container>
+                <label>Type</label>
+                <md-select ng-model="qtypes">
+                    <md-option></md-option>
+                    <md-option ng-repeat="type in qtypes" ng-value="type.description">
+                        {{type.description}}
+                    </md-option>
+                </md-select>
+            </md-input-container>   
+            <md-button class="md-raised md-primary" ng-click="fix(itemToAdd)">Fix</md-button>
         </md-list-item>
     </md-list>
-    <button ng-click="vm.addNew()">Add new</button>
+    <md-button class="md-raised md-primary" ng-click="addNew()">Add new</md-button>
 </md-content>
