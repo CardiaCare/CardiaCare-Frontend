@@ -1,29 +1,4 @@
-<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="InvitesController as vm">
-        <md-input-container>
-          <label>Name</label>
-          <input>
-        </md-input-container>
-
-        <md-input-container>
-          <label>Email</label>
-          <input>
-        </md-input-container>
-
-        <md-input-container>
-          <label>Role</label>
-          <md-select ng-model="vm.userState">
-            <md-option ng-repeat="role in vm.role" ng-value="role.name" >
-              {{role.name}}
-            </md-option>
-          </md-select>
-        </md-input-container>
-    <md-button class="md-raised md-primary">Invite</md-button>
-    <md-button class="md-raised md-primary" ng-click="vm.showInvites($event)">Show invites</md-button>
-</md-content>
-
-
-
-<script type="text/ng-template" id="dialog1.tmpl.html">
+<script type="text/ng-template" id="invite-dialog.html">
 <md-dialog aria-label="Your Invites">
   <form ng-cloak>
     <md-toolbar>
@@ -58,4 +33,3 @@
     </md-dialog-actions>
   </form>
 </md-dialog>
-</script>
