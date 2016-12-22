@@ -8,27 +8,26 @@ angular.module('app')
             },
             link: function (scope, element, attr) {
                 var timeout;
-
-                function updateElement() {
-                    if (scope.accessControl == 'authorized') {
-                        if (!AuthService.isAuthorized()) {
-                            element.css({
-                                display: 'none'
-                            });
-                        }
-                    } else if (scope.accessControl == 'not-authorized') {
-                        if (AuthService.isAuthorized()) {
-                            element.css({
-                                display: 'none'
-                            });
-                        }
-                    }
-                    console.log(scope.accessControl);
-                }
-
+                updateElement();
                 timeout = $interval(function () {
                     updateElement(); // update DOM
                 }, 1000);
+
+                function updateElement() {
+                    if (attr.accessControl == 'authorized') {
+                        if (!AuthService.isAuthorized()) {
+                            element.addClass('not-authorized');
+                        } else {
+                            element.removeClass('not-authorized');
+                        }
+                    } else if (attr.accessControl == 'not-authorized') {
+                        if (AuthService.isAuthorized()) {
+                            element.addClass('not-authorized');
+                        } else {
+                            element.removeClass('not-authorized');
+                        }
+                    }
+                }
             }
         };
     }]);
