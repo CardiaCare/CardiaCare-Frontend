@@ -27,7 +27,7 @@
       },
       {
         name: 'Servey',
-        icon: 'Servey',
+        icon: 'person',
         sref: '.servey'
       }
     ];

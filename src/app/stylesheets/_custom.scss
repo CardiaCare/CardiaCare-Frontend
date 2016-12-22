@@ -6,7 +6,7 @@ $warning-color: #E75753;
 
 
 // VARIABLES
-$left-sidenav-width: 110px;
+$left-sidenav-width: 200px;
 $widget-height: 310px;
 $font-weight-bold: 600;
 $font-size-large: 22px;
@@ -84,8 +84,8 @@ body {
   }
 }
 
-.md-input-container{
-    margin: 0;
+md-input-container{
+    margin: 4px;
 }
 
 .options {
@@ -97,9 +97,7 @@ body {
   opacity:0;
 }
 
-.fixed-height-widget {
-  height: $widget-height;
-}
+
 
 // charts
 .donut-chart-title{
