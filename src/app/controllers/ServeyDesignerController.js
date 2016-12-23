@@ -2,52 +2,134 @@
 
     angular
         .module('app')
-        .controller('ServeyDesignerController', ['$scope',
+        .controller('ServeyDesignerController', ['$mdDialog','$scope',
             ServeyDesignerController
         ]);
-    function ServeyDesignerController($scope) {
+    function ServeyDesignerController($mdDialog, $scope) {
         $scope.items = [];
         $scope.chosenType = '';
         $scope.qtypes = [
             {
-                description: "Dichotomois"
+                description: "Dichotomous"
             },
             {
                 description: "Open"
             },
             {
-                description: "Single Selected"
+                description: "Single Choise"
+            },
+            {
+                description: "Multiple Choise"
+            },
+            {
+               description: "Bipolar"
             }
         ];
 
+        $scope.answers = [];
 
         $scope.itemsToAdd = [{
-            firstName: '',
-            lastName: ''
+            question: '',
+            type: ''
         }];
+    
+        $scope.answersToAdd = [{
+            option: ''
+        }];
+    
+        $scope.fixAnswer = function (answerToAdd) {
+            var index = $scope.answersToAdd.indexOf(answerToAdd);
+            $scope.answersToAdd.splice(index, 1);
+            $scope.answers.push(angular.copy(answerToAdd))
+        };
+
+        $scope.addNewAnswer = function () {
+            $scope.answersToAdd.push({
+                option: ''
+            })
+        };
+
 
         $scope.fix = function (itemToAdd) {
             var index = $scope.itemsToAdd.indexOf(itemToAdd);
             $scope.itemsToAdd.splice(index, 1);
             $scope.items.push(angular.copy(itemToAdd))
         };
+        
+        $scope.addAnswers = function (answersToAdd) {
+            alert(answersToAdd);
+        }
+        
 
         $scope.addNew = function () {
 
             $scope.itemsToAdd.push({
-                firstName: '',
-                lastName: ''
+            question: '',
+            type: ''
             })
         };
 
-        $scope.changeSelected = function () {
-            switch ($scope.qtypes.description) {
-                case "Dichotomois":
-                    $console.log("1");
+        $scope.changeSelected = function (ev, type) {
+            switch (type) {
+                case "Dichotomous":
+                    $mdDialog.show({
+                        controller: DialogController,
+                        templateUrl: 'dialog-dichotomouse.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        controller: DialogController
+                    });
                     break;
-                case "Open":
-                    $console.log("2");
+                case "Bipolar":
+                    $mdDialog.show({
+                        controller: DialogController,
+                        templateUrl: 'dialog-bipolar.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        controller: DialogController
+                    });
                     break;
+                    
+                case "Single Choise":
+                    $mdDialog.show({
+                        controller: DialogController,
+                        templateUrl: 'dialog-choise.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        controller: DialogController
+                    });
+                    break;
+                case "Multiple Choise":
+                    $mdDialog.show({
+                        controller: DialogController,
+                        templateUrl: 'dialog-choise.tmpl.html',
+                        parent: angular.element(document.body),
+                        targetEvent: ev,
+                        clickOutsideToClose: true,
+                        controller: DialogController
+                    });
+                    break;
+            }
+        };
+        
+        function DialogController($mdDialog) {
+            this.hide = function () {
+                $mdDialog.hide();
+            };
+
+            this.cancel = function () {
+                alert("here");
+                $mdDialog.cancel();
+            };
+
+            this.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+            this.addAnswers = function (answersToAdd) {
+            alert(answersToAdd);
             }
         };
 

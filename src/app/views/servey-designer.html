@@ -1,18 +1,18 @@
 <md-content class="md-padding" layout="column">
     <md-list flex>
         <md-list-item  ng-repeat="item in items" class="noright">
-            {{item.firstName}} {{item.lastName}}
+            {{item.question}} {{item.type}} {{item.answer.option}}
         </md-list-item>
     </md-list>
     <md-list flex>
         <md-list-item ng-repeat="itemToAdd in itemsToAdd">
             <md-input-container>
                 <label>Question</label>
-                <input ng-model="itemToAdd.firstName" type="text">
-            </md-input-container>   
+                <input ng-model="itemToAdd.question" type="text">
+            </md-input-container> 
             <md-input-container>
                 <label>Type</label>
-                <md-select ng-model="chosenType">
+                <md-select ng-model="itemToAdd.type" ng-change="changeSelected($event, itemToAdd.type)" >
                     <md-option ng-repeat="type in qtypes" ng-value="type.description">
                         {{type.description}}
                     </md-option>
@@ -23,3 +23,129 @@
     </md-list>
     <md-button class="md-raised md-primary" ng-click="addNew()">Add new</md-button>
 </md-content>
+
+
+
+
+
+<script type="text/ng-template" id="dialog-choise.tmpl.html">
+<md-dialog aria-label="Single Choise Answers">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Single Choise Answers</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+    <div class="md-dialog-content">
+        <md-content ng-controller="ServeyDesignerController as vm">
+  <md-list flex>
+        <md-list-item  ng-repeat="answer in answers" class="noright">
+            {{answer.option}}
+        </md-list-item>
+    </md-list>
+    <md-list flex>
+        <md-list-item ng-repeat="answerToAdd in answersToAdd">
+            <md-input-container>
+                <input ng-model="answerToAdd.option" type="text">
+            </md-input-container>  
+            <md-button class="md-raised md-primary" ng-click="fixAnswer(answerToAdd)">FixAnswer</md-button>
+        </md-list-item>
+    </md-list>
+    <md-button class="md-raised md-primary" ng-click="addNewAnswer()">Add new</md-button>
+            </md-content>
+      </div>
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row" layout-align="end center">
+      <span flex></span>
+      <md-button ng-click="addAnswers(answersToAdd)">
+        OK
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
+</script>
+
+
+
+<script type="text/ng-template" id="dialog-dichotomouse.tmpl.html">
+<md-dialog aria-label="Dichotomous Answers">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Dichotomous Answers</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+    <div class="md-dialog-content">
+        <md-content>
+            <md-input-container>
+                <label>First answer</label>
+                <input ng-model="answer.dichotomous.option1">
+            </md-input-container>
+            <md-input-container>
+                <label>Second answer</label>
+                <input ng-model="answer.dichotomous.option2">
+            </md-input-container>
+        </md-content>
+      </div>
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row" layout-align="end center">
+      <span flex></span>
+      <md-button ng-click="addAnswers(answersToAdd)">
+        OK
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
+</script>
+
+<script type="text/ng-template" id="dialog-bipolar.tmpl.html">
+<md-dialog aria-label="Dichotomous Answers">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Dichotomous Answers</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+    <div class="md-dialog-content">
+        <md-content>
+            <md-input-container>
+                <label>Left Border</label>
+                <input ng-model="answer.bipolar.option1">
+            </md-input-container>
+            <md-input-container>
+                <label>Right Border</label>
+                <input ng-model="answer.bipolar.option2">
+            </md-input-container>
+        </md-content>
+      </div>
+    </md-dialog-content>
+
+    <div class="md-actions" layout="row" layout-align="end center">
+      <span flex></span>
+      <md-button ng-click="addAnswers(answersToAdd)">
+        OK
+      </md-button>
+    </div>
+  </form>
+</md-dialog>
+</script>
