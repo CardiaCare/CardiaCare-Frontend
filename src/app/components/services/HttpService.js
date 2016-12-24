@@ -11,18 +11,20 @@
 //      'POST recovery' => 'user/recovery/request',
 //      'OPTIONS recovery' => 'user/recovery/options',
 //      'PUT user/password' => 'user/recovery/recover',
-        function postRecovery($scope) {
+        this.postRecovery = function(recovery_email) {
             $http({
-                url: 'request-url',
                 method: "POST",
-                data: {'message': message}
+                url: 'http://www.api.cardiacare.ru/recovery',
+                params: {
+                    email: recovery_email
+                }
             })
-                .then(function (response) {
-                    // success
-                },
-                function (response) { // optional
-                    // failed
-                });
+            .then(function (response) {
+                // success
+            },
+            function (response) { // optional
+                // failed
+            });
         }
 
 
@@ -72,6 +74,20 @@
 //        'OPTIONS invites' => 'user/invite/options',
 //        'GET invites' => 'user/invite/index',
 //        'GET invites/<id:\d+>' => 'user/invite/view',
+
+        this.postInvite = function invite ) {
+            $http({
+                method: "POST",
+                url: 'http://www.api.cardiacare.ru/invites',
+                params: invite
+            })
+            .then(function (response) {
+                // success
+            },
+            function (response) { // optional
+                // failed
+            });
+        }
         
         this.getInvitesList = function () {
             return $http({
@@ -113,6 +129,19 @@
 //        'GET survey/<id:\d+>' => 'survey/questionnaire/view',
 //        'OPTIONS survey/<id:\d+>' => 'survey/questionnaire/options',
 //        'DELETE survey/<id:\d+>' => 'survey/questionnaire/delete'
+        this.postSurvey = function( survey ) {
+            $http({
+                method: "POST",
+                url: 'http://www.api.cardiacare.ru/survey',
+                params: servey
+            })
+            .then(function (response) {
+                // success
+            },
+            function (response) { // optional
+                // failed
+            });
+        }
         
         this.getServeyList = function () {
             return $http({
@@ -154,6 +183,19 @@
 //        'GET feedback/<id:\d+>' => 'survey/feedback/view',
 //        'OPTIONS feedback/<id:\d+>' => 'survey/feedback/options',
 //        'DELETE feedback/<id:\d+>' => 'survey/feedback/delete'
+        this.postFeedback = function( feedback ) {
+            $http({
+                method: "POST",
+                url: 'http://www.api.cardiacare.ru/feedback',
+                params: feedback
+            })
+            .then(function (response) {
+                // success
+            },
+            function (response) { // optional
+                // failed
+            });
+        }
         
         this.getFeedbackList = function () {
             return $http({
@@ -194,6 +236,19 @@
 //        'GET bloodpressure/<id:\d+>' => 'emr/bloodpressure/view',
 //        'OPTIONS bloodpressure/<id:\d+>' => 'emr/bloodpressure/options',
 //        'DELETE bloodpressure/<id:\d+>' => 'emr/bloodpressure/delete'
+        this.postBloodpressure = function( bloodpressure ) {
+            $http({
+                method: "POST",
+                url: 'http://www.api.cardiacare.ru/bloodpressure',
+                params: bloodpressure
+            })
+            .then(function (response) {
+                // success
+            },
+            function (response) { // optional
+                // failed
+            });
+        }
         
         this.getBloodpressureList = function () {
             return $http({
