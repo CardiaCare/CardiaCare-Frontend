@@ -2,43 +2,43 @@
     'use strict';
 
     angular.module('app')
-            .service('HttpService', ['$http',
-                HttpService
-            ]);
+        .service('HttpService', ['$http',
+            HttpService
+        ]);
 
     function HttpService($http) {
-        
+
 //      'POST recovery' => 'user/recovery/request',
 //      'OPTIONS recovery' => 'user/recovery/options',
 //      'PUT user/password' => 'user/recovery/recover',
-        this.postRecovery = function(recovery_email) {
+        this.postRecovery = function (recovery_email) {
             $http({
                 method: "POST",
-                url: 'http://www.api.cardiacare.ru/recovery',
+                url: 'http://api.cardiacare.ru/recovery',
                 params: {
                     email: recovery_email
                 }
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
-        this.putRecovery = function(recovery) {
+
+        this.putRecovery = function (recovery) {
             $http({
                 method: "PUT",
-                url: 'http://www.api.cardiacare.ru/user/password',
+                url: 'http://api.cardiacare.ru/user/password',
                 params: recovery
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
 
 
@@ -48,70 +48,70 @@
 //      'PUT patients/<id:\d+>' => 'emr/patient/update',
 //      'DELETE patients/<id:\d+>' => 'emr/patient/delete',
 //      'OPTIONS patients/<id:\d+>' => 'emr/patient/options',
-                
+
         this.getPatientList = function () {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/patients',
+                url: 'http://api.cardiacare.ru/patients',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
-            }).success(function (data) {
+            }).then(function (data) {
                 return data;
-            }).error(function () {
+            }, function () {
                 alert("error");
                 return null;
             });
 
         };
-        
+
         this.getPatientById = function (patient_id) {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/patients',
+                url: 'http://api.cardiacare.ru/patients',
                 params: {id: patient_id},
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
-            }).success(function (data) {
+            }).then(function (data) {
                 return data;
-            }).error(function () {
+            }, function () {
                 alert("error");
                 return null;
             });
 
         };
-        
-        this.putPatientById = function(patient) {
+
+        this.putPatientById = function (patient) {
             $http({
                 method: "PUT",
-                url: 'http://www.api.cardiacare.ru/patients',
+                url: 'http://api.cardiacare.ru/patients',
                 params: patient
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
-        this.deletePatientById = function(patient_id) {
+
+        this.deletePatientById = function (patient_id) {
             $http({
                 method: "Delete",
-                url: 'http://www.api.cardiacare.ru/patients',
+                url: 'http://api.cardiacare.ru/patients',
                 params: {id: patient_id}
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
+
 //        'POST invites' => 'user/invite/create',
 //        'OPTIONS invites' => 'user/invite/options',
 //        'GET invites' => 'user/invite/index',
@@ -120,21 +120,21 @@
         this.postInvite = function (invite) {
             $http({
                 method: "POST",
-                url: 'http://www.api.cardiacare.ru/invites',
+                url: 'http://api.cardiacare.ru/invites',
                 params: invite
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
+
         this.getInvitesList = function () {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/invites',
+                url: 'http://api.cardiacare.ru/invites',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -146,11 +146,11 @@
                 return null;
             });
         };
-        
+
         this.getInviteById = function (invite_id) {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/invites',
+                url: 'http://api.cardiacare.ru/invites',
                 params: {id: invite_id},
                 headers: {
                     'Content-Type': 'application/json',
@@ -163,32 +163,32 @@
                 return null;
             });
         };
-        
-        
+
+
 //        'POST survey' => 'survey/questionnaire/create',
 //        'OPTIONS survey' => 'survey/questionnaire/options',
 //        'GET survey' => 'survey/questionnaire/index',
 //        'GET survey/<id:\d+>' => 'survey/questionnaire/view',
 //        'OPTIONS survey/<id:\d+>' => 'survey/questionnaire/options',
 //        'DELETE survey/<id:\d+>' => 'survey/questionnaire/delete'
-        this.postSurvey = function( survey ) {
+        this.postSurvey = function (survey) {
             $http({
                 method: "POST",
-                url: 'http://www.api.cardiacare.ru/survey',
+                url: 'http://api.cardiacare.ru/survey',
                 params: survey
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
+
         this.getServeyList = function () {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/servey',
+                url: 'http://api.cardiacare.ru/servey',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -200,11 +200,11 @@
                 return null;
             });
         };
-        
+
         this.getServeyById = function (servey_id) {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/servey',
+                url: 'http://api.cardiacare.ru/servey',
                 params: {id: servey_id},
                 headers: {
                     'Content-Type': 'application/json',
@@ -217,46 +217,46 @@
                 return null;
             });
         };
-        
-        this.deleteServeyById = function(servey_id) {
+
+        this.deleteServeyById = function (servey_id) {
             $http({
                 method: "Delete",
-                url: 'http://www.api.cardiacare.ru/servey',
+                url: 'http://api.cardiacare.ru/servey',
                 params: {id: servey_id}
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
-        
+
+
 //        'POST feedback' => 'survey/feedback/create',
 //        'OPTIONS feedback' => 'survey/feedback/options',
 //        'GET feedback' => 'survey/feedback/index',
 //        'GET feedback/<id:\d+>' => 'survey/feedback/view',
 //        'OPTIONS feedback/<id:\d+>' => 'survey/feedback/options',
 //        'DELETE feedback/<id:\d+>' => 'survey/feedback/delete'
-        this.postFeedback = function( feedback ) {
+        this.postFeedback = function (feedback) {
             $http({
                 method: "POST",
-                url: 'http://www.api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/feedback',
                 params: feedback
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
+
         this.getFeedbackList = function () {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/feedback',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -268,11 +268,11 @@
                 return null;
             });
         };
-        
+
         this.getFedbackById = function (feedback_id) {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/feedback',
                 params: {id: feedback_id},
                 headers: {
                     'Content-Type': 'application/json',
@@ -285,45 +285,45 @@
                 return null;
             });
         };
-        
-        this.deleteFedbackById = function(feedback_id) {
+
+        this.deleteFedbackById = function (feedback_id) {
             $http({
                 method: "Delete",
-                url: 'http://www.api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/feedback',
                 params: {id: feedback_id}
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
-        };        
-        
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
+        };
+
 //        'POST bloodpressure' => 'emr/bloodpressure/create',
 //        'OPTIONS bloodpressure' => 'emr/bloodpressure/options',
 //        'GET bloodpressure' => 'emr/bloodpressure/index',
 //        'GET bloodpressure/<id:\d+>' => 'emr/bloodpressure/view',
 //        'OPTIONS bloodpressure/<id:\d+>' => 'emr/bloodpressure/options',
 //        'DELETE bloodpressure/<id:\d+>' => 'emr/bloodpressure/delete'
-        this.postBloodpressure = function( bloodpressure ) {
+        this.postBloodpressure = function (bloodpressure) {
             $http({
                 method: "POST",
-                url: 'http://www.api.cardiacare.ru/bloodpressure',
+                url: 'http://api.cardiacare.ru/bloodpressure',
                 params: bloodpressure
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
+
         this.getBloodpressureList = function () {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/bloodpressure',
+                url: 'http://api.cardiacare.ru/bloodpressure',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -335,11 +335,11 @@
                 return null;
             });
         };
-        
+
         this.getBloodpressureById = function (bloodpressure_id) {
             return $http({
                 method: 'GET',
-                url: 'http://www.api.cardiacare.ru/bloodpressure',
+                url: 'http://api.cardiacare.ru/bloodpressure',
                 params: {id: bloodpressure_id},
                 headers: {
                     'Content-Type': 'application/json',
@@ -352,21 +352,21 @@
                 return null;
             });
         };
-        
-        this.deleteBloodpressureById = function(bloodpressure_id) {
+
+        this.deleteBloodpressureById = function (bloodpressure_id) {
             $http({
                 method: "Delete",
-                url: 'http://www.api.cardiacare.ru/bloodpressur',
+                url: 'http://api.cardiacare.ru/bloodpressur',
                 params: {id: bloodpressure_id}
             })
-            .then(function (response) {
-                // success
-            },
-            function (response) { // optional
-                // failed
-            });
+                .then(function (response) {
+                        // success
+                    },
+                    function (response) { // optional
+                        // failed
+                    });
         };
-        
+
 
     }
 })();

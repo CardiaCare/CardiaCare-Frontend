@@ -19,7 +19,7 @@
              * Basic auth requires login and password encoded with base64 / e.g. base64(login:password) /
              * As we don't have a password we just concatenate our token and ":"
              */
-            $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
+            // $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
             $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode(aToken + ":");
             _token = aToken;
             _isAuthorized = true;
