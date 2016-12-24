@@ -2,14 +2,20 @@
 
   angular
     .module('app')
-    .controller('PatientListController', [
+    .controller('PatientListController', ['$scope', 'HttpService',
       PatientListController
     ]);
 
-    function PatientListController() {
+    function PatientListController($scope, HttpService) {
         var vm = this;
+        
+         vm.patients = HttpService.getPatientList();
+        
+//        HttpService.getPatientList().then(function(response) {
+//            vm.patients= response;
+//        });
 
-        vm.patients = [
+        vm.patients2= [
             {
                 name: 'Ivan',
                 patronymic: 'Ivanovich',
