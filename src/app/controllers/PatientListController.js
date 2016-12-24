@@ -9,11 +9,10 @@
     function PatientListController($scope, HttpService) {
         var vm = this;
         
-         vm.patients = HttpService.getPatientList();
         
-//        HttpService.getPatientList().then(function(response) {
-//            vm.patients= response;
-//        });
+        HttpService.getPatientList().then(function(response) {
+            vm.patients= response;
+        });
 
         vm.patients2= [
             {
