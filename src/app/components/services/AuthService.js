@@ -2,13 +2,23 @@
     'use strict';
 
     angular.module('app')
-        .service('AuthService', ['$http', '$base64',
+        .service('AuthService', ['$http', '$base64', "$cookies",
             AuthService
         ]);
 
-    function AuthService($http, $base64) {
+    function AuthService($http, $base64, $cookies) {
         var _token;
         var _isAuthorized = false;
+        checkCookies();
+
+        function checkCookies() {
+            var token = $cookies.get('token');
+            if (undefined !== token) {
+                console.log(token);
+                $http.defaults.headers.common.Authorization = 'Basic ' + token;
+                _isAuthorized = true;
+            }
+        }
 
         function setToken(aToken) {
             /*
@@ -21,6 +31,7 @@
              */
             // $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
             $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode(aToken + ":");
+            $cookies.put('token', $base64.encode(aToken + ":"));
             _token = aToken;
             _isAuthorized = true;
         }
@@ -42,10 +53,14 @@
         };
 
         this.logout = function () {
-            /**
-             * DELETE token
-             * SET isAuthorized to null
-             */
+            return $http.delete('http://api.cardiacare.ru/tokens').then(
+                function(response){
+                    $cookies.remove('token');
+                    _isAuthorized = false;
+                },function(response){
+                    alert("Error when deleting token");
+                }
+            );
         };
 
         this.isAuthorized = function () {
