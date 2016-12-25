@@ -11,7 +11,7 @@
         
         
         HttpService.getPatientList().then(function(response) {
-            vm.patients= response;
+            vm.patients = response;
         });
 
         vm.patients2= [
