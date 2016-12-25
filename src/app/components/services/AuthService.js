@@ -9,9 +9,8 @@
     function AuthService($http, $base64, $cookies) {
         var _token;
         var _isAuthorized = false;
-        checkCookies();
 
-        function checkCookies() {
+        this.checkAuthorization = function () {
             var token = $cookies.get('token');
             if (undefined !== token) {
                 console.log(token);
@@ -53,14 +52,18 @@
         };
 
         this.logout = function () {
-            return $http.delete('http://api.cardiacare.ru/tokens').then(
-                function(response){
-                    $cookies.remove('token');
-                    _isAuthorized = false;
-                },function(response){
-                    alert("Error when deleting token");
-                }
-            );
+            if(_isAuthorized){
+                return $http.delete('http://api.cardiacare.ru/tokens').then(
+                    function(response){
+                        $cookies.remove('token');
+                        _isAuthorized = false;
+                    },function(response){
+                        alert("Error when deleting token");
+                    }
+                );
+            } else {
+                throw Error("Not authorized");
+            }
         };
 
         this.isAuthorized = function () {

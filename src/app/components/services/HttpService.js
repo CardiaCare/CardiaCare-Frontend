@@ -57,8 +57,8 @@
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 }
-            }).then(function (data) {
-                return data;
+            }).then(function (response) {
+                return response.data;
             }, function () {
                 alert("error");
                 return null;

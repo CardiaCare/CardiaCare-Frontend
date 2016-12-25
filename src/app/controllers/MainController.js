@@ -4,11 +4,14 @@
             .module('app')
             .controller('MainController', [
                 '$scope','navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
+                'AuthService',
                 MainController
             ]);
 
-    function MainController($scope, navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog) {
+    function MainController($scope, navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, AuthService) {
         var vm = this;
+
+        AuthService.checkAuthorization();
 
         vm.menuItems = [];
         vm.selectItem = selectItem;
