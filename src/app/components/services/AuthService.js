@@ -17,7 +17,7 @@
                 $http.defaults.headers.common.Authorization = 'Basic ' + token;
                 _isAuthorized = true;
             }
-        }
+        };
 
         function setToken(aToken) {
             /*
