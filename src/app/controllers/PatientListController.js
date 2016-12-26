@@ -25,7 +25,7 @@
             
         ];
 
-        $http.get('http://api.cardiacare.ru/patients/'+ 6)
+        $http.get('http://api.cardiacare.ru/patients')
                 .then(function (result) {
                      vm.patients = result.data;
                 });
