@@ -10,27 +10,12 @@
     function PatientListController($scope, HttpService) {
         var vm = this;
 
+        vm.patients = [];
 
         HttpService.getPatientList()
             .then(function (patients) {
                 vm.patients = patients;
             });
-
-//        vm.patients2 = [
-//            {
-//                name: 'Ivan',
-//                patronymic: 'Ivanovich',
-//                surname: 'Ivanov'
-//
-//            },
-//            {
-//                name: 'Kirill',
-//                patronymic: 'Kirillovich',
-//                surname: 'Kirillov'
-//
-//            }
-//
-//        ];
    }
 
 })();

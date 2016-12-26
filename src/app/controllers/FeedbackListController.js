@@ -10,27 +10,12 @@
     function FeedbackListController($scope, HttpService) {
         var vm = this;
 
+        vm.feedbacks = [];
 
         HttpService.getFeedbackList()
             .then(function (feedbacks) {
                 vm.feedbacks = feedbacks;
             });
-
-//        vm.patients2 = [
-//            {
-//                name: 'Ivan',
-//                patronymic: 'Ivanovich',
-//                surname: 'Ivanov'
-//
-//            },
-//            {
-//                name: 'Kirill',
-//                patronymic: 'Kirillovich',
-//                surname: 'Kirillov'
-//
-//            }
-//
-//        ];
    }
 
 })();
