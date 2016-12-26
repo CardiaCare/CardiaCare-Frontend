@@ -51,16 +51,35 @@
             });
         };
 
+        this.signup = function (credentials) {
+            console.log("OK");
+            return $http({
+                method: 'POST',
+                url: 'http://api.cardiacare.ru/users',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                data: credentials
+            }).then(function (response) {
+                setToken(response.data);
+            }, function (response) {
+                console.log("Error when signup");
+            });
+        };
+
         this.logout = function () {
-            if(_isAuthorized){
-                return $http.delete('http://api.cardiacare.ru/tokens').then(
-                    function(response){
-                        $cookies.remove('token');
-                        _isAuthorized = false;
-                    },function(response){
-                        alert("Error when deleting token");
-                    }
-                );
+            if (_isAuthorized) {
+                return $http.delete('http://api.cardiacare.ru/tokens')
+                    .then(
+                        function (response) {
+                            $http.defaults.headers.common.Authorization = '';
+                            $cookies.remove('token');
+                            _isAuthorized = false;
+                        }, function (response) {
+                            alert("Error when deleting token");
+                        }
+                    );
             } else {
                 throw Error("Not authorized");
             }
