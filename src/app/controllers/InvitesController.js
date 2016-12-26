@@ -17,17 +17,17 @@
 
         vm.role = [
             {
-                name: "Patient"
+                name: "patient"
             },
             {
-                name: "Doctor"
+                name: "doctor"
             },
 
             {
-                name: "Volunteer"
+                name: "volunteer"
             },
             {
-                name: "Chief"
+                name: "chief"
             }
         ];
 
