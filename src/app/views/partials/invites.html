@@ -1,24 +1,26 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="InvitesController as vm">
-        <md-input-container>
-          <label>Name</label>
-          <input>
-        </md-input-container>
+    <md-input-container>
+        <label>Name</label>
+        <input ng-model="vm.invite.inviteName">
+    </md-input-container>
 
-        <md-input-container>
-          <label>Email</label>
-          <input>
-        </md-input-container>
+    <md-input-container>
+        <label>Email</label>
+        <input ng-model="vm.invite.inviteEmail">
+    </md-input-container>
 
-        <md-input-container>
-          <label>Role</label>
-          <md-select ng-model="vm.userState">
+    <md-input-container>
+        <label>Role</label>
+        <md-select ng-model="vm.invite.userState">
             <md-option ng-repeat="role in vm.role" ng-value="role.name" >
-              {{role.name}}
+                {{role.name}}
             </md-option>
-          </md-select>
-        </md-input-container>
-    <md-button class="md-raised md-primary">Invite</md-button>
-    <md-button class="md-raised md-primary" ng-click="vm.showInvites($event)">Show invites</md-button>
+        </md-select>
+    </md-input-container>
+    <md-input-container>
+        <md-button class="md-raised md-primary" ng-click="vm.invitePerson()">Invite person</md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.showInvites($event)">Show invites</md-button>
+    </md-input-container>
 </md-content>
 
 

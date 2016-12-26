@@ -2,18 +2,18 @@
     <md-content class="md-padding" layout="row">
     <md-input-container flex>
         <label>Short description</label>
-        <input>
+        <input ng-model="vm.questionnaire.title">
     </md-input-container>
     <md-input-container>
         <label>Version</label>
-        <input>
+        <input ng-model="vm.questionnaire.version">
     </md-input-container>
     </md-content>
     
     <aps-upload-file></aps-upload-file>
     
     <div layout="row" layout-sm="column" layout-margin>
-    <md-button class="md-raised md-primary" flex="50" flex-sm="100">Download</md-button>
+    <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.downloadQuestionnaire()">Download</md-button>
     </div>
     
     <md-list flex>

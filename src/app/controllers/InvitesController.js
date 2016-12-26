@@ -1,37 +1,62 @@
-(function(){
+(function () {
 
-  angular
-    .module('app')
-    .controller('InvitesController', [ '$mdDialog', '$scope',
+    angular
+            .module('app')
+            .controller('InvitesController', ['$mdDialog', '$scope','HttpService',
                 InvitesController
             ]);
 
-    function InvitesController( $mdDialog, $scope ) {
+    function InvitesController($mdDialog, $scope, HttpService,
+            PatientListController) {
         var vm = this;
-        vm.userState = '';
+
+        vm.invite = {
+            userState: '',
+            inviteName: '',
+            inviteEmail: ''
+        }
+
         vm.role = [
+            {
+                name: "Patient"
+            },
             {
                 name: "Doctor"
             },
-            {
-                name: "Patient"
-            }
 
-        ];
-        
-        vm.invites = [
             {
-                name: "ivan",
-                email:"a@a"
+                name: "Volunteer"
             },
             {
-                name: "petr",
-                email:"b@b"
+                name: "Chief"
             }
-
         ];
 
-        vm.showInvites = function(ev) {
+//        vm.invites = [
+//            {
+//                name: "ivan",
+//                email: "a@a"
+//            },
+//            {
+//                name: "petr",
+//                email: "b@b"
+//            }
+//
+//        ];
+
+        vm.invitePerson = function () {
+            //TODO: check empty
+            HttpService.postInvite(vm.invite)
+                    .then(function () {
+                        
+                    });
+        };
+
+        vm.showInvites = function (ev) {
+            HttpService.getInvitesList()
+                    .then(function (invites) {
+                        vm.invites = invites;
+                    });
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'dialog1.tmpl.html',
@@ -54,12 +79,14 @@
             this.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
-        };
-        
+        }
+        ;
+
         function deleteInvite(item) {
-            alert("item "+item);
-             vm.invites=  vm.invites.splice( vm.invites.indexOf(item), 1);
-        };
+            alert("item " + item);
+            vm.invites = vm.invites.splice(vm.invites.indexOf(item), 1);
+        }
+        ;
     }
 
 })();

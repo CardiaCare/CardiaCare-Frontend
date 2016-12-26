@@ -2,21 +2,23 @@
 
   angular
     .module('app')
-    .controller('PasswordRecoveryController', [
+    .controller('PasswordRecoveryController', ['HttpService',
       PasswordRecoveryController
     ]);
 
-  function PasswordRecoveryController() {
+  function PasswordRecoveryController(HttpService) {
     var vm = this;
 
     vm.input = {
-      curent: '12345',
-      newpsw: '12346',
-
+      curent: '',
+      newpsw: '',
+      confpsw: ''
     };
     
-    function reset(){
-        
+     vm.reset = function(){
+        HttpService.postRecovery(vm.input.newpsw)
+            .then(function () {
+            });
     };
   }
 

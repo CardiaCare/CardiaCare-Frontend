@@ -1,0 +1,12 @@
+<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="BloodpressureController as vm">
+    <md-list flex>
+        <md-list-item class="md-3-line" ng-repeat="item in vm.bloodpressure" ng-click="null">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ item.systolic}}</h3>
+                <h4>{{ item.diastolic}}</h4>
+                <p>{{ item.created_at}}</p>
+            </div>
+        </md-list-item>
+        <md-divider ></md-divider>
+    </md-list>
+</md-content>

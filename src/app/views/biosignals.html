@@ -1,18 +1,7 @@
 <div layout-gt-md="row">
+    <panel-widget flex title="Bloodpressure diary" template="app/views/partials/bloodpressure.html" class="fixed-height-widget"></panel-widget>
     <panel-widget flex title="Calendar" template="app/views/partials/calendar.html" class="fixed-height-widget"></panel-widget>
 </div>
 
 
-<md-content>
-    <md-list flex>
-        <md-subheader class="md-no-sticky">Bloodpressure diary</md-subheader>
-        <md-list-item class="md-3-line" ng-repeat="item in vm.bloodpressure" ng-click="null">
-            <div class="md-list-item-text" layout="column">
-                <h3>{{ item.systolic}}</h3>
-                <h4>{{ item.diastolic}}</h4>
-                <p>{{ item.created_at}}</p>
-            </div>
-        </md-list-item>
-        <md-divider ></md-divider>
-    </md-list>
-</md-content>
+

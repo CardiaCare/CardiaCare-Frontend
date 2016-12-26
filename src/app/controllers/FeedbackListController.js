@@ -3,17 +3,17 @@
 
     angular
         .module('app')
-        .controller('PatientListController', ['$scope', 'HttpService',
-            PatientListController
+        .controller('FeedbackListController', ['$scope', 'HttpService',
+            FeedbackListController
         ]);
 
-    function PatientListController($scope, HttpService) {
+    function FeedbackListController($scope, HttpService) {
         var vm = this;
 
 
-        HttpService.getPatientList()
-            .then(function (patients) {
-                vm.patients = patients;
+        HttpService.getFeedbackList()
+            .then(function (feedbacks) {
+                vm.feedbacks = feedbacks;
             });
 
 //        vm.patients2 = [
@@ -34,5 +34,3 @@
    }
 
 })();
-
-
