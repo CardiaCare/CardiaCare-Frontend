@@ -11,9 +11,8 @@
         var vm = this;
 
         vm.invite = {
-            userState: '',
-            inviteName: '',
-            inviteEmail: ''
+            role: '',
+            email: ''
         }
 
         vm.role = [
