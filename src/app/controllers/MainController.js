@@ -1,12 +1,12 @@
 (function () {
 
     angular
-            .module('app')
-            .controller('MainController', [
-                '$scope','navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
-                'AuthService',
-                MainController
-            ]);
+        .module('app')
+        .controller('MainController', [
+            '$scope', 'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
+            'AuthService',
+            MainController
+        ]);
 
     function MainController($scope, navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, AuthService) {
         var vm = this;
@@ -22,10 +22,10 @@
         vm.toggleRightSidebar = toggleRightSidebar;
 
         navService
-                .loadAllItems()
-                .then(function (menuItems) {
-                    vm.menuItems = [].concat(menuItems);
-                });
+            .loadAllItems()
+            .then(function (menuItems) {
+                vm.menuItems = [].concat(menuItems);
+            });
 
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
@@ -47,19 +47,23 @@
         vm.showConfirm = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                    .title('Logout')
-                    .textContent('Are you sure you want to log out?')
-                    .ariaLabel('Lucky day')
-                    .targetEvent(ev)
-                    .ok('Yes')
-                    .cancel('No');
+                .title('Logout')
+                .textContent('Are you sure you want to log out?')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok('Yes')
+                .cancel('No');
 
             $mdDialog.show(confirm).then(function () {
                 $scope.status = 'You decided to get rid of your debt.';
             }, function () {
                 $scope.status = 'You decided to keep your debt.';
             });
-        }
+        };
+
+        vm.logout = function () {
+            AuthService.logout();
+        };
 
         function DialogController($mdDialog) {
             this.hide = function () {
@@ -91,8 +95,16 @@
                 var vm = this;
 
                 vm.actions = [
-                    {name: 'Share', icon: 'share', url: 'https://twitter.com/intent/tweet?text=Angular%20Material%20Dashboard%20https://github.com/flatlogic/angular-material-dashboard%20via%20@flatlogicinc'},
-                    {name: 'Star', icon: 'star', url: 'https://github.com/flatlogic/angular-material-dashboard/stargazers'}
+                    {
+                        name: 'Share',
+                        icon: 'share',
+                        url: 'https://twitter.com/intent/tweet?text=Angular%20Material%20Dashboard%20https://github.com/flatlogic/angular-material-dashboard%20via%20@flatlogicinc'
+                    },
+                    {
+                        name: 'Star',
+                        icon: 'star',
+                        url: 'https://github.com/flatlogic/angular-material-dashboard/stargazers'
+                    }
                 ];
 
                 vm.performAction = function (action) {
@@ -103,11 +115,11 @@
 
         function showSimpleToast(title) {
             $mdToast.show(
-                    $mdToast.simple()
+                $mdToast.simple()
                     .content(title)
                     .hideDelay(2000)
                     .position('bottom right')
-                    );
+            );
         }
     }
 
