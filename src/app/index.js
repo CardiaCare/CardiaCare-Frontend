@@ -106,6 +106,7 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
     });
     
     $mdIconProvider
+    .iconSet('close', 'assets/images/ic_close_24px.svg', 24)
       .iconSet('email', 'assets/images/box.svg', 24)
       .iconSet('user', 'assets/images/user.svg', 64)
       .iconSet('message', 'assets/images/comment.svg', 24);

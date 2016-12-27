@@ -75,7 +75,6 @@
             });
         };
 
-
         function InviteDialogController($scope, $mdDialog) {
             $scope.hide = function () {
                 $mdDialog.hide();
