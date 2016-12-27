@@ -56,7 +56,7 @@
         };
 
         this.logout = function () {
-            if (_isAuthorized) {
+            if (this.isAuthorized()) {
                 return $http.delete('http://api.cardiacare.ru/tokens')
                     .then(
                         function (response) {
