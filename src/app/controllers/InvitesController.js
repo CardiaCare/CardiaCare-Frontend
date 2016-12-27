@@ -2,11 +2,11 @@
 
     angular
             .module('app')
-            .controller('InvitesController', ['$mdDialog', '$scope','HttpService',
+            .controller('InvitesController', ['$mdDialog', '$scope','HttpService', '$mdToast',
                 InvitesController
             ]);
 
-    function InvitesController($mdDialog, $scope, HttpService,
+    function InvitesController($mdDialog, $scope, HttpService, $mdToast,
             PatientListController) {
         var vm = this;
 
@@ -47,8 +47,18 @@
             //TODO: check empty
             HttpService.postInvite(vm.invite)
                     .then(function () {
-                        
+                        $scope.showSimpleToast("Done!");
                     });
+            vm.invite = {};
+        };
+        
+        $scope.showSimpleToast = function (text) {
+            $mdToast.show(
+                    $mdToast.simple()
+                    .textContent(text)
+                    .position('top right')
+                    .hideDelay(3000)
+                    );
         };
 
         vm.showInvites = function (ev) {
@@ -57,7 +67,7 @@
                         vm.invites = invites;
                     });
             $mdDialog.show({
-                controller: DialogController,
+                controller: InviteDialogController,
                 templateUrl: 'dialog1.tmpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
@@ -65,7 +75,7 @@
             });
         };
 
-        function DialogController($mdDialog) {
+        function InviteDialogController($mdDialog) {
             this.hide = function () {
                 $mdDialog.hide();
             };
