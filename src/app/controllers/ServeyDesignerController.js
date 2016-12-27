@@ -117,7 +117,6 @@
             };
 
             $scope.cancel = function () {
-                alert("here");
                 $mdDialog.cancel();
             };
 

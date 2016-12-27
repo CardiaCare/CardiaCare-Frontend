@@ -64,7 +64,7 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
             })
         ;
 
-        $urlRouterProvider.otherwise('/profile');
+        $urlRouterProvider.otherwise('/login');
 
         $mdThemingProvider
             .theme('default')

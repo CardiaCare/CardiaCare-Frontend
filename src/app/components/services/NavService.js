@@ -19,17 +19,6 @@
         icon: 'person',
         sref: '.profile'
       }
-      ,
-      {
-        name: 'Login',
-        icon: 'person',
-        sref: '.login'
-      },
-      {
-        name: 'Servey',
-        icon: 'person',
-        sref: '.servey'
-      }
     ];
 
     return {
