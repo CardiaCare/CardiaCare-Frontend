@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('RegistrationController', ['AuthService',
+        .controller('RegistrationController', ['$state', 'AuthService',
             RegistrationController
         ]);
 
-    function RegistrationController(AuthService) {
+    function RegistrationController($state, AuthService) {
         var vm = this;
 
         vm.credentials = {};
@@ -15,7 +15,7 @@
             console.log("OK!");
             AuthService.signup(vm.credentials)
                 .then(function () {
-                    console.log("success signup");
+                    $state.go('home.profile');
                 });
         };
     }

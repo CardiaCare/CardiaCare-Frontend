@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('LoginController', ['$scope', '$rootScope', 'AuthService', 'AUTH_EVENTS',
+        .controller('LoginController', ['$scope', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS',
             LoginController
         ]);
 
-    function LoginController($scope, $rootScope, AuthService, AUTH_EVENTS) {
+    function LoginController($scope, $state, $rootScope, AuthService, AUTH_EVENTS) {
         var vm = this;
 
         vm.credentials = {};
@@ -21,9 +21,9 @@
             }
             var credentials = {email: email, password: password};
             AuthService.login(credentials).then(function () {
-                $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+                $state.go('home.profile');
             }, function () {
-                $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+                $state.go('home.login');
             });
         };
     }

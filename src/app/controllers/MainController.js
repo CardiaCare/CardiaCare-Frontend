@@ -11,7 +11,7 @@
     function MainController($scope, navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, AuthService) {
         var vm = this;
 
-        AuthService.checkAuthorization();
+
 
         vm.menuItems = [];
         vm.selectItem = selectItem;
@@ -20,6 +20,12 @@
         vm.title = $state.current.data.title;
         vm.showSimpleToast = showSimpleToast;
         vm.toggleRightSidebar = toggleRightSidebar;
+
+        $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
+            if(!value && oldValue) {
+                $state.go('home.login');
+            }
+        }, true);
 
         navService
             .loadAllItems()
