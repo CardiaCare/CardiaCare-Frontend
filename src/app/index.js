@@ -13,7 +13,7 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
                 abstract: true
             })
             .state('home.profile', {
-                url: '/profile',
+                url: '/profile/:userId',
                 templateUrl: 'app/views/profile.html',
                 controller: 'ProfileController',
                 controllerAs: 'vm',
@@ -22,7 +22,7 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
                 }
             })
             .state('home.biosignals', {
-                url: '/biosignals',
+                url: '/profile/:userId/biosignals',
                 templateUrl: 'app/views/biosignals.html',
                 controller: 'BiosignalsController',
                 controllerAs: 'vm',

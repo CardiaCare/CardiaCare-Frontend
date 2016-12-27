@@ -1,6 +1,6 @@
 <md-content ng-controller="PatientListController">
     <md-list flex>
-        <md-list-item ng-repeat="item in patients" ui-sref="home.profile" class="noright">
+        <md-list-item ng-repeat="item in patients" ui-sref="home.profile({userId: item.id})" class="noright">
             <img alt="{{ item.surname}}" ng-src="{{ item.img}}" class="md-avatar" />
             <p>{{ item.surname}} {{ item.name}} {{ item.patronymic}}</p>
             <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
