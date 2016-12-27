@@ -1,37 +1,38 @@
+
 <div layout="column" flex>
     <md-toolbar layout="row" layout-align="center center">
+        <section layout-align="start center" class="md-hue-1 md-whiteframe-z2" md-theme="custom">
+            <md-button layout="row" layout-align="center center" class="md-toolbar-tools md-warn"
+                       href="#">
+                <h1>CardiaCare</h1>
+            </md-button>
+        </section>
         <section layout-align="start center" layout-fill flex>
             <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
                 <i class="material-icons">menu</i>
             </md-button>
         </section>
         <section layout-align="end center">
-           <md-menu-bar>
-            <md-menu >
-                <md-button class="md-fab md-primary" aria-label="Use Android" ng-click="$mdOpenMenu()">
-                    <img width="50" class="img-circle" ng-src="assets/images/avatar-1.png"></img>
-                </md-button>
-                <md-menu-content>
-                    <md-menu-item>
-                        <md-button ui-sref="home.doctor-dashboard">
-                            Profile
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="ctrl.sampleAction('share', $event)">
-                            Settings
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-divider></md-menu-divider>
-                    <md-menu-item>
-                        <md-button  ng-click="vm.logout()">
-                            Log Out
-                        </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-        </md-menu-bar>
-
+            <md-menu-bar>
+                <md-menu >
+                    <md-button class="md-fab md-primary" aria-label="Use Android" ng-click="$mdOpenMenu()">
+                        <img width="50" class="img-circle" ng-src="assets/images/avatar-1.png"></img>
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button ui-sref="home.doctor-dashboard">
+                                Doctor Account
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-divider></md-menu-divider>
+                        <md-menu-item>
+                            <md-button  ng-click="vm.logout()">
+                                Log Out
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </md-menu-bar>
         </section>
     </md-toolbar>
 

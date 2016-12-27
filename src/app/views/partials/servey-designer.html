@@ -1,4 +1,4 @@
-<md-content class="md-padding" layout="column">
+<md-content class="md-padding" layout="column" ng-controller="ServeyDesignerController as vm">
     <md-list flex>
         <md-list-item  ng-repeat="item in items" class="noright">
             {{item.question}} {{item.type}} {{item.answer.option}}
@@ -36,7 +36,7 @@
         <h2>Single Choise Answers</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+          <md-icon md-svg-src="assets/images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -82,7 +82,7 @@
         <h2>Dichotomous Answers</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+          <md-icon md-svg-src="assets/images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>
@@ -120,7 +120,7 @@
         <h2>Dichotomous Answers</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
-          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+          <md-icon md-svg-src="assets/images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
         </md-button>
       </div>
     </md-toolbar>

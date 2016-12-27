@@ -9,7 +9,7 @@
     function BloodpressureController(HttpService) {
         var vm = this;
 
-        HttpService.getInvitesList()
+        HttpService.getBloodpressureList()
                 .then(function (bloodpressure) {
                     vm.bloodpressure = bloodpressure;
                 });

@@ -1,0 +1,53 @@
+<md-content class="md-padding" layout="row" layout-sm="column" ng-controller="PatientController as vm">
+    <md-content class="md-padding" layout="column">
+        <md-input-container>
+            <label>First name</label>
+            <input ng-model="vm.user.name">
+        </md-input-container>
+        <md-input-container>
+            <input ng-model="vm.user.patronymic">
+        </md-input-container>
+        <md-input-container>
+            <label>Second Name</label>
+            <input ng-model="vm.user.surname">
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="vm.user.email" type="email">
+        </md-input-container>
+    </md-content>
+    <md-content class="md-padding">
+        <form name="userForm">
+            <div layout layout-sm="column">
+                <md-input-container flex="80">
+                    <label>Organization</label>
+                    <input ng-model="vm.user.organization" disabled>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Submission Date</label>
+                    <input type="date" ng-model="vm.user.submissionDate">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>snils</label>
+                    <input ng-model="vm.user.snils">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>inn</label>
+                    <input ng-model="vm.user.inn">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>Diagnoses</label>
+                    <textarea ng-model="vm.user.diagnoses"></textarea>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Allergy</label>
+                    <textarea ng-model="vm.user.allergy"></textarea>
+                </md-input-container>
+            </div>
+        </form>
+    </md-content>
+</md-content>

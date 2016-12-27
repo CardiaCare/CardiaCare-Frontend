@@ -10,25 +10,14 @@
   function navService($q){
     var menuItems = [
       {
-        name: 'Biosignals',
-        icon: 'dashboard',
-        sref: '.biosignals'
-      },
-      {
         name: 'Profile',
         icon: 'person',
         sref: '.profile'
-      }
-      ,
-      {
-        name: 'Login',
-        icon: 'person',
-        sref: '.login'
       },
       {
-        name: 'Servey',
-        icon: 'person',
-        sref: '.servey'
+        name: 'Biosignals',
+        icon: 'dashboard',
+        sref: '.biosignals'
       }
     ];
 

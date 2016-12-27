@@ -16,31 +16,18 @@
         }
 
         vm.role = [
-            {
-                name: "patient"
-            },
-            {
-                name: "doctor"
-            },
+            {name: "patient"},
+            {name: "doctor"},
+            {name: "volunteer"},
+            {name: "chief"}];
 
-            {
-                name: "volunteer"
-            },
-            {
-                name: "chief"
-            }
-        ];
-
-//        vm.invites = [
+//        $scope.invites = [
 //            {
-//                name: "ivan",
 //                email: "a@a"
 //            },
 //            {
-//                name: "petr",
 //                email: "b@b"
 //            }
-//
 //        ];
 
         vm.invitePerson = function () {
@@ -62,10 +49,6 @@
         };
 
         vm.showInvites = function (ev) {
-            HttpService.getInvitesList()
-                    .then(function (invites) {
-                        vm.invites = invites;
-                    });
             $mdDialog.show({
                 controller: InviteDialogController,
                 templateUrl: 'dialog1.tmpl.html',
@@ -75,28 +58,28 @@
             });
         };
 
-
         function InviteDialogController($scope, $mdDialog) {
+            HttpService.getInvitesList()
+                    .then(function (invites) {
+                        $scope.invites = invites;
+
+                    });
             $scope.hide = function () {
                 $mdDialog.hide();
             };
 
             $scope.cancel = function () {
-                alert("here");
                 $mdDialog.cancel();
             };
 
             $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
-        }
-        ;
-
-        function deleteInvite(item) {
-            alert("item " + item);
-            vm.invites = vm.invites.splice(vm.invites.indexOf(item), 1);
-        }
-        ;
+            
+            $scope.deleteInvite = function (item) {
+                alert("item " + item.email);
+                $scope.invites = $scope.invites.splice($scope.invites.indexOf(item), 1);
+            };
+        };
     }
-
 })();

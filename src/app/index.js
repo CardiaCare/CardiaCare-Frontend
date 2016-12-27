@@ -64,7 +64,7 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
             })
         ;
 
-        $urlRouterProvider.otherwise('/profile');
+        $urlRouterProvider.otherwise('/login');
 
         $mdThemingProvider
             .theme('default')
@@ -108,7 +108,6 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
             .iconSet('email', 'assets/images/box.svg', 24)
             .iconSet('user', 'assets/images/user.svg', 64)
             .iconSet('message', 'assets/images/comment.svg', 24);
-
 
         $qProvider.errorOnUnhandledRejections(false);
 
