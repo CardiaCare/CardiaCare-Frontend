@@ -65,17 +65,17 @@
             });
         };
 
-        function DialogController($mdDialog) {
-            this.hide = function () {
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
                 $mdDialog.hide();
             };
 
-            this.cancel = function () {
+            $scope.cancel = function () {
                 alert("here");
                 $mdDialog.cancel();
             };
 
-            this.answer = function (answer) {
+            $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
         }
