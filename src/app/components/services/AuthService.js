@@ -7,17 +7,6 @@
         ]);
 
     function AuthService($http, $base64, $cookies) {
-        var _token;
-        var _isAuthorized = false;
-
-        this.checkAuthorization = function () {
-            var token = $cookies.get('token');
-            if (undefined !== token) {
-                console.log(token);
-                $http.defaults.headers.common.Authorization = 'Basic ' + token;
-                _isAuthorized = true;
-            }
-        };
 
         function setToken(aToken) {
             /*
@@ -31,8 +20,6 @@
             // $http.defaults.headers.common = {"Access-Control-Request-Headers": "accept, origin, authorization"};
             $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode(aToken + ":");
             $cookies.put('token', $base64.encode(aToken + ":"));
-            _token = aToken;
-            _isAuthorized = true;
         }
 
         this.login = function (credentials) {
@@ -75,7 +62,6 @@
                         function (response) {
                             $http.defaults.headers.common.Authorization = '';
                             $cookies.remove('token');
-                            _isAuthorized = false;
                         }, function (response) {
                             alert("Error when deleting token");
                         }
@@ -86,6 +72,13 @@
         };
 
         this.isAuthorized = function () {
+            var token = $cookies.get('token');
+            var _isAuthorized = false;
+            if (undefined !== token) {
+                $http.defaults.headers.common.Authorization = 'Basic ' + token;
+                _isAuthorized = true;
+            }
+
             return _isAuthorized;
         };
     }
