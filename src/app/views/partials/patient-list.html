@@ -1,7 +1,7 @@
-<md-content ng-controller="PatientListController as vm">
+<md-content ng-controller="PatientListController">
     <md-list flex>
-        <md-list-item ng-repeat="item in vm.patients" ng-click="goToPerson(person.name, $event)" class="noright">
-            <img alt="{{ item.surname}}" ng-src="{{ person.img}}" class="md-avatar" />
+        <md-list-item ng-repeat="item in patients" ui-sref="home.profile" class="noright">
+            <img alt="{{ item.surname}}" ng-src="{{ item.img}}" class="md-avatar" />
             <p>{{ item.surname}} {{ item.name}} {{ item.patronymic}}</p>
             <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
             <md-icon md-svg-icon="email"  aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>

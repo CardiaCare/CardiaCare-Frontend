@@ -8,14 +8,16 @@
         ]);
 
     function PatientListController($scope, HttpService) {
-        var vm = this;
-
-        vm.patients = [];
+        $scope.patients = [];
 
         HttpService.getPatientList()
             .then(function (patients) {
-                vm.patients = patients;
+                $scope.patients = patients;
             });
+
+        $scope.goToPatient = function(patientId, event){
+            alert(patientId);
+        };
    }
 
 })();
