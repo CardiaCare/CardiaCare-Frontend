@@ -3,12 +3,12 @@
     angular
         .module('app')
         .controller('MainController', [
-            '$scope', 'navService', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
+            '$scope', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
             'AuthService',
             MainController
         ]);
 
-    function MainController($scope, navService, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, AuthService) {
+    function MainController($scope, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, AuthService) {
         var vm = this;
 
         vm.selectItem = selectItem;

@@ -2,19 +2,25 @@
 
     angular
         .module('app')
-        .controller('ProfileController', ['navService', '$mdSidenav',
+        .controller('ProfileController', ['$mdSidenav', '$stateParams',
             ProfileController
         ]);
 
-    function ProfileController(navService, $mdSidenav) {
+    function ProfileController($mdSidenav, $stateParams) {
         var vm = this;
-        vm.menuItems = [];
-        navService
-            .loadAllItems()
-            .then(function (menuItems) {
-                vm.menuItems = [].concat(menuItems);
-            });
-
+        //FIXME
+        vm.menuItems = [
+            {
+                name: 'Profile',
+                icon: 'person',
+                sref: 'home.profile({userId: ' + $stateParams.userId + '})'
+            },
+            {
+                name: 'Biosignals',
+                icon: 'dashboard',
+                sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
+            }
+        ];
     }
 
 })();
