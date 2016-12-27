@@ -77,8 +77,7 @@
                         templateUrl: 'dialog-dichotomouse.tmpl.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
-                        clickOutsideToClose: true,
-                        controller: DialogController
+                        clickOutsideToClose: true
                     });
                     break;
                 case "Bipolar":
@@ -87,8 +86,7 @@
                         templateUrl: 'dialog-bipolar.tmpl.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
-                        clickOutsideToClose: true,
-                        controller: DialogController
+                        clickOutsideToClose: true
                     });
                     break;
                     
@@ -98,8 +96,7 @@
                         templateUrl: 'dialog-choise.tmpl.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
-                        clickOutsideToClose: true,
-                        controller: DialogController
+                        clickOutsideToClose: true
                     });
                     break;
                 case "Multiple Choise":
@@ -108,27 +105,26 @@
                         templateUrl: 'dialog-choise.tmpl.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
-                        clickOutsideToClose: true,
-                        controller: DialogController
+                        clickOutsideToClose: true
                     });
                     break;
             }
         };
         
-        function DialogController($mdDialog) {
-            this.hide = function () {
+        function DialogController($scope, $mdDialog) {
+            $scope.hide = function () {
                 $mdDialog.hide();
             };
 
-            this.cancel = function () {
+            $scope.cancel = function () {
                 alert("here");
                 $mdDialog.cancel();
             };
 
-            this.answer = function (answer) {
+            $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
-            this.addAnswers = function (answersToAdd) {
+            $scope.addAnswers = function (answersToAdd) {
             alert(answersToAdd);
             }
         };
