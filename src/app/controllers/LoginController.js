@@ -21,7 +21,7 @@
             }
             var credentials = {email: email, password: password};
             AuthService.login(credentials).then(function () {
-                $state.go('home.profile');
+                $state.go('home.doctor');
             }, function () {
                 $state.go('home.login');
             });

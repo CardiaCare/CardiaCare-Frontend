@@ -39,7 +39,7 @@
         <md-list flex>
             <md-list-item ng-repeat="item in vm.invites" class="noright">
                 <p flex>{{item.email}} {{item.created_at}} {{item.role}}</p>
-                <md-icon md-svg-icon="email"  ng-click="vm.deleteInvite(item)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
+                <md-icon md-svg-src="assets/images/ic_delete_24px.svg"ng-click="vm.deleteInvite(item)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
                  <md-divider ></md-divider>
             </md-list-item>
         </md-list>
