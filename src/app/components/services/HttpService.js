@@ -252,7 +252,7 @@
         this.getFeedbackList = function (patientId) {
             return $http({
                 method: 'GET',
-                url: 'http://api.cardiacare.ru/feedback/' + patientId,
+                url: 'http://api.cardiacare.ru/patients/' + patientId + '/feedback',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
