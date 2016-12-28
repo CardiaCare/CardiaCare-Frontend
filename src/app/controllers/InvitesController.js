@@ -56,9 +56,7 @@
                 targetEvent: ev,
                 clickOutsideToClose: true
             });
-        };
-
-        function InviteDialogController($scope, $mdDialog) {
+            function InviteDialogController($scope, $mdDialog) {
             HttpService.getInvitesList()
                     .then(function (invites) {
                         $scope.invites = invites;
@@ -81,5 +79,8 @@
                 $scope.invites = $scope.invites.splice($scope.invites.indexOf(item), 1);
             };
         };
+        };
+
+        
     }
 })();

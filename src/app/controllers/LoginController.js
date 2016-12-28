@@ -28,25 +28,29 @@
         };
 
         vm.recovery = function (ev) {
-                // Appending dialog to document.body to cover sidenav in docs app
-                var confirm = $mdDialog.prompt()
-                        .title('Passwoed recovery')
-                        .textContent('Enter email for recovery code sending')
-                        .placeholder('Email')
-                        .ariaLabel('email')
-                        .targetEvent(ev)
-                        .ok('Send')
-                        .cancel('Cancel');
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.prompt()
+                    .title('Passwoed recovery')
+                    .textContent('Enter email for recovery code sending')
+                    .placeholder('Email')
+                    .ariaLabel('email')
+                    .targetEvent(ev)
+                    .ok('Send')
+                    .cancel('Cancel');
 
-                $mdDialog.show(confirm).then(function (result) {
-                    
-                    
-                    
-                    
-                }, function () {
-                    $scope.status = 'You didn\'t name your dog.';
-                });
-            };
+            $mdDialog.show(confirm).then(function (email) {
+
+                HttpService.postRecovery(email)
+                        .then(function () {
+                            $scope.showSimpleToast("The code sent to your email");
+                        },function(){
+                            
+                        });
+                $state.go('home.recovery');
+
+            }, function () {
+            });
+        };
 
     }
 

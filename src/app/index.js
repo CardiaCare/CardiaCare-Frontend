@@ -53,6 +53,13 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
                     title: 'Registration'
                 }
             })
+            .state('home.recovery', {
+                url: '/recovery',
+                templateUrl: 'app/views/recovery.html',
+                data: {
+                    title: 'Recovery'
+                }
+            })
             .state('home.login', {
                 url: '/login',
                 templateUrl: 'app/views/login.html',
@@ -117,7 +124,12 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
          * Redirect to login page when user is not authorized
          */
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
-            var isLogin = toState.name === "home.login";
+            var isLogin = false;
+            if(toState.name === "home.login" ||
+                    toState.name === "home.recovery")
+            {
+                isLogin = true;
+            }
             if(isLogin){
                 return;
             }

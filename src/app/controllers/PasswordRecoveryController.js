@@ -32,6 +32,8 @@
             HttpService.postRecovery(email)
                     .then(function () {
                         $scope.showSimpleToast("The code sent to your email");
+                    }, function(){
+                        $scope.showSimpleToast("The code has already been sent");
                     });
         };
         
