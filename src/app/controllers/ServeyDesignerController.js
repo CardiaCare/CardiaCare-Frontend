@@ -6,7 +6,7 @@
             ServeyDesignerController
         ]);
     function ServeyDesignerController($mdDialog, $scope) {
-        $scope.items = [];
+        $scope.questions = [];
         $scope.chosenType = '';
         $scope.qtypes = [
             {
@@ -26,16 +26,15 @@
             }
         ];
 
-        $scope.answers = [];
-
         $scope.itemsToAdd = [{
-            question: '',
-            type: ''
+            description: '',
+            uri: '',
+            answer:{}
         }];
     
-        $scope.answersToAdd = [{
-            option: ''
-        }];
+        $scope.answerToAdd = {
+
+        };
     
         $scope.fixAnswer = function (answerToAdd) {
             var index = $scope.answersToAdd.indexOf(answerToAdd);
@@ -43,37 +42,27 @@
             $scope.answers.push(angular.copy(answerToAdd))
         };
 
-        $scope.addNewAnswer = function () {
-            $scope.answersToAdd.push({
-                option: ''
-            })
-        };
-
 
         $scope.fix = function (itemToAdd) {
             var index = $scope.itemsToAdd.indexOf(itemToAdd);
             $scope.itemsToAdd.splice(index, 1);
-            $scope.items.push(angular.copy(itemToAdd))
+            $scope.questions.push(angular.copy(itemToAdd))
         };
         
-        $scope.addAnswers = function (answersToAdd) {
-            alert(answersToAdd);
-        }
-        
-
         $scope.addNew = function () {
 
             $scope.itemsToAdd.push({
-            question: '',
-            type: ''
+            description: '',
+            uri: '',
+            answer:{}
             })
         };
 
-        $scope.changeSelected = function (ev, type) {
+        $scope.changeSelected = function (ev, type, answer) {
             switch (type) {
                 case "Dichotomous":
                     $mdDialog.show({
-                        controller: DialogController,
+                        controller: DichotomouseDialogController,
                         templateUrl: 'dialog-dichotomouse.tmpl.html',
                         parent: angular.element(document.body),
                         targetEvent: ev,
@@ -110,7 +99,46 @@
                     break;
             }
         };
-        
+
+        function DichotomouseDialogController($scope, $mdDialog) {
+            $scope.hide = function () {
+                $mdDialog.hide();
+            };
+
+            $scope.cancel = function () {
+                $mdDialog.cancel();
+            };
+
+            $scope.answer = function (answer) {
+                $mdDialog.hide(answer);
+            };
+            $scope.addAnswers = function () {
+                
+                var answerItems = [];
+                answerItems.push({
+                    itemScore: 0,
+                    itemText: $scope.dichotomous.option1,
+                    uri: "empty",
+                    subAnswers:[]
+                });
+                answerItems.push({
+                    itemScore: 0,
+                    itemText: $scope.dichotomous.option2,
+                    uri: "empty",
+                    subAnswers:[]
+                });
+                
+                $scope.answerToAdd = {
+                    items:answerItems,
+                    type: "Dichotomous",
+                    uri:"empty"
+                };
+
+                
+                $mdDialog.hide();
+            }
+        }
+        ;
         function DialogController($scope, $mdDialog) {
             $scope.hide = function () {
                 $mdDialog.hide();
@@ -124,9 +152,15 @@
                 $mdDialog.hide(answer);
             };
             $scope.addAnswers = function (answersToAdd) {
-            alert(answersToAdd);
+                alert(answersToAdd);
             }
-        };
+            $scope.addNewAnswer = function () {
+                $scope.answersToAdd.push({
+                    option: ''
+                })
+            };
+        }
+        ;
 
 
     }

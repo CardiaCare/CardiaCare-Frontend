@@ -1,0 +1,10 @@
+<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="QuestionnaireListController as vm">
+   
+    <md-list flex>
+        <md-list-item ng-repeat="item in vm.questionnaires" class="noright">
+            <p flex>{{ item.description}} {{ item.version}}</p>
+            <md-icon md-svg-src="assets/images/ic_delete_24px.svg"  ng-click="vm.deleteQuestionnaire(item)" aria-label="Delete" class="md-secondary md-hue-3" ></md-icon>
+            <md-divider ></md-divider>
+        </md-list-item>
+    </md-list>   
+</md-content>

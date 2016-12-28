@@ -2,7 +2,7 @@
 
     angular
             .module('app')
-            .controller('QuestionnaireAddController', ['HttpService',
+            .controller('QuestionnaireAddController', ['$scope', 'HttpService',
                 QuestionnaireAddController
             ])
             .directive('apsUploadFile', apsUploadFile);
@@ -43,7 +43,7 @@
     }
     ;
 
-    function QuestionnaireAddController(HttpService) {
+    function QuestionnaireAddController($scope, HttpService) {
         var vm = this;
         vm.questionnaire =
                 {
@@ -53,28 +53,14 @@
                     data: "12345"
                 };
 
-        vm.questionnaires = [
-            {
-                description: "first",
-                version: "1.0"
-            },
-            {
-                description: "second",
-                version: "1.1"
-            }
-
-        ]
-        
-//        HttpService.getServeyList()
-//            .then(function (questionnaires) {
-//                vm.questionnaires = questionnaires;
-//            });
-
         vm.downloadQuestionnaire = function () {
             
-            HttpService.postSurvey(vm.questionnaire)
-                    .then(function () {
-                    });
+            console.log($scope.fileName);
+            
+            
+//            HttpService.postSurvey(vm.questionnaire)
+//                    .then(function () {
+//                    });
         }
 
     }
