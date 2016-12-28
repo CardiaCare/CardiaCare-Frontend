@@ -249,10 +249,10 @@
                 });
         };
 
-        this.getFeedbackList = function () {
+        this.getFeedbackList = function (patientId) {
             return $http({
                 method: 'GET',
-                url: 'http://api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/feedback/' + patientId,
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -314,10 +314,10 @@
                 });
         };
 
-        this.getBloodpressureList = function () {
+        this.getBloodpressureList = function (patientId) {
             return $http({
                 method: 'GET',
-                url: 'http://api.cardiacare.ru/bloodpressure',
+                url: 'http://api.cardiacare.ru/patients/' + patientId + '/bloodpressure',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
