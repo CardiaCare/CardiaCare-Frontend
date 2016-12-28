@@ -2,14 +2,14 @@
 
   angular
     .module('app')
-    .controller('BloodpressureController', ['HttpService',
+    .controller('BloodpressureController', ['HttpService', '$stateParams',
       BloodpressureController
     ]);
 
-    function BloodpressureController(HttpService) {
+    function BloodpressureController(HttpService, $stateParams) {
         var vm = this;
 
-        HttpService.getBloodpressureList()
+        HttpService.getBloodpressureList($stateParams.userId)
                 .then(function (bloodpressure) {
                     vm.bloodpressure = bloodpressure;
                 });
