@@ -34,10 +34,10 @@
                 data: recovery
             })
                 .then(function (response) {
-                        // success
+                        throw new Error('blablabla1');
                     },
                     function (response) { // optional
-                        // failed
+                        throw new Error('blablabla');
                     });
         };
 
