@@ -28,6 +28,11 @@
                 $state.go('home.login');
             });
         };
+        
+        vm.registration = function () {
+            $state.go('home.registration');
+        };
+                
 
         vm.recovery = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app

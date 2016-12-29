@@ -29,15 +29,6 @@
                         title: 'Biosignals'
                     }
                 })
-                .state('home.servey', {
-                    url: '/servey',
-                    templateUrl: 'app/views/servey-designer.html',
-                    controller: 'ServeyDesignerController',
-                    controllerAs: 'vm',
-                    data: {
-                        title: 'Servey'
-                    }
-                })
                 .state('home.doctor-dashboard', {
                     url: '/doctor',
                     templateUrl: 'app/views/doctor-dashboard.html',
@@ -51,6 +42,13 @@
                     controller: 'RegistrationController',
                     data: {
                         title: 'Registration'
+                    }
+                })
+                .state('home.recovery', {
+                    url: '/recovery',
+                    templateUrl: 'app/views/recovery.html',
+                    data: {
+                        title: 'Recovery'
                     }
                 })
                 .state('home.login', {
