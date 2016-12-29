@@ -9,6 +9,9 @@
     function AuthService($http, $base64, $cookies, Restangular) {
 
         function setToken(aToken) {
+            
+            
+            //TODO Remove this line after migration to Restangular
             $http.defaults.headers.common.Authorization = 'Basic ' + $base64.encode(aToken + ":");
             Restangular.setDefaultHeaders({Authorization: 'Basic ' + $base64.encode(aToken + ":")});
             $cookies.put('token', aToken);

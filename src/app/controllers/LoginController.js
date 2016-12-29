@@ -44,12 +44,12 @@
 
             $mdDialog.show(confirm).then(function (email) {
 
-                HttpService.postRecovery(email)
-                        .then(function () {
-                            $scope.showSimpleToast("The code sent to your email");
-                        },function(){
-                            
-                        });
+//                HttpService.postRecovery(email)
+//                        .then(function () {
+//                            $scope.showSimpleToast("The code sent to your email");
+//                        },function(){
+//                            
+//                        });
                 $state.go('home.recovery');
 
             }, function () {
