@@ -1,24 +1,27 @@
-<p ng-repeat="item in vm.errors">
-    <span>{{ item}}</span>
-</p>
 <div layout="row" layout-align="center center" flex >
     <div access-control="not-authorized" id="content" flex flex-gt-md="80" flex-gt-lg="70" >
-        <md-input-container>
-            <label>Email</label>
-            <input ng-model="vm.credentials.email">
-        </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input ng-model="vm.credentials.password" type="password">
-        </md-input-container>
-        <md-input-container>
-            <label>Invite Code</label>
-            <input ng-model="vm.credentials.inviteCode" type="password">
-        </md-input-container>
-        <md-input-container layout-align="center center">
-            <div layout="row" layout-sm="column" layout-margin>
-                <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.register()">Register</md-button>
-            </div>
-        </md-input-container>
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">Forgot Password?</h1>
+        </md-toolbar>
+        <md-content class="md-padding md-whiteframe-z1"  layout="column" >
+            <md-input-container>
+                <label>Email</label>
+                <input ng-model="vm.credentials.email">
+            </md-input-container>
+            <md-input-container>
+                <label>Password</label>
+                <input ng-model="vm.credentials.password" type="password">
+            </md-input-container>
+            <md-input-container>
+                <label>Invite Code</label>
+                <input ng-model="vm.credentials.inviteCode" type="password">
+            </md-input-container>
+            <md-input-container layout-align="center center">
+                <div layout="row" layout-sm="column" layout-margin>
+                    <md-button class="md-raised" flex="50" flex-sm="100" ui-sref="home.login">Already have  an account?</md-button>
+                    <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.register()">Sign up</md-button>
+                </div>
+            </md-input-container>
+        </md-content>
     </div>
 </div>

@@ -24,8 +24,9 @@ angular.module('angularMaterialCardiaCare',
 
         $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
             var isLogin = false;
-            if(toState.name === "home.login" ||
-                    toState.name === "home.recovery")
+            if(toState.name === "home.login" 
+                    || toState.name === "home.recovery"
+                    || toState.name === "home.registration")
             {
                 isLogin = true;
             }
