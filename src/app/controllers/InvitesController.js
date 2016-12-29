@@ -75,8 +75,8 @@
             };
             
             $scope.deleteInvite = function (item) {
-                alert("item " + item.email);
-                $scope.invites = $scope.invites.splice($scope.invites.indexOf(item), 1);
+                console.log("item " + $scope.invites.indexOf(item));
+                $scope.invites.splice($scope.invites.indexOf(item), 1);
             };
         };
         };
