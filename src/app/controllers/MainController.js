@@ -19,11 +19,11 @@
         vm.toggleRightSidebar = toggleRightSidebar;
 
         // INIT with Auth
-//        $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
-//            if(!value && oldValue) {
-//                $state.go('home.login');
-//            }
-//        }, true);
+       $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
+           if(!value && oldValue) {
+               $state.go('home.login');
+           }
+       }, true);
         // End Init with Auth
 
 
