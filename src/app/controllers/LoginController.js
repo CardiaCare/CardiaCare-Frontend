@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('LoginController', ['$scope','$mdDialog', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS',
+        .controller('LoginController', ['$scope','$mdDialog', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS','$mdToast',
             LoginController
         ]);
 
-    function LoginController($scope, $mdDialog, $state, $rootScope, AuthService, AUTH_EVENTS) {
+    function LoginController($scope, $mdDialog, $state, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
 
         var vm = this;
         vm.credentials = {};
@@ -17,6 +17,7 @@
 
             if (email === '' || password === '') {
                 vm.errors.push("Incorrect password or email.");
+                $scope.showSimpleToast("Incorrect password or email.");
                 $state.go('home.login');
             }
             var credentials = {email: email, password: password};
@@ -25,6 +26,7 @@
             }, function (errors) {
                 //FIXME: Fix error throwing on backend (array instead of object and some standart field-names)
                 vm.errors.push("Incorrect password or email.");
+                $scope.showSimpleToast("Incorrect password or email.");
                 $state.go('home.login');
             });
         };
@@ -59,6 +61,15 @@
             });
         };
 
+
+        $scope.showSimpleToast = function (text) {
+            $mdToast.show(
+                    $mdToast.simple()
+                    .textContent(text)
+                    .position('top right')
+                    .hideDelay(3000)
+                    );
+        };
     }
 
 })();

@@ -8,20 +8,23 @@
     
   
     function QuestionnaireListController($scope, HttpService, $mdDialog) {
-        var vm = this;
+        
+        HttpService.getServeyList()
+            .then(function (questionnaires) {
+                vm.questionnaires = questionnaires;
+            });
 
-        $scope.questionnaires = [
-            {
-                description: "first",
-                version: "1.0"
-            },
-            {
-                description: "second",
-                version: "1.1"
-            }
-
-        ];
-               
+//        $scope.questionnaires = [
+//            {
+//                description: "first",
+//                version: "1.0"
+//            },
+//            {
+//                description: "second",
+//                version: "1.1"
+//            }
+//
+//        ];
 
         $scope.deleteQuestionnaire = function (ev, item) {
             // Appending dialog to document.body to cover sidenav in docs app
@@ -39,13 +42,6 @@
 
             });
         };
-
-        
-//        HttpService.getServeyList()
-//            .then(function (questionnaires) {
-//                vm.questionnaires = questionnaires;
-//            });
-
 
     }
 })();
