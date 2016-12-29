@@ -45,7 +45,7 @@
             vm.toggleItemsList();
         }
 
-        vm.showConfirm = function (ev) {
+        $scope.showConfirm = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
                 .title('Logout')
@@ -56,14 +56,14 @@
                 .cancel('No');
 
             $mdDialog.show(confirm).then(function () {
-                $scope.status = 'You decided to get rid of your debt.';
+                AuthService.logout();
             }, function () {
-                $scope.status = 'You decided to keep your debt.';
+                
             });
         };
 
-        vm.logout = function () {
-            AuthService.logout();
+        $scope.logout = function (ev) {
+            $scope.showConfirm(ev);
         };
 
         function DialogController($mdDialog) {

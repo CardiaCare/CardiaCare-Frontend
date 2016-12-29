@@ -32,9 +32,7 @@
             answer:{}
         }];
     
-        $scope.answerToAdd = {
-
-        };
+        $scope.answerToAdd = {};
     
         $scope.fixAnswer = function (answerToAdd) {
             var index = $scope.answersToAdd.indexOf(answerToAdd);
@@ -54,7 +52,7 @@
             $scope.itemsToAdd.push({
             description: '',
             uri: '',
-            answer:{}
+                answer:{}
             })
         };
 
