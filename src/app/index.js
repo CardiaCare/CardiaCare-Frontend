@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch',
-    'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'base64'])
+    'ngSanitize', 'ui.router', 'ngMaterial', 'nvd3', 'app', 'base64', 'restangular'])
     .config(function ($stateProvider, $urlRouterProvider, $mdThemingProvider,
-                      $mdIconProvider, $qProvider) {
+                      $mdIconProvider, $qProvider, RestangularProvider) {
         $stateProvider
             .state('home', {
                 url: '',
@@ -111,14 +111,15 @@ angular.module('angularMaterialCardiaCare', ['ngAnimate', 'ngCookies', 'ngTouch'
 
         $qProvider.errorOnUnhandledRejections(false);
 
+        RestangularProvider.setBaseUrl('http://api.cardiacare.ru');
     })
     .run(function ($rootScope, $location, $state, AuthService) {
         /*
          * Redirect to login page when user is not authorized
          */
-        $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
             var isLogin = toState.name === "home.login";
-            if(isLogin){
+            if (isLogin) {
                 return;
             }
             if (!AuthService.isAuthorized()) {

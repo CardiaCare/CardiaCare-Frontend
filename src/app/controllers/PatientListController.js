@@ -3,23 +3,17 @@
 
     angular
         .module('app')
-        .controller('PatientListController', ['$scope', 'HttpService',
+        .controller('PatientListController', ['$scope', 'Restangular',
             PatientListController
         ]);
 
-    function PatientListController($scope, HttpService) {
+    function PatientListController($scope, Restangular) {
         $scope.patients = [];
 
-        HttpService.getPatientList()
-            .then(function (patients) {
-                $scope.patients = patients;
-            });
-
-        $scope.goToPatient = function(patientId, event){
-            alert(patientId);
-        };
-   }
-
+        Restangular.all('patients').getList().then(function (response) {
+            $scope.patients = response;
+        });
+    }
 })();
 
 

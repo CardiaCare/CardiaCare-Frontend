@@ -162,14 +162,6 @@
                 return null;
             });
         };
-
-
-//        'POST survey' => 'survey/questionnaire/create',
-//        'OPTIONS survey' => 'survey/questionnaire/options',
-//        'GET survey' => 'survey/questionnaire/index',
-//        'GET survey/<id:\d+>' => 'survey/questionnaire/view',
-//        'OPTIONS survey/<id:\d+>' => 'survey/questionnaire/options',
-//        'DELETE survey/<id:\d+>' => 'survey/questionnaire/delete'
         this.postSurvey = function (survey) {
             return $http({
                 method: "POST",
@@ -186,7 +178,7 @@
         this.getServeyList = function () {
             return $http({
                 method: 'GET',
-                url: 'http://api.cardiacare.ru/servey',
+                url: 'http://api.cardiacare.ru/survey',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -199,11 +191,11 @@
             });
         };
 
-        this.getServeyById = function (servey_id) {
+        this.getServeyById = function (survey_id) {
             return $http({
                 method: 'GET',
-                url: 'http://api.cardiacare.ru/servey',
-                params: {id: servey_id},
+                url: 'http://api.cardiacare.ru/survey',
+                params: {id: survey_id},
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
@@ -216,11 +208,11 @@
             });
         };
 
-        this.deleteServeyById = function (servey_id) {
+        this.deleteServeyById = function (survey_id) {
             return $http({
                 method: "Delete",
-                url: 'http://api.cardiacare.ru/servey',
-                params: {id: servey_id}
+                url: 'http://api.cardiacare.ru/survey',
+                params: {id: survey_id}
             }).then(function (response) {
                     // success
                 },
@@ -229,17 +221,10 @@
                 });
         };
 
-
-//        'POST feedback' => 'survey/feedback/create',
-//        'OPTIONS feedback' => 'survey/feedback/options',
-//        'GET feedback' => 'survey/feedback/index',
-//        'GET feedback/<id:\d+>' => 'survey/feedback/view',
-//        'OPTIONS feedback/<id:\d+>' => 'survey/feedback/options',
-//        'DELETE feedback/<id:\d+>' => 'survey/feedback/delete'
-        this.postFeedback = function (feedback) {
+        this.postFeedback = function (patientId, feedback) {
             return $http({
                 method: "POST",
-                url: 'http://api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/patients/' + patientId + '/feedback',
                 data: feedback
             }).then(function (response) {
                     // success
@@ -265,10 +250,10 @@
             });
         };
 
-        this.getFedbackById = function (feedback_id) {
+        this.getFedbackById = function (patientId, feedback_id) {
             return $http({
                 method: 'GET',
-                url: 'http://api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/patients/' + patientId + '/feedback',
                 params: {id: feedback_id},
                 headers: {
                     'Content-Type': 'application/json',
@@ -282,10 +267,10 @@
             });
         };
 
-        this.deleteFedbackById = function (feedback_id) {
+        this.deleteFedbackById = function (patientId, feedback_id) {
             return $http({
                 method: "Delete",
-                url: 'http://api.cardiacare.ru/feedback',
+                url: 'http://api.cardiacare.ru/patients/' + patientId + '/feedback',
                 params: {id: feedback_id}
             }).then(function (response) {
                     // success

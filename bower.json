@@ -17,7 +17,8 @@
     "angular-mocks": "^1.5.0",
     "angular-base64": "^2.0.3",
     "material-calendar": "~0.2",
-    "angular-permission": "^5.1.0"
+    "angular-permission": "^5.1.0",
+    "restangular": "^1.6.0"
   },
   "devDependencies": {}
 }
