@@ -2,34 +2,18 @@
 
   angular
     .module('app')
-    .controller('BloodpressureController', ['HttpService', '$stateParams',
+    .controller('BloodpressureController', ['$scope','$stateParams','Restangular',
       BloodpressureController
     ]);
 
-    function BloodpressureController(HttpService, $stateParams) {
-        var vm = this;
+    function BloodpressureController($scope, $stateParams, Restangular) {
 
-        HttpService.getBloodpressureList($stateParams.userId)
-                .then(function (bloodpressure) {
-                    vm.bloodpressure = bloodpressure;
+        Restangular.one('patients', $stateParams.userId)
+                .all('bloodpressure')
+                .getList()
+                .then(function (response) {
+                    $scope.bloodpressure = response;
                 });
-
-//        vm.bloodpressure = [
-//            {
-//                name: 'Ivan',
-//                systolic: '120',
-//                diastolic: '80',
-//                created_at: '12.12.2016'
-//
-//            },
-//        {
-//            name: 'Ivan',
-//            systolic:'135',
-//            diastolic:'95',
-//            created_at:'12.12.2016'
-//
-//        }
-//    ];
   }
 
 })();

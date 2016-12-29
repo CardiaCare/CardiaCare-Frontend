@@ -10,9 +10,11 @@
     function PatientListController($scope, Restangular) {
         $scope.patients = [];
 
-        Restangular.all('patients').getList().then(function (response) {
-            $scope.patients = response;
-        });
+        Restangular.all('patients')
+                .getList()
+                .then(function (response) {
+                    $scope.patients = response;
+                });
     }
 })();
 

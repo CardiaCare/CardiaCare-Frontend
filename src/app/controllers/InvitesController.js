@@ -2,12 +2,11 @@
 
     angular
             .module('app')
-            .controller('InvitesController', ['$mdDialog', '$scope','HttpService', '$mdToast',
+            .controller('InvitesController', ['$mdDialog', '$scope', '$mdToast', 'Restangular',
                 InvitesController
             ]);
 
-    function InvitesController($mdDialog, $scope, HttpService, $mdToast,
-            PatientListController) {
+    function InvitesController($mdDialog, $scope, $mdToast, Restangular) {
         var vm = this;
 
         vm.invite = {
@@ -32,10 +31,14 @@
 
         vm.invitePerson = function () {
             //TODO: check empty
-            HttpService.postInvite(vm.invite)
-                    .then(function () {
-                        $scope.showSimpleToast("Done!");
-                    });
+            
+            var invites = Restangular.all('invites');
+            return invites.post(vm.invite).then(function (response) {
+                $scope.showSimpleToast("Done!");
+            }, function (response) {
+                console.log("Error when invite");
+            });
+            
             vm.invite = {};
         };
         
@@ -49,6 +52,7 @@
         };
 
         vm.showInvites = function (ev) {
+            
             $mdDialog.show({
                 controller: InviteDialogController,
                 templateUrl: 'dialog1.tmpl.html',
@@ -56,17 +60,16 @@
                 targetEvent: ev,
                 clickOutsideToClose: true
             });
+            
             function InviteDialogController($scope, $mdDialog) {
-            HttpService.getInvitesList()
-                    .then(function (invites) {
-                        $scope.invites = invites;
+                Restangular.all('invites').getList().then(function (response) {
+                    $scope.invites = response;
+                });
+                $scope.hide = function () {
+                    $mdDialog.hide();
+                };
 
-                    });
-            $scope.hide = function () {
-                $mdDialog.hide();
-            };
-
-            $scope.cancel = function () {
+                $scope.cancel = function () {
                 $mdDialog.cancel();
             };
 

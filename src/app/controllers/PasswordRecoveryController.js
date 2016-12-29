@@ -16,25 +16,26 @@
 
         vm.reset = function () {
             
-
-            HttpService.putRecovery(vm.input)
-                    .then(function () {
-                        $scope.showSimpleToast("Password is changed");
-                    }, function(result){
-                         console.log("test");
-                    });
-
+            var recovery = Restangular.all('recovery');
+            return recovery.put(vm.input).then(function (response) {
+                $scope.showSimpleToast("The code sent to your email");
+            }, function (response) {
+                scope.showSimpleToast("The code has already been sent");
+            });
+            
             vm.input = {};
         };
 
         vm.getRecoveryCode = function () {
             //get email
-            HttpService.postRecovery(email)
-                    .then(function () {
-                        $scope.showSimpleToast("The code sent to your email");
-                    }, function(){
-                        $scope.showSimpleToast("The code has already been sent");
-                    });
+            
+            var recovery = Restangular.all('recovery');
+            return recovery.post(email).then(function (response) {
+                $scope.showSimpleToast("The code sent to your email");
+            }, function (response) {
+                scope.showSimpleToast("The code has already been sent");
+            });
+            
         };
         
         $scope.showSimpleToast = function (text) {
