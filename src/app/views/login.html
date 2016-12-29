@@ -1,24 +1,44 @@
     <p ng-repeat="item in vm.errors">
         <span>{{ item }}</span>
     </p>
-<md-content class="md-padding" layout="column" flex layout-align="center center">
+<div layout="row" layout-align="center center" flex >
+    <div access-control="not-authorized" id="content" flex flex-gt-md="80" flex-gt-lg="70" >
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">Sign in</h1>
+            </md-toolbar>
 
-    <div access-control="not-authorized" id="content" layout="column">
-        <md-input-container>
-            <label>Email</label>
-            <input ng-model="vm.credentials.email">
-        </md-input-container>
-        <md-input-container>
-            <label>Password</label>
-            <input ng-model="vm.credentials.password" type="password">
-        </md-input-container>
-        <md-input-container layout-align="center center">
-            <div layout="row" layout-sm="row" layout-margin>
-                <md-button class="md-raised md-primary" flex="50" flex-sm="100" ng-click="vm.login()">Login</md-button>
-                <md-button class="md-raised" flex="50" flex-sm="100" ui-sref="home.registration">Register</md-button>
-
-                <md-button class="md-raised" flex="50" flex-sm="100">Foget password</md-button>
-            </div>
-        </md-input-container>
+            <md-content class="md-padding md-whiteframe-z1" >
+                <form name="signinForm">
+                    <div layout="column">
+                        <md-input-container>
+                            <label>Email</label>
+                            <input ng-model="vm.credentials.email"
+                                   required
+                                   autofocus
+                                   type="text">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Password</label>
+                            <input ng-model="vm.credentials.password"
+                                   required
+                                   autofocus
+                                   type="password">
+                        </md-input-container>
+                    </div>
+                    <div class="mar-top-20" layout="column" layout-gt-sm="row" layout-margin>
+                        <md-button flex flex-order-sm="3"
+                                   ng-click="vm.recovery($event)">Forgot password?
+                        </md-button>
+                        <md-button flex flex-order-sm="2"
+                                   ui-sref="home.registration">Sign up
+                        </md-button>
+                        <md-button flex flex-order-sm="1"
+                                   class="md-raised md-primary"
+                                   type="submit"
+                                   ng-click="vm.login()">Sign In
+                        </md-button>
+                    </div>
+                </form>
+            </md-content>
     </div>
-</md-content>
+</div>

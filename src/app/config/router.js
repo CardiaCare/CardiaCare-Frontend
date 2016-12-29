@@ -48,6 +48,7 @@
                 .state('home.registration', {
                     url: '/registration',
                     templateUrl: 'app/views/registration.html',
+                    controller: 'RegistrationController',
                     data: {
                         title: 'Registration'
                     }
