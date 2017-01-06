@@ -1,5 +1,8 @@
 <md-content ng-controller="PatientListController">
-    <md-list flex>
+    <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <md-list ng-hide="activated" flex>
         <md-list-item ng-repeat="item in patients" ui-sref="home.profile({userId: item.id})" class="noright">
             <img alt="{{ item.surname}}" ng-src="{{ item.img}}" class="md-avatar" />
             <p>{{ item.surname}} {{ item.name}} {{ item.patronymic}}</p>
