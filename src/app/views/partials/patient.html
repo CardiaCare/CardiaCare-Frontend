@@ -5,6 +5,7 @@
             <input ng-model="user.name">
         </md-input-container>
         <md-input-container>
+            <label>Sername</label>
             <input ng-model="user.patronymic">
         </md-input-container>
         <md-input-container>
@@ -13,13 +14,17 @@
         </md-input-container>
         <md-input-container>
             <label>Email</label>
-            <input ng-model="user.email" type="email">
+            <input ng-model="patient_email" type="email">
         </md-input-container>
     </md-content>
     <md-content class="md-padding">
         <form name="userForm">
-            <div layout layout-sm="column">
-                <md-input-container flex="80">
+<!--            <div layout layout-sm="column">
+                <md-input-container>
+                    <label>Doctor</label>
+                    <input ng-model="user.doctorName" disabled>
+                </md-input-container>
+                <md-input-container>
                     <label>Organization</label>
                     <input ng-model="user.organization" disabled>
                 </md-input-container>
@@ -27,25 +32,40 @@
                     <label>Submission Date</label>
                     <input type="date" ng-model="user.submissionDate">
                 </md-input-container>
-            </div>
+            </div>-->
             <div layout layout-sm="column">
-                <md-input-container flex>
+                <md-input-container flex >
                     <label>snils</label>
-                    <input ng-model="user.snils">
+                    <input ng-model="user.snils" ng-pattern="/^[0-9]{3}-[0-9]{3}-[0-9]{3} [0-9]{2}$/" placeholder="123-111-565 22">
                 </md-input-container>
                 <md-input-container flex>
                     <label>inn</label>
-                    <input ng-model="user.inn">
+                    <input ng-model="user.inn" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
+                    <div ng-messages="user.inn.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">You must supply a inn.</div>
+                        <div ng-message="pattern" class="my-message">That doesn't look like a valid inn.
+                        </div>
+                        <div ng-message="md-maxlength" class="my-message">
+                            Don't use the long version silly...we don't need to be that specific...
+                        </div>
+                    </div>
                 </md-input-container>
             </div>
             <div layout layout-sm="column">
                 <md-input-container flex>
-                    <label>Diagnoses</label>
-                    <textarea ng-model="user.diagnoses"></textarea>
+                    <label>Birthday</label>
+                    <input type="text"   ng-pattern="/^[0-9]{4}-[1-12]{2}-[1-31]{2}$/" placeholder="1991-01-01"  ng-model="user.birthday"/>
                 </md-input-container>
                 <md-input-container flex>
-                    <label>Allergy</label>
-                    <textarea ng-model="user.allergy"></textarea>
+                    <label>Birthplace</label>
+                    <textarea ng-model="user.birthplace"></textarea>
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Gender</label>
+                      <md-select ng-model="user.gender" class="md-no-underline">
+                        <md-option value="0">Male</md-option>
+                        <md-option value="1">Fimale</md-option>
+                    </md-select>
                 </md-input-container>
             </div>
         </form>

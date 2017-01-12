@@ -7,18 +7,23 @@
         ]);
 
     function PatientController($scope, $stateParams, Restangular, $mdToast) {
-        var vm = this;
-        
+   
         
          Restangular.one('patients', $stateParams.userId).get()
                 .then(function (response) {
                     $scope.user = response;
                 });
                 
+        Restangular.one('users', $stateParams.userId).get()
+                .then(function (response) {
+                    $scope.patient_email = response.email;
+                });
+                
                 
         $scope.update = function () {
             $scope.user.put().then(function (response) {},
             function (errors) {
+                // TODO differrent typer of erroros
                 $scope.showSimpleToast(errors.snils);
             });
         };  
