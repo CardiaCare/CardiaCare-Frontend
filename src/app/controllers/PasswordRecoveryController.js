@@ -2,11 +2,11 @@
 
   angular
             .module('app')
-            .controller('PasswordRecoveryController', ['$scope', 'HttpService', '$mdToast',
+            .controller('PasswordRecoveryController', ['$scope', 'HttpService', 'Restangular','$mdToast', '$stateParams',
                 PasswordRecoveryController
             ]);
 
-    function PasswordRecoveryController($scope, HttpService, $mdToast) {
+    function PasswordRecoveryController($scope, HttpService, $mdToast, Restangular, $stateParams) {
         var vm = this;
 
         vm.input = {
@@ -28,6 +28,14 @@
 
         vm.getRecoveryCode = function () {
             //get email
+            
+            var email;
+            
+            Restangular.one('users', $stateParams.userId).get()
+                .then(function (response) {
+                    email = response.email;
+                    console.log("email "+email);
+                });
             
             var recovery = Restangular.all('recovery');
             return recovery.post(email).then(function (response) {

@@ -35,11 +35,12 @@
             var invites = Restangular.all('invites');
             return invites.post(vm.invite).then(function (response) {
                 $scope.showSimpleToast("Done!");
+                vm.invite = {};
             }, function (response) {
-                console.log("Error when invite");
+                $scope.showSimpleToast(response);
             });
             
-            vm.invite = {};
+
         };
         
         $scope.showSimpleToast = function (text) {
@@ -70,20 +71,24 @@
                 };
 
                 $scope.cancel = function () {
-                $mdDialog.cancel();
-            };
+                    $mdDialog.cancel();
+                };
 
-            $scope.answer = function (answer) {
-                $mdDialog.hide(answer);
-            };
-            
-            $scope.deleteInvite = function (item) {
-                console.log("item " + $scope.invites.indexOf(item));
-                $scope.invites.splice($scope.invites.indexOf(item), 1);
-            };
-        };
+                $scope.answer = function (answer) {
+                    $mdDialog.hide(answer);
+                };
+
+                $scope.deleteInvite = function (item) {
+                    console.log("item " + item.id);
+                    item.remove().then(function() {
+                        $scope.invites.splice($scope.invites.indexOf(item), 1);
+                    });
+
+                };
+            }
+            ;
         };
 
-        
+
     }
 })();
