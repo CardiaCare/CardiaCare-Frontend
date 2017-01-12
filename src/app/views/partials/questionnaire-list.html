@@ -1,6 +1,8 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="QuestionnaireListController as vm">
-   
-    <md-list flex>
+    <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <md-list ng-hide="activated" flex>
         <md-list-item ng-repeat="item in questionnaires" class="noright">
             <p flex>{{ item.description}} {{ item.version}}</p>
             <md-icon md-svg-src="assets/images/ic_delete_24px.svg"  ng-click="deleteQuestionnaire($event, item)" aria-label="Delete" class="md-secondary md-hue-3" ></md-icon>

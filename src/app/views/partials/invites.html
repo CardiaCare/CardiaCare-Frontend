@@ -36,7 +36,10 @@
     <md-dialog-content>
       <div class="md-dialog-content">
         <md-content>
-        <md-list flex>
+            <div layout="row" layout-sm="column" layout-align="space-around">
+                <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
+            </div>
+        <md-list ng-hide="activated" flex>
             <md-list-item ng-repeat="item in invites" class="noright">
                 <p flex>{{item.email}} {{item.created_at}} {{item.role}}</p>
                 <md-icon md-svg-src="assets/images/ic_delete_24px.svg" ng-click="deleteInvite(item)" aria-label="Delete" class="md-secondary md-hue-3" ></md-icon>

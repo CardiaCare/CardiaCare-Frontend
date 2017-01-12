@@ -1,5 +1,8 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="BloodpressureController">
-    <md-list flex>
+    <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <md-list ng-hide="activated" flex>
         <md-list-item class="md-3-line" ng-repeat="item in bloodpressure" ng-click="null">
             <div class="md-list-item-text" layout="column">
                 <h3>{{ item.systolic}}</h3>
