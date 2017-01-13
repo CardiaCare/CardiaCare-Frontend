@@ -17,8 +17,6 @@
             $scope.doctor.put().then(function (response) {},
                     function (errors) {
                         // TODO differrent typer of erroros
-                        if (errors.data.snils !== "")
-                            $scope.showSimpleToast(errors.data.snils);
                     });
         }; 
                 
