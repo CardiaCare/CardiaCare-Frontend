@@ -36,7 +36,6 @@
                     .hideDelay(3000)
                     );
         };
-                
 
 //        vm.user = {
 //            email: 'contact@flatlogic.com',

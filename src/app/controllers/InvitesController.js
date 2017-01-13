@@ -37,7 +37,9 @@
                 $scope.showSimpleToast("Done!");
                 vm.invite = {};
             }, function (response) {
-                $scope.showSimpleToast(response);
+                //TODO array of errors
+                $scope.showSimpleToast(response.data.errors.email);
+                console.log(response);
             });
             
 
@@ -79,9 +81,12 @@
                 };
 
                 $scope.deleteInvite = function (item) {
-                    console.log("item " + item.id);
                     item.remove().then(function() {
                         $scope.invites.splice($scope.invites.indexOf(item), 1);
+                    }, function(error){
+                        if (error.status == 409){
+                            $scope.showSimpleToast(""+error.data.message);
+                        }
                     });
 
                 };
