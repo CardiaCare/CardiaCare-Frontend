@@ -2,20 +2,34 @@
 
   angular
     .module('app')
-    .controller('DoctorController', [
+    .controller('DoctorController', ['$scope', '$stateParams','Restangular','$mdToast',
       DoctorController
     ]);
 
-  function DoctorController() {
-    var vm = this;
+  function DoctorController($scope, $stateParams, Restangular, $mdToast) {
+    
+        Restangular.one('doctors', $stateParams.userId).get()
+                .then(function (response) {
+                    $scope.doctor = response;
+                });
 
-    vm.doctor = {
-      email: 'contact@cardiacare.ru',
-      name: 'Petr',
-      patronymic: 'Petrovich' ,
-      surname: 'Petrov' ,
-      organization:'State Hospital'
-    };
+        $scope.update = function () {
+            $scope.doctor.put().then(function (response) {},
+                    function (errors) {
+                        // TODO differrent typer of erroros
+                        if (errors.data.snils !== "")
+                            $scope.showSimpleToast(errors.data.snils);
+                    });
+        }; 
+                
+//
+//    vm.doctor = {
+//      email: 'contact@cardiacare.ru',
+//      name: 'Petr',
+//      patronymic: 'Petrovich' ,
+//      surname: 'Petrov' ,
+//      organization:'State Hospital'
+//    };
   }
 
 })();

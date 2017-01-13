@@ -1,21 +1,25 @@
-<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="DoctorController as vm">
+<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="DoctorController">
     <md-input-container>
         <label>First name</label>
-        <input ng-model="vm.doctor.name">
+        <input ng-model="doctor.name">
     </md-input-container>
-        <md-input-container>
-        <input ng-model="vm.doctor.patronymic">
+    <md-input-container>
+        <label>Sername</label>
+        <input ng-model="doctor.patronymic">
     </md-input-container>
     <md-input-container>
         <label>Second Name</label>
-        <input ng-model="vm.doctor.surname">
+        <input ng-model="doctor.surname">
     </md-input-container>
-        <md-input-container>
-        <label>Second Name</label>
-        <input ng-model="vm.doctor.organization">
+    <md-input-container>
+        <label>Organization</label>
+        <input ng-model="doctor.organization">
     </md-input-container>
     <md-input-container>
         <label>Email</label>
-        <input ng-model="vm.doctor.email" type="email">
-    </md-input-container>      
+        <input ng-model="doctor.email" type="email">
+    </md-input-container> 
+    <md-input-container layout-align="center center">
+        <md-button class="md-raised md-primary" ng-click="update()">Update information</md-button>
+    </md-input-container>
 </md-content>
