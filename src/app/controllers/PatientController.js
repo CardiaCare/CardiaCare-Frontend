@@ -24,7 +24,8 @@
             $scope.user.put().then(function (response) {},
             function (errors) {
                 // TODO differrent typer of erroros
-                $scope.showSimpleToast(errors.snils);
+                if (errors.data.snils !== "")
+                $scope.showSimpleToast(errors.data.snils);
             });
         };  
         

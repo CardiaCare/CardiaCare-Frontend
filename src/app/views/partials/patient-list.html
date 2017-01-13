@@ -4,11 +4,11 @@
     </div>
     <md-list ng-hide="activated" flex>
         <md-list-item ng-repeat="item in patients" ui-sref="home.profile({userId: item.id})" class="noright">
-            <img alt="{{ item.surname}}" ng-src="{{ item.img}}" class="md-avatar" />
+<!--            <img alt="{{ item.surname}}" ng-src="{{ item.img}}" class="md-avatar" />-->
             <p>{{ item.surname}} {{ item.name}} {{ item.patronymic}}</p>
-            <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
+<!--            <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
             <md-icon md-svg-src="assets/images/box.svg"  aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
-            <md-icon md-svg-src="assets/images/comment.svg" class="md-secondary" aria-label="Chat"></md-icon>
+            <md-icon md-svg-src="assets/images/comment.svg" class="md-secondary" aria-label="Chat"></md-icon>-->
         </md-list-item>
         <md-divider ></md-divider>
     </md-list>
