@@ -45,7 +45,7 @@
 
         };
         
-        $scope.showSimpleToast = function (text) {
+        vm.showSimpleToast = function (text) {
             $mdToast.show(
                     $mdToast.simple()
                     .textContent(text)
@@ -85,7 +85,7 @@
                         $scope.invites.splice($scope.invites.indexOf(item), 1);
                     }, function(error){
                         if (error.status == 409){
-                            $scope.showSimpleToast(""+error.data.message);
+                            vm.showSimpleToast(""+error.data.message);
                         }
                     });
 
