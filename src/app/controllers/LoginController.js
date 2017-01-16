@@ -42,15 +42,9 @@
                     .ok('Send')
                     .cancel('Cancel');
 
-            $mdDialog.show(confirm).then(function (email) {
-
-//                HttpService.postRecovery(email)
-//                        .then(function () {
-//                            $scope.showSimpleToast("The code sent to your email");
-//                        },function(){
-//                            
-//                        });
-                $state.go('home.recovery');
+            $mdDialog.show(confirm).then(function (userEmail) {
+                console.log('home.recovery({userEmail:'+userEmail+'})');
+                $state.go('home.recovery({userEmail:'+userEmail+'})');
 
             }, function () {
             });

@@ -2,21 +2,31 @@
 
     angular
         .module('app')
-        .controller('RegistrationController', ['$state', 'AuthService',
+        .controller('RegistrationController', ['$scope', '$stateParams','Restangular','$mdToast', 'AuthService',
             RegistrationController
         ]);
 
-    function RegistrationController($state, AuthService) {
-        var vm = this;
+    function RegistrationController($scope, $stateParams, Restangular, $mdToast, AuthService) {
 
-        vm.credentials = {};
+        $scope.credentials = {};
 
-        vm.register = function () {
-            console.log("OK!");
-            AuthService.signup(vm.credentials)
+        $scope.register = function () {
+            AuthService.signup($scope.credentials)
                 .then(function () {
                     $state.go('home.profile');
+                },function (error){
+                    console.log(error);
+                    $scope.showSimpleToast(error);
                 });
+        };
+        
+        $scope.showSimpleToast = function (text) {
+            $mdToast.show(
+                    $mdToast.simple()
+                    .textContent(text)
+                    .position('top right')
+                    .hideDelay(3000)
+                    );
         };
     }
 

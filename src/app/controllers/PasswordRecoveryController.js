@@ -2,11 +2,11 @@
 
   angular
             .module('app')
-            .controller('PasswordRecoveryController', ['$scope', 'HttpService', 'Restangular','$mdToast', '$stateParams',
+            .controller('PasswordRecoveryController', ['$scope', '$stateParams', 'Restangular','$mdToast', '$stateParams',
                 PasswordRecoveryController
             ]);
 
-    function PasswordRecoveryController($scope, HttpService, $mdToast, Restangular, $stateParams) {
+    function PasswordRecoveryController($scope, $stateParams, $mdToast, Restangular, $stateParams) {
         var vm = this;
 
         vm.input = {
@@ -18,9 +18,9 @@
             
             var recovery = Restangular.all('recovery');
             return recovery.put(vm.input).then(function (response) {
-                $scope.showSimpleToast("The code sent to your email");
+                $state.go('home.login');
             }, function (response) {
-                scope.showSimpleToast("The code has already been sent");
+                scope.showSimpleToast("Error in code");
             });
             
             vm.input = {};
@@ -28,14 +28,18 @@
 
         vm.getRecoveryCode = function () {
             //get email
-            
+
             var email;
-            
-            Restangular.one('users', $stateParams.userId).get()
-                .then(function (response) {
-                    email = response.email;
-                    console.log("email "+email);
-                });
+            if ($stateParams.userEmail) {
+                email = $stateParams.userEmail;
+                console.log(email);
+            } else {
+                Restangular.one('users', $stateParams.userId).get()
+                        .then(function (response) {
+                            email = response.email;
+                            console.log("email " + email);
+                        });
+            }
             
             var recovery = Restangular.all('recovery');
             return recovery.post(email).then(function (response) {

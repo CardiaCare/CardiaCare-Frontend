@@ -3,7 +3,11 @@
         <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
     </div>
     <md-list ng-hide="activated" flex>
-        <md-list-item ng-repeat="item in feedbacks" class="noright">
+        <md-input-container>
+            <label>{{ 'SEARCH' | translate }}</label>
+            <input ng-model="searchText">
+        </md-input-container>
+        <md-list-item ng-repeat="item in feedbacks| filter:searchText" class="noright">
             <p flex>{{ item.description}} {{ item.version}}</p>
             <md-divider ></md-divider>
         </md-list-item>

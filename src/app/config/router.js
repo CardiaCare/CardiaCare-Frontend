@@ -45,8 +45,9 @@
                     }
                 })
                 .state('home.recovery', {
-                    url: '/recovery',
+                    url: '/recovery/:userEmail',
                     templateUrl: 'app/views/recovery.html',
+                    controllerAs: 'vm',
                     data: {
                         title: 'Recovery'
                     }

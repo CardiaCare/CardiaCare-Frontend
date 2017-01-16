@@ -1,15 +1,20 @@
-<md-content ng-controller="PatientListController">
+<md-content  class="md-padding" layout="column" ng-controller="PatientListController">
     <div layout="row" layout-sm="column" layout-align="space-around">
         <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
     </div>
     <md-list ng-hide="activated" flex>
-        <md-list-item ng-repeat="item in patients" ui-sref="home.profile({userId: item.id})" class="noright">
+        <md-input-container>
+            <label>{{ 'SEARCH' | translate }}</label>
+            <input ng-model="searchText">
+        </md-input-container>
+        <md-list-item ng-repeat="item in patients  | filter:searchText" ui-sref="home.profile({userId: item.id})" class="noright">
 <!--            <img alt="{{ item.surname}}" ng-src="{{ item.img}}" class="md-avatar" />-->
             <p>{{ item.surname}} {{ item.name}} {{ item.patronymic}}</p>
 <!--            <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
             <md-icon md-svg-src="assets/images/box.svg"  aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon>
             <md-icon md-svg-src="assets/images/comment.svg" class="md-secondary" aria-label="Chat"></md-icon>-->
-        </md-list-item>
         <md-divider ></md-divider>
+        </md-list-item>
+
     </md-list>
 </md-content>

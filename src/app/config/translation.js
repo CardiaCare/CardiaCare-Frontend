@@ -61,7 +61,8 @@
                     RECOVERY: 'Recovery',
                     INV_CODE: 'Invite Code',
                     BUTTON_HAVE_ACC: 'Already have an account?',
-                    INCORRECT_PWD_EMAIL: 'Incorrect password or email.'
+                    INCORRECT_PWD_EMAIL: 'Incorrect password or email.',
+                    SEARCH: 'Search'
                     
                 });
                 $translateProvider.translations('ru', {
@@ -121,7 +122,8 @@
                     FEEDBACK: 'Ответник',
                     RECOVERY: 'Восстановление пароля',
                     INV_CODE: 'Код приглашения',
-                    BUTTON_HAVE_ACC: 'Уже есть аккаунт?'
+                    BUTTON_HAVE_ACC: 'Уже есть аккаунт?',
+                    SEARCH: 'Поиск'
 
                 });
                 $translateProvider.preferredLanguage('ru');
