@@ -73,7 +73,8 @@ body {
 // panel-widget
 .panel-widget {
   background-color: white;
-
+  max-height: 2500px;
+  
   &-toolbar {
     box-shadow: none;
     margin: 0;

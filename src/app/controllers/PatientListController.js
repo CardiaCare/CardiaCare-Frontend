@@ -17,6 +17,7 @@
                     $scope.patients = response;
                     $scope.activated = false;
                 });
+                
     }
 })();
 
