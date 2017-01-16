@@ -1,10 +1,10 @@
 <div layout="row" layout-align="center center" flex >
     <div access-control="not-authorized" id="content" flex flex-gt-md="80" flex-gt-lg="70" >
         <md-toolbar>
-            <h1 class="md-toolbar-tools">Forgot Password?</h1>
+            <h1 class="md-toolbar-tools">{{ 'FORGOT_PWD' | translate }}</h1>
         </md-toolbar>
         <md-content class="md-padding md-whiteframe-z1" >
-        <panel-widget flex title="Recovery" template="app/views/partials/password-recovery.html" class="fixed-height-widget"></panel-widget>
+        <panel-widget flex title="{{ 'RECOVERY' | translate }}" template="app/views/partials/password-recovery.html" class="fixed-height-widget"></panel-widget>
         </md-content>
     </div>
 </div>

@@ -1,25 +1,25 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="DoctorController">
     <md-input-container>
-        <label>First name</label>
+        <label>{{ 'FIRST_NAME' | translate }}</label>
         <input ng-model="doctor.name">
     </md-input-container>
     <md-input-container>
-        <label>Sername</label>
+        <label>{{ 'SERNAME' | translate }}</label>
         <input ng-model="doctor.patronymic">
     </md-input-container>
     <md-input-container>
-        <label>Second Name</label>
+        <label>{{ 'SECOND_NAME' | translate }}</label>
         <input ng-model="doctor.surname">
     </md-input-container>
     <md-input-container>
-        <label>Organization</label>
+        <label>{{ 'ORGANIZATION' | translate }}</label>
         <input ng-model="doctor.organization">
     </md-input-container>
     <md-input-container>
-        <label>Email</label>
+        <label>{{ 'EMAIL' | translate }}</label>
         <input ng-model="doctor.email" type="email">
     </md-input-container> 
     <md-input-container layout-align="center center">
-        <md-button class="md-raised md-primary" ng-click="update()">Update information</md-button>
+        <md-button class="md-raised md-primary" ng-click="update()">{{ 'BUTTON_UP_INFO' | translate }}</md-button>
     </md-input-container>
 </md-content>

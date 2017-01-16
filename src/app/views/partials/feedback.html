@@ -9,7 +9,7 @@
                     <p>{{item.textItem}}</p>
                     <md-list flex>
                         <md-list-item ng-repeat="linkedItems in item.linkedItems">
-                            <p>Answer: {{linkedItems.itemText}} Score: {{linkedItems.itemScore}}</p>
+                            <p>{{ 'ANSWER' | translate }}: {{linkedItems.itemText}} {{ 'SCORE' | translate }}: {{linkedItems.itemScore}}</p>
                         </md-list-item>
                     </md-list>
                 </md-list-item>

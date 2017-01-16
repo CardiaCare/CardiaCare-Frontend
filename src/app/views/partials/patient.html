@@ -1,19 +1,19 @@
 <md-content class="md-padding" layout="row" layout-sm="column" ng-controller="PatientController">
     <md-content class="md-padding" layout="column">
         <md-input-container>
-            <label>First name</label>
+            <label>{{ 'FIRST_NAME' | translate }}</label>
             <input ng-model="user.name">
         </md-input-container>
         <md-input-container>
-            <label>Sername</label>
+            <label>{{ 'SERNAME' | translate }}</label>
             <input ng-model="user.patronymic">
         </md-input-container>
         <md-input-container>
-            <label>Second Name</label>
+            <label>{{ 'SECOND_NAME' | translate }}</label>
             <input ng-model="user.surname">
         </md-input-container>
         <md-input-container>
-            <label>Email</label>
+            <label>{{ 'EMAIL' | translate }}</label>
             <input ng-model="patient_email" type="email">
         </md-input-container>
     </md-content>
@@ -35,44 +35,38 @@
                         </div>-->
             <div layout layout-sm="column">
                 <md-input-container flex >
-                    <label>snils</label>
+                    <label>{{ 'SNISL' | translate }}</label>
                     <input ng-model="user.snils" ng-pattern="/^[0-9]{12}$/" md-maxlength="12" placeholder="12311156522">
                     <div ng-messages="user.snils.$error" role="alert" multiple="">
-                        <div ng-message="required" class="my-message">You must supply a inn.</div>
-                        <div ng-message="pattern" class="my-message">That doesn't look like a valid inn.
-                        </div>
-                        <div ng-message="md-maxlength" class="my-message">
-                            Don't use the long version silly...we don't need to be that specific...
-                        </div>
+                        <div ng-message="required" class="my-message">{{ 'SNAIL_REQ' | translate }}</div>
+                        <div ng-message="pattern" class="my-message">{{ 'SNILS_PAT' | translate }}</div>
+                        <div ng-message="md-maxlength" class="my-message">{{ 'SNILS_MAXLEN' | translate }}</div>
                     </div>
                 </md-input-container>
                 <md-input-container flex>
-                    <label>inn</label>
+                    <label>{{ 'INN' | translate }}</label>
                     <input ng-model="user.inn" ng-pattern="/^[0-9]{10}$/" md-maxlength="10" placeholder="1231115650">
                     <div ng-messages="user.inn.$error" role="alert" multiple="">
-                        <div ng-message="required" class="my-message">You must supply a inn.</div>
-                        <div ng-message="pattern" class="my-message">That doesn't look like a valid inn.
-                        </div>
-                        <div ng-message="md-maxlength" class="my-message">
-                            Don't use the long version silly...we don't need to be that specific...
-                        </div>
+                        <div ng-message="required" class="my-message">{{ 'INN_REQ' | translate }}</div>
+                        <div ng-message="pattern" class="my-message">{{ 'INN_PAT' | translate }}</div>
+                        <div ng-message="md-maxlength" class="my-message">{{ 'INN_MAXLEN' | translate }}</div>
                     </div>
                 </md-input-container>
             </div>
             <div layout layout-sm="column">
                 <md-input-container flex>
-                    <label>Birthday</label>
+                    <label>{{ 'BIRTHDAY' | translate }}</label>
                     <input type="text"   ng-pattern="/^[0-9]{4}-[1-12]{2}-[1-31]{2}$/" placeholder="1991-01-01"  ng-model="user.birthday"/>
                 </md-input-container>
                 <md-input-container flex>
-                    <label>Birthplace</label>
+                    <label>{{ 'BIRTHPLACE' | translate }}</label>
                     <textarea ng-model="user.birthplace"></textarea>
                 </md-input-container>
                 <md-input-container flex>
-                    <label>Gender</label>
+                    <label>{{ 'GENDER' | translate }}</label>
                     <md-select ng-model="user.gender" class="md-no-underline">
-                        <md-option value="0">Male</md-option>
-                        <md-option value="1">Fimale</md-option>
+                        <md-option value="0">{{ 'MALE' | translate }}</md-option>
+                        <md-option value="1">{{ 'FEMALE' | translate }}</md-option>
                     </md-select>
                 </md-input-container>
             </div>
@@ -80,7 +74,7 @@
     </md-content>
     <md-content class="md-padding">
         <md-input-container layout-align="center center">
-            <md-button class="md-raised md-primary" ng-click="update()">Update information</md-button>
+            <md-button class="md-raised md-primary" ng-click="update()">{{ 'BUTTON_UP_INFO' | translate }}</md-button>
         </md-input-container>
     </md-content>
 </md-content>

@@ -1,11 +1,11 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="InvitesController as vm">
     <md-input-container>
-        <label>Email</label>
+        <label>{{ 'EMAIL' | translate }}</label>
         <input ng-model="vm.invite.email">
     </md-input-container>
 
     <md-input-container>
-        <label>Role</label>
+        <label>{{ 'ROLE' | translate }}</label>
         <md-select ng-model="vm.invite.role">
             <md-option ng-repeat="role in vm.role" ng-value="role.name" >
                 {{role.name}}
@@ -13,8 +13,8 @@
         </md-select>
     </md-input-container>
     <md-input-container>
-        <md-button class="md-raised md-primary" ng-click="vm.invitePerson()">Invite person</md-button>
-        <md-button class="md-raised md-primary" ng-click="vm.showInvites($event)">Show invites</md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.invitePerson()">{{ 'BUTTON_INVITE' | translate }}</md-button>
+        <md-button class="md-raised md-primary" ng-click="vm.showInvites($event)">{{ 'BUTTON_SHOW_INV' | translate }}</md-button>
     </md-input-container>
 </md-content>
 
@@ -25,7 +25,7 @@
   <form ng-cloak>
     <md-toolbar>
       <div class="md-toolbar-tools">
-        <h2>Your Invites</h2>
+        <h2>{{ 'YOU_INV' | translate }}</h2>
         <span flex></span>
         <md-button class="md-icon-button" ng-click="cancel()">
           <md-icon md-svg-src="assets/images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>

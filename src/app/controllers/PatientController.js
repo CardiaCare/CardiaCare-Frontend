@@ -7,7 +7,7 @@
         ]);
 
     function PatientController($scope, $stateParams, Restangular, $mdToast) {
-   
+        var vm = this;
         
          Restangular.one('patients', $stateParams.userId).get()
                 .then(function (response) {
@@ -21,7 +21,10 @@
                 
                 
         $scope.update = function () {
-            $scope.user.put().then(function (response) {},
+            $scope.user.put().then(function (response) {
+                console.log("Done");
+                 $scope.showSimpleToast("Done");
+            },
             function (errors) {
                 // TODO differrent typer of erroros
                 if (errors.data.snils !== "")

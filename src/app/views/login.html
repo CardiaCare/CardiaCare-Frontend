@@ -1,21 +1,21 @@
 <div layout="row" layout-align="center center" flex >
     <div access-control="not-authorized" id="content" flex flex-gt-md="80" flex-gt-lg="70" >
             <md-toolbar>
-                <h1 class="md-toolbar-tools">Sign in</h1>
+                <h1 class="md-toolbar-tools">{{ 'SING_IN' | translate }}</h1>
             </md-toolbar>
 
             <md-content class="md-padding md-whiteframe-z1" >
                 <form name="signinForm">
                     <div layout="column">
                         <md-input-container>
-                            <label>Email</label>
+                            <label>{{ 'EMAIL' | translate }}</label>
                             <input ng-model="vm.credentials.email"
                                    required
                                    autofocus
                                    type="text">
                         </md-input-container>
                         <md-input-container>
-                            <label>Password</label>
+                            <label>{{ 'PWD' | translate }}</label>
                             <input ng-model="vm.credentials.password"
                                    required
                                    autofocus
@@ -24,15 +24,15 @@
                     </div>
                     <div class="mar-top-20" layout="column" layout-gt-sm="row" layout-margin>
                         <md-button flex flex-order-sm="3"
-                                   ng-click="vm.recovery($event)">Forgot password?
+                                   ng-click="vm.recovery($event)">{{ 'FORGOT_PWD' | translate }}
                         </md-button>
                         <md-button flex flex-order-sm="2"
-                                    ui-sref="home.registration">Sign up
+                                    ui-sref="home.registration">{{ 'SING_UP' | translate }}
                         </md-button>
                         <md-button flex flex-order-sm="1"
                                    class="md-raised md-primary"
                                    type="submit"
-                                   ng-click="vm.login()">Sign In
+                                   ng-click="vm.login()">{{ 'SING_IN' | translate }}
                         </md-button>
                     </div>
                 </form>

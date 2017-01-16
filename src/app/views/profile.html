@@ -20,15 +20,15 @@
   <div layout="column" flex>  
 
       <div layout-gt-md="row">
-                  <panel-widget flex title="Patient" template="app/views/partials/patient.html"
+                  <panel-widget flex title="{{ 'PATIENT' | translate }}" template="app/views/partials/patient.html"
                       class="fixed-height-widget"></panel-widget>
       </div>
 
     <div layout-gt-md="row">
-        <panel-widget flex title="Feedbacks" template="app/views/partials/feedback-list.html"
+        <panel-widget flex title="{{ 'FEEDBACKS_LIST' | translate }}" template="app/views/partials/feedback-list.html"
                       class="fixed-height-widget"></panel-widget>
 
-        <panel-widget flex title="Feedback" template="app/views/partials/feedback.html"
+        <panel-widget flex title="{{ 'FEEDBACK' | translate }}" template="app/views/partials/feedback.html"
                       class="fixed-height-widget"></panel-widget>
     </div>
     </div>

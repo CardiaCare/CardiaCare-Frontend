@@ -7,21 +7,21 @@
     <md-list flex>
         <md-list-item ng-repeat="itemToAdd in itemsToAdd">
             <md-input-container>
-                <label>Question</label>
+                <label>{{ 'QUESTION' | translate }}</label>
                 <input ng-model="itemToAdd.description" type="text">
             </md-input-container> 
             <md-input-container>
-                <label>Type</label>
+                <label>{{ 'TYPE' | translate }}</label>
                 <md-select ng-model="itemToAdd.type" ng-change="changeSelected($event, itemToAdd.type, itemToAdd.answer)" >
                     <md-option ng-repeat="type in qtypes" ng-value="type.description">
                         {{type.description}}
                     </md-option>
                 </md-select>
             </md-input-container>   
-            <md-button class="md-raised md-primary" ng-click="fix(itemToAdd)">Fix</md-button>
+            <md-button class="md-raised md-primary" ng-click="fix(itemToAdd)">{{ 'BUTTON_FIX' | translate }}</md-button>
         </md-list-item>
     </md-list>
-    <md-button class="md-raised md-primary" ng-click="addNew()">Add new</md-button>
+    <md-button class="md-raised md-primary" ng-click="addNew()">{{ 'BUTTON_ADD_NEW' | translate }}</md-button>
 </md-content>
 
 

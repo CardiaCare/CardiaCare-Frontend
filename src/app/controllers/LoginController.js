@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('LoginController', ['$scope','$mdDialog', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS','$mdToast',
+        .controller('LoginController', ['$scope','$mdDialog', '$translate', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS','$mdToast',
             LoginController
         ]);
 
-    function LoginController($scope, $mdDialog, $state, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
+    function LoginController($scope, $mdDialog, $state, $translate, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
 
         var vm = this;
         vm.credentials = {};
@@ -26,7 +26,7 @@
             }, function (errors) {
                 //FIXME: Fix error throwing on backend (array instead of object and some standart field-names)
                 vm.errors.push("Incorrect password or email.");
-                $scope.showSimpleToast("Incorrect password or email.");
+                $scope.showSimpleToast( $translate.instant('INCORRECT_PWD_EMAIL'));
                 $state.go('home.login');
             });
         };
