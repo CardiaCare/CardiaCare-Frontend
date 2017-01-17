@@ -1,55 +1,48 @@
-(function(){
+(function () {
 
-  angular
+    angular
             .module('app')
-            .controller('PasswordRecoveryController', ['$scope', '$stateParams', 'Restangular','$mdToast', '$stateParams',
+            .controller('PasswordRecoveryController', ['$scope', '$state', '$stateParams', 'Restangular', 'AuthService', '$mdToast', '$stateParams',
                 PasswordRecoveryController
             ]);
 
-    function PasswordRecoveryController($scope, $stateParams, $mdToast, Restangular, $stateParams) {
-        var vm = this;
-
-        vm.input = {
+    function PasswordRecoveryController($scope, $state, $stateParams, Restangular, AuthService, $mdToast, $stateParams) {
+        $scope.input = {
             password: '',
             code: ''
         };
 
-        vm.reset = function () {
-            
+        $scope.reset = function () {
+
             var recovery = Restangular.all('recovery');
-            return recovery.put(vm.input).then(function (response) {
-                $state.go('home.login');
+            return recovery.put($scope.input).then(function (response) {
+               //$state.go('home.login');
             }, function (response) {
-                scope.showSimpleToast("Error in code");
+                $scope.showSimpleToast("Error in code");
             });
-            
-            vm.input = {};
+
+            $scope.input = {};
         };
 
-        vm.getRecoveryCode = function () {
-            //get email
+        $scope.getRecoveryCode = function () {
 
             var email;
             if ($stateParams.userEmail) {
                 email = $stateParams.userEmail;
-                console.log(email);
             } else {
-                Restangular.one('users', $stateParams.userId).get()
-                        .then(function (response) {
-                            email = response.email;
-                            console.log("email " + email);
-                        });
+                $scope.account = AuthService.getUser();
+                email = $scope.account.email;
             }
-            
+
             var recovery = Restangular.all('recovery');
-            return recovery.post(email).then(function (response) {
+            return recovery.post({email: email}).then(function (response) {
                 $scope.showSimpleToast("The code sent to your email");
             }, function (response) {
-                scope.showSimpleToast("The code has already been sent");
+                $scope.showSimpleToast("The code has already been sent");
             });
-            
+
         };
-        
+
         $scope.showSimpleToast = function (text) {
             $mdToast.show(
                     $mdToast.simple()

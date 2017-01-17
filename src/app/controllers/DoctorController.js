@@ -2,13 +2,16 @@
 
   angular
     .module('app')
-    .controller('DoctorController', ['$scope', '$stateParams','Restangular','$mdToast',
+    .controller('DoctorController', ['$scope', '$stateParams','Restangular','$mdToast','AuthService', 'AUTH_EVENTS',
       DoctorController
     ]);
 
-  function DoctorController($scope, $stateParams, Restangular, $mdToast) {
-    
-        Restangular.one('doctors', $stateParams.userId).get()
+  function DoctorController($scope, $stateParams, Restangular, $mdToast, AuthService, AUTH_EVENTS) {
+      
+      //TODO get not user ID but doctor ID
+        $scope.account = AuthService.getUser();
+
+        Restangular.one('doctors', $scope.account.id).get()
                 .then(function (response) {
                     $scope.doctor = response;
                 });

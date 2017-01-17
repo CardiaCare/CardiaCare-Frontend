@@ -6,7 +6,7 @@
             LoginController
         ]);
 
-    function LoginController($scope, $mdDialog, $state, $translate, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
+    function LoginController($scope, $mdDialog, $translate, $state, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
 
         var vm = this;
         vm.credentials = {};
@@ -44,7 +44,7 @@
 
             $mdDialog.show(confirm).then(function (userEmail) {
                 console.log('home.recovery({userEmail:'+userEmail+'})');
-                $state.go('home.recovery({userEmail:'+userEmail+'})');
+                $state.go('home.recovery',{userEmail:userEmail});
 
             }, function () {
             });
