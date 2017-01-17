@@ -20,8 +20,8 @@
     "angular-permission": "^5.1.0",
     "restangular": "^1.6.0",
     "angular-translate": "2.13.1",
-        "angular-chart":"0.4.0"
-
+    "chart.js": "^2.4.0",
+    "angular-chart.js": "^1.1.1"
   },
   "devDependencies": {}
 }
