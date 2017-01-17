@@ -12,7 +12,8 @@ angular.module('angularMaterialCardiaCare',
                     'ngMaterial',
                     'nvd3',
                     'base64',
-                    'restangular'
+                    'restangular',
+                    'pascalprecht.translate'
                 ])
     .config(function ($qProvider) {
         $qProvider.errorOnUnhandledRejections(false);

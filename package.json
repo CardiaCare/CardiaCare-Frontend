@@ -1,7 +1,9 @@
 {
   "name": "cardiacare-frontend",
   "version": "0.1.0",
-  "dependencies": {},
+  "dependencies": {
+    "angular-chart.js": "^1.1.1"
+  },
   "devDependencies": {
     "browser-sync": "~1.7.1",
     "chalk": "~0.5.1",
