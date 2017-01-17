@@ -2,21 +2,21 @@
 
     angular
         .module('app')
-        .controller('ProfileController', ['$mdSidenav', '$stateParams',
+        .controller('ProfileController', ['$mdSidenav', '$stateParams','$translate',
             ProfileController
         ]);
 
-    function ProfileController($mdSidenav, $stateParams) {
+    function ProfileController($mdSidenav, $stateParams, $translate) {
         var vm = this;
         //FIXME
         vm.menuItems = [
             {
-                name: 'Profile',
+                name: $translate.instant('PROFILE'),
                 icon: 'person',
                 sref: 'home.profile({userId: ' + $stateParams.userId + '})'
             },
             {
-                name: 'Biosignals',
+                name: $translate.instant('BIOSIGNALS'),
                 icon: 'dashboard',
                 sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
             }

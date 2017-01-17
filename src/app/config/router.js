@@ -15,51 +15,33 @@
                     url: '/profile/:userId',
                     templateUrl: 'app/views/profile.html',
                     controller: 'ProfileController',
-                    controllerAs: 'vm',
-                    data: {
-                        title: 'Profile'
-                    }
+                    controllerAs: 'vm'
                 })
                 .state('home.biosignals', {
                     url: '/profile/:userId/biosignals',
                     templateUrl: 'app/views/biosignals.html',
                     controller: 'BiosignalsController',
-                    controllerAs: 'vm',
-                    data: {
-                        title: 'Biosignals'
-                    }
+                    controllerAs: 'vm'
                 })
                 .state('home.doctor-dashboard', {
                     url: '/doctor',
-                    templateUrl: 'app/views/doctor-dashboard.html',
-                    data: {
-                        title: 'Doctor Dashboard'
-                    }
+                    templateUrl: 'app/views/doctor-dashboard.html'
                 })
                 .state('home.registration', {
                     url: '/registration',
                     templateUrl: 'app/views/registration.html',
-                    controller: 'RegistrationController',
-                    data: {
-                        title: 'Registration'
-                    }
+                    controller: 'RegistrationController'
                 })
                 .state('home.recovery', {
                     url: '/recovery/:userEmail',
                     templateUrl: 'app/views/recovery.html',
-                    controllerAs: 'vm',
-                    data: {
-                        title: 'Recovery'
-                    }
+                    controllerAs: 'vm'
                 })
                 .state('home.login', {
                     url: '/login',
                     templateUrl: 'app/views/login.html',
                     controller: 'LoginController',
-                    controllerAs: 'vm',
-                    data: {
-                        title: 'Login'
-                    }
+                    controllerAs: 'vm'
                 })
             ;
 
