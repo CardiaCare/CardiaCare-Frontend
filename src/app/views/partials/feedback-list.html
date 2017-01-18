@@ -7,8 +7,8 @@
             <label>{{ 'SEARCH' | translate }}</label>
             <input ng-model="searchText">
         </md-input-container>
-        <md-list-item ng-repeat="item in feedbacks| filter:searchText" class="noright">
-            <p flex>{{ item.description}} {{ item.version}}</p>
+        <md-list-item ng-repeat="item in feedbacks | filter:searchText" class="noright">
+            <p flex>{{ item.data }} {{ item.created_at}}</p>
             <md-divider ></md-divider>
         </md-list-item>
     </md-list>
