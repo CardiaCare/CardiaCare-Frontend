@@ -1,37 +1,35 @@
-(function(){
+(function () {
 
-  angular
-    .module('app')
-    .controller('DoctorController', ['$scope', '$stateParams','Restangular','$mdToast','AuthService', 'AUTH_EVENTS',
-      DoctorController
-    ]);
+    angular
+        .module('app')
+        .controller('DoctorController', ['$scope', '$stateParams', 'Restangular', '$mdToast', 'AuthService', 'AUTH_EVENTS',
+            DoctorController
+        ]);
 
-  function DoctorController($scope, $stateParams, Restangular, $mdToast, AuthService, AUTH_EVENTS) {
-      
-      //TODO get not user ID but doctor ID
+    function DoctorController($scope, $stateParams, Restangular, $mdToast, AuthService, AUTH_EVENTS) {
+
+        //TODO get not user ID but doctor ID
         $scope.account = AuthService.getUser();
 
-        Restangular.one('doctors', $scope.account.id).get()
+        //FIXME: Change to constant
+        //FIXME: Change to permissions
+        if ($scope.account.role === "doctor" ||
+            $scope.account.role === "chief"
+        ) {
+            $scope.doctor = $scope.account.person;
+        } else {
+            Restangular.one('doctors', $scope.account.id).get()
                 .then(function (response) {
                     $scope.doctor = response;
                 });
-
+        }
         $scope.update = function () {
-            $scope.doctor.put().then(function (response) {},
-                    function (errors) {
-                        // TODO differrent typer of erroros
-                    });
-        }; 
-                
-//
-//    vm.doctor = {
-//      email: 'contact@cardiacare.ru',
-//      name: 'Petr',
-//      patronymic: 'Petrovich' ,
-//      surname: 'Petrov' ,
-//      organization:'State Hospital'
-//    };
-  }
-
+            $scope.doctor.put().then(function (response) {
+                },
+                function (errors) {
+                    // TODO differrent typer of erroros
+                });
+        };
+    }
 })();
 
