@@ -7,7 +7,7 @@
     <md-input-container>
         <label>{{ 'ROLE' | translate }}</label>
         <md-select ng-model="vm.invite.role">
-            <md-option ng-repeat="role in vm.role" ng-value="role.name" >
+            <md-option ng-repeat="role in vm.role" ng-value="role.value" >
                 {{role.name}}
             </md-option>
         </md-select>

@@ -2,11 +2,11 @@
 
     angular
             .module('app')
-            .controller('InvitesController', ['$mdDialog', '$scope', '$mdToast', 'Restangular',
+            .controller('InvitesController', ['$mdDialog', '$scope', '$mdToast', 'Restangular', '$translate', 
                 InvitesController
             ]);
 
-    function InvitesController($mdDialog, $scope, $mdToast, Restangular) {
+    function InvitesController($mdDialog, $scope, $mdToast, Restangular, $translate ) {
         var vm = this;
 
         vm.invite = {
@@ -15,10 +15,22 @@
         }
 
         vm.role = [
-            {name: "patient"},
-            {name: "doctor"},
-            {name: "volunteer"},
-            {name: "chief"}];
+            {
+                value: "patient",
+                name: $translate.instant('PATIENT')
+            },
+            {
+                value: "doctor",
+                name: $translate.instant('DOCTOR')
+            },
+            {
+                value: "volunteer",
+                name: $translate.instant('VOLUNTEER')
+            },
+            {
+                value: "chief",
+                name: $translate.instant('CHIEF')
+            }];
 
 //        $scope.invites = [
 //            {

@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('DoctorController', ['$scope', '$stateParams', 'Restangular', '$mdToast', 'AuthService', 'AUTH_EVENTS',
+        .controller('DoctorController', ['$scope', 'Restangular', '$mdToast', 'AuthService', 'AUTH_EVENTS',
             DoctorController
         ]);
 
-    function DoctorController($scope, $stateParams, Restangular, $mdToast, AuthService, AUTH_EVENTS) {
+    function DoctorController($scope, Restangular, $mdToast, AuthService, AUTH_EVENTS) {
 
         //TODO get not user ID but doctor ID
         $scope.account = AuthService.getUser();
@@ -23,12 +23,23 @@
                     $scope.doctor = response;
                 });
         }
-        $scope.update = function () {
-            $scope.doctor.put().then(function (response) {
+        $scope.updateInfo = function () {
+            $scope.doctor.put()
+                .then(function (response) {
+                    $scope.showSimpleToast("Done");
                 },
                 function (errors) {
-                    // TODO differrent typer of erroros
+                // TODO differrent typer of erroros
                 });
+        };
+
+        $scope.showSimpleToast = function (text) {
+            $mdToast.show(
+                    $mdToast.simple()
+                    .textContent(text)
+                    .position('top right')
+                    .hideDelay(3000)
+                    );
         };
     }
 })();
