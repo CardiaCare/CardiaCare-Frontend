@@ -3,12 +3,11 @@
     angular
         .module('app')
         .controller('MainController', [
-            '$scope', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog',
-            'AuthService',
+            '$scope', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog','$translate', 'AuthService',
             MainController
         ]);
 
-    function MainController($scope, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, AuthService) {
+    function MainController($scope, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, $translate, AuthService) {
         var vm = this;
 
         vm.selectItem = selectItem;
@@ -26,8 +25,10 @@
        }, true);
         // End Init with Auth
 
-
-
+        //TODO translate.use is not a function
+        $scope.language = $translate.use();
+        //$scope.language = 'ru';
+        
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
@@ -44,6 +45,16 @@
             vm.title = item.name;
             vm.toggleItemsList();
         }
+
+        $scope.enLang = function () {
+            $translate.use('en');
+            $scope.language = $translate.use();
+        };
+
+        $scope.ruLang = function () {
+            $translate.use('ru');
+            $scope.language = $translate.use();
+        };
 
         $scope.showConfirm = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
