@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('MainController', [
-            '$scope', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state', '$mdToast', '$mdDialog','$translate', 'AuthService',
+            '$scope', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state',  '$cookies','$mdToast', '$mdDialog','$translate', 'AuthService',
             MainController
         ]);
 
-    function MainController($scope, $mdSidenav, $mdBottomSheet, $log, $q, $state, $mdToast, $mdDialog, $translate, AuthService) {
+    function MainController($scope, $mdSidenav, $mdBottomSheet, $log, $q, $state, $cookies, $mdToast, $mdDialog, $translate, AuthService) {
         var vm = this;
 
         vm.selectItem = selectItem;
@@ -18,16 +18,17 @@
         vm.toggleRightSidebar = toggleRightSidebar;
 
         // INIT with Auth
-       $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
-           if(!value && oldValue) {
-               $state.go('home.login');
-           }
-       }, true);
+        $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
+            if (!value && oldValue) {
+                $state.go('home.login');
+            }
+        }, true);
         // End Init with Auth
+        
+        
+        $scope.language = $cookies.get('language');
+        $translate.use($scope.language);
 
-        //TODO translate.use is not a function
-        $scope.language = $translate.use();
-        //$scope.language = 'ru';
         
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
@@ -48,11 +49,13 @@
 
         $scope.enLang = function () {
             $translate.use('en');
+            $cookies.put('language', 'en');
             $scope.language = $translate.use();
         };
 
         $scope.ruLang = function () {
             $translate.use('ru');
+            $cookies.put('language', 'ru');
             $scope.language = $translate.use();
         };
 
