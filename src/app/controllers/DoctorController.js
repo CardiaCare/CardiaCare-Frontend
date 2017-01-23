@@ -23,14 +23,16 @@
                     $scope.doctor = response;
                 });
         }
+        
         $scope.updateInfo = function () {
+            console.log($scope.doctor);
             $scope.doctor.put()
-                .then(function (response) {
-                    $scope.showSimpleToast($translate.instant('DONE'));
-                },
-                function (errors) {
-                // TODO differrent typer of erroros
-                });
+                    .then(function (response) {
+                        $scope.showSimpleToast($translate.instant('DONE'));
+                    },
+                    function (errors) {
+                        // TODO differrent typer of erroros
+                    });
         };
 
         $scope.showSimpleToast = function (text) {

@@ -1,7 +1,12 @@
 <md-content class="md-padding" layout="column" ng-controller="ServeyDesignerController as vm">
     <md-list flex>
         <md-list-item  ng-repeat="item in questions" class="noright">
-            {{item.description}}
+            <!--{{item.description}}-->
+            <md-input-container>
+                <input ng-model="item.description" type="text">
+            </md-input-container>
+            <md-button class="md-raised md-primary" ng-click="">Edit</md-button>
+            <md-button class="md-raised md-primary" ng-click="">Delete</md-button>
         </md-list-item>
     </md-list>
     <md-list flex>
