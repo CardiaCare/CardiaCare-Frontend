@@ -2,7 +2,7 @@
 
     angular
         .module('app')
-        .controller('DoctorController', ['$scope', 'Restangular',  '$translate','$mdToast', 'AuthService', 'AUTH_EVENTS',
+        .controller('DoctorController', ['$scope', 'Restangular', '$translate', '$mdToast', 'AuthService', 'AUTH_EVENTS',
             DoctorController
         ]);
 
@@ -23,11 +23,21 @@
                     $scope.doctor = response;
                 });
         }
-        
+
         $scope.updateInfo = function () {
-            console.log($scope.doctor);
-            $scope.doctor.put()
-                    .then(function (response) {
+            Restangular.one('doctors', $scope.doctor.id).get()
+                .then(function (doctor) {
+                    for (var property in doctor) {
+                        if ($scope.doctor.hasOwnProperty(property)) {
+                            doctor[property] = $scope.doctor[property];
+                        }
+                    }
+                    return doctor;
+                })
+                .then(function (editedDoctor) {
+                    return editedDoctor.put();
+                })
+                .then(function (response) {
                         $scope.showSimpleToast($translate.instant('DONE'));
                     },
                     function (errors) {
@@ -37,11 +47,11 @@
 
         $scope.showSimpleToast = function (text) {
             $mdToast.show(
-                    $mdToast.simple()
+                $mdToast.simple()
                     .textContent(text)
                     .position('top right')
                     .hideDelay(3000)
-                    );
+            );
         };
     }
 })();
