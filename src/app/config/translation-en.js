@@ -66,8 +66,20 @@
                     PROFILE: 'Profile',
                     BIOSIGNALS: 'Biosignals',
                     VOLUNTEER: 'Volunteer',
-                    CHIEF:'Chief'
-                    
+                    CHIEF:'Chief',
+                    DONE: 'Done',
+                    PWD_RECOVERY: 'Password recovery',
+                    ENTER_EMAIL: 'Enter email for recovery code sending',
+                    SEND:'Send',
+                    CANSEL:'Cansel',
+                    LOGOUT:'Logout',
+                    SURE_LOGOUT: 'Are you sure you want to log out?',
+                    YES:'Yes',
+                    NO:'No',
+                    ERROR_CODE: 'Error in code',
+                    SENT_CODE: "The code sent to your email",
+                    ALREADY_SENT: "The code has already been sent",
+                    DELETE_QST: 'Do you want to delete the questionnaire?'
                 });
                 
                 $translateProvider.preferredLanguage('ru');

@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('DoctorController', ['$scope', 'Restangular', '$mdToast', 'AuthService', 'AUTH_EVENTS',
+        .controller('DoctorController', ['$scope', 'Restangular',  '$translate','$mdToast', 'AuthService', 'AUTH_EVENTS',
             DoctorController
         ]);
 
-    function DoctorController($scope, Restangular, $mdToast, AuthService, AUTH_EVENTS) {
+    function DoctorController($scope, Restangular, $translate, $mdToast, AuthService, AUTH_EVENTS) {
 
         //TODO get not user ID but doctor ID
         $scope.account = AuthService.getUser();
@@ -26,7 +26,7 @@
         $scope.updateInfo = function () {
             $scope.doctor.put()
                 .then(function (response) {
-                    $scope.showSimpleToast("Done");
+                    $scope.showSimpleToast($translate.instant('DONE'));
                 },
                 function (errors) {
                 // TODO differrent typer of erroros

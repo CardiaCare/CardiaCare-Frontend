@@ -17,7 +17,7 @@
 
             if (email === '' || password === '') {
                 vm.errors.push("Incorrect password or email.");
-                $scope.showSimpleToast("Incorrect password or email.");
+                $scope.showSimpleToast($translate.instant('INCORRECT_PWD_EMAIL'));
                 $state.go('home.login');
             }
             var credentials = {email: email, password: password};
@@ -34,13 +34,13 @@
         vm.recovery = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.prompt()
-                    .title('Passwoed recovery')
-                    .textContent('Enter email for recovery code sending')
-                    .placeholder('Email')
-                    .ariaLabel('email')
+                    .title($translate.instant('PWD_RECOVERY'))
+                    .textContent($translate.instant('ENTER_EMAIL'))
+                    .placeholder($translate.instant('EMAIL'))
+                    .ariaLabel($translate.instant('EMAIL'))
                     .targetEvent(ev)
-                    .ok('Send')
-                    .cancel('Cancel');
+                    .ok($translate.instant('SEND'))
+                    .cancel($translate.instant('CANSEL'));
 
             $mdDialog.show(confirm).then(function (userEmail) {
                 console.log('home.recovery({userEmail:'+userEmail+'})');

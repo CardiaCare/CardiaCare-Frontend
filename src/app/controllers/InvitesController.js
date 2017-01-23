@@ -46,7 +46,7 @@
             
             var invites = Restangular.all('invites');
             return invites.post(vm.invite).then(function (response) {
-                $scope.showSimpleToast("Done!");
+                $scope.showSimpleToast($translate.instant('DONE'));
                 vm.invite = {};
             }, function (response) {
                 //TODO array of errors

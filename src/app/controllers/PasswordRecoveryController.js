@@ -2,11 +2,11 @@
 
     angular
             .module('app')
-            .controller('PasswordRecoveryController', ['$scope', '$state', '$stateParams', 'Restangular', 'AuthService', '$mdToast', '$stateParams',
+            .controller('PasswordRecoveryController', ['$scope', '$state', '$stateParams', 'Restangular', '$translate', 'AuthService', '$mdToast', '$stateParams',
                 PasswordRecoveryController
             ]);
 
-    function PasswordRecoveryController($scope, $state, $stateParams, Restangular, AuthService, $mdToast, $stateParams) {
+    function PasswordRecoveryController($scope, $state, $stateParams, Restangular, $translate, AuthService, $mdToast, $stateParams) {
         $scope.input = {
             password: '',
             code: ''
@@ -18,7 +18,7 @@
             return recovery.put($scope.input).then(function (response) {
                //$state.go('home.login');
             }, function (response) {
-                $scope.showSimpleToast("Error in code");
+                $scope.showSimpleToast($translate.instant('ERROR_CODE'));
             });
 
             $scope.input = {};
@@ -36,9 +36,9 @@
 
             var recovery = Restangular.all('recovery');
             return recovery.post({email: email}).then(function (response) {
-                $scope.showSimpleToast("The code sent to your email");
+                $scope.showSimpleToast($translate.instant('SENT_CODE'));
             }, function (response) {
-                $scope.showSimpleToast("The code has already been sent");
+                $scope.showSimpleToast($translate.instant('ALREADY_SENT'));
             });
 
         };

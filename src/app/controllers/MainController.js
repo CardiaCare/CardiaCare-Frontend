@@ -63,12 +63,12 @@
         $scope.showConfirm = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                .title('Logout')
-                .textContent('Are you sure you want to log out?')
-                .ariaLabel('Lucky day')
+                .title($translate.instant('LOGOUT'))
+                .textContent($translate.instant('SURE_LOGOUT'))
+                .ariaLabel($translate.instant('SURE_LOGOUT'))
                 .targetEvent(ev)
-                .ok('Yes')
-                .cancel('No');
+                .ok($translate.instant('YES'))
+                .cancel($translate.instant('NO'));
 
             $mdDialog.show(confirm).then(function () {
                 AuthService.logout();
@@ -96,37 +96,6 @@
         }
 
         function showActions($event) {
-            $mdBottomSheet.show({
-                parent: angular.element(document.getElementById('content')),
-                templateUrl: 'app/views/partials/bottomSheet.html',
-                controller: ['$mdBottomSheet', SheetController],
-                controllerAs: "vm",
-                bindToController: true,
-                targetEvent: $event
-            }).then(function (clickedItem) {
-                clickedItem && $log.debug(clickedItem.name + ' clicked!');
-            });
-
-            function SheetController($mdBottomSheet) {
-                var vm = this;
-
-                vm.actions = [
-                    {
-                        name: 'Share',
-                        icon: 'share',
-                        url: 'https://twitter.com/intent/tweet?text=Angular%20Material%20Dashboard%20https://github.com/flatlogic/angular-material-dashboard%20via%20@flatlogicinc'
-                    },
-                    {
-                        name: 'Star',
-                        icon: 'star',
-                        url: 'https://github.com/flatlogic/angular-material-dashboard/stargazers'
-                    }
-                ];
-
-                vm.performAction = function (action) {
-                    $mdBottomSheet.hide(action);
-                };
-            }
         }
 
         function showSimpleToast(title) {

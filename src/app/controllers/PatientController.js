@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('PatientController', ['$scope', '$stateParams', 'Restangular', '$mdToast',
+        .controller('PatientController', ['$scope', '$stateParams', 'Restangular', '$mdToast','$translate',
             PatientController
         ]);
 
-    function PatientController($scope, $stateParams, Restangular, $mdToast) {
+    function PatientController($scope, $stateParams, Restangular, $mdToast, $translate ) {
         var vm = this;
 
         Restangular.one('patients', $stateParams.userId).get()
@@ -23,7 +23,7 @@
             $scope.user.put()
                 .then(
                     function (response) {
-                        $scope.showSimpleToast("Done");
+                        $scope.showSimpleToast($translate.instant('DONE'));
                     },
                     function (errors) {
                         // TODO differrent typer of erroros

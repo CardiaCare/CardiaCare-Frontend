@@ -2,12 +2,12 @@
 
     angular
             .module('app')
-            .controller('QuestionnaireListController', ['$scope', 'Restangular','$mdDialog',
+            .controller('QuestionnaireListController', ['$scope', 'Restangular', '$translate','$mdDialog',
                 QuestionnaireListController
             ]);  
     
   
-    function QuestionnaireListController($scope, Restangular, $mdDialog) {
+    function QuestionnaireListController($scope, Restangular, $translate, $mdDialog) {
         
         Restangular.all('survey')
                 .getList()
@@ -18,12 +18,12 @@
         $scope.deleteQuestionnaire = function (ev, item) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                    .title('Do you want to delete the questionnaire?')
+                    .title($translate.instant('DELETE_QST'))
                     .textContent(item.description)
                     .ariaLabel('questionnaire')
                     .targetEvent(ev)
-                    .ok('Yes!')
-                    .cancel('No');
+                    .ok($translate.instant('YES'))
+                    .cancel($translate.instant('NO'));
 
             $mdDialog.show(confirm).then(function () {
                 $scope.questionnaires.splice($scope.questionnaires.indexOf(item), 1);
