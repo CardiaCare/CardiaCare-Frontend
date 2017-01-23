@@ -1,8 +1,10 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="EcgController">
     <canvas chart-data="data" 
-            class="chart chart-line" 
+            class="chart-bar" 
             chart-labels="labels"
             chart-options="options"
+            chart-series ="series"
+            chart-colors="colors"
             chart-dataset-override="datasetOverride" 
             chart-click="onClick"></canvas>
 </md-content>
