@@ -26,6 +26,7 @@
         // End Init with Auth
         
         
+        // INIT translation
         $scope.language = $cookies.get('language');
         $translate.use($scope.language);
 
