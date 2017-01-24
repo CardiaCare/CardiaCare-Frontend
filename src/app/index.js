@@ -14,7 +14,8 @@ angular.module("angularMaterialCardiaCare",
                     "base64",
                     "restangular",
                     "pascalprecht.translate",
-                    "chart.js"
+                    "chart.js",
+                     "materialCalendar"
                 ])
     .config(function ($qProvider) {
         $qProvider.errorOnUnhandledRejections(false);

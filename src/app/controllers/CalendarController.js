@@ -2,40 +2,109 @@
     'use strict';
 
     angular.module('app')
-        .controller('CalendarController', ['$scope', '$filter',
+        .controller('CalendarController', ['$scope', '$filter', '$q', '$timeout', '$log', 'MaterialCalendarData',
             CalendarController
         ]);
 
-    function CalendarController($scope, $filter) {
-        $scope.dayFormat = "d";
+    function CalendarController($scope, $filter,  $q, $timeout, $log, MaterialCalendarData) {
 
-        // To select a single date, make sure the ngModel is not an array.
-        $scope.selectedDate = null;
-        $scope.direction = "vertical"
-        $scope.firstDayOfWeek = 0; // First day of the week, 0 for Sunday, 1 for Monday, etc.
-        $scope.setDirection = function(direction) {
+        $scope.selectedDate = new Date();
+        $scope.weekStartsOn = 0;
+        $scope.dayFormat = "d";
+        $scope.tooltips = true;
+        $scope.disableFutureDates = false;
+
+        $scope.fullscreen = function () {
+            var elem = document.querySelector("#measurement-calendar");
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                } else if (elem.mozRequestFullScreen) {
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                }
+            }
+        };
+
+        $scope.setDirection = function (direction) {
             $scope.direction = direction;
             $scope.dayFormat = direction === "vertical" ? "EEEE, MMMM d" : "d";
         };
 
-        $scope.dayClick = function(date) {
+        $scope.dayClick = function (date) {
             $scope.msg = "You clicked " + $filter("date")(date, "MMM d, y h:mm:ss a Z");
         };
 
-        $scope.prevMonth = function(data) {
+        $scope.prevMonth = function (data) {
             $scope.msg = "You clicked (prev) month " + data.month + ", " + data.year;
         };
 
-        $scope.nextMonth = function(data) {
+        $scope.nextMonth = function (data) {
             $scope.msg = "You clicked (next) month " + data.month + ", " + data.year;
         };
 
-        $scope.tooltips = true;
-        $scope.setDayContent = function(date) {
+        $scope.setContentViaService = function () {
+            var today = new Date();
+            MaterialCalendarData.setDayContent(today, '<span> :oD </span>')
+        }
 
-            // You would inject any HTML you wanted for
-            // that particular date here.
-            return "<p>Test</p>";
+        var measurement_event = {
+            "2017-01-01": 
+                [
+                    {"name": "Last Day of Kwanzaa", "country": "US", "date": "2015-01-01"},
+                    {"name": "New Year's Day", "country": "US", "date": "2015-01-01"}
+                ], 
+            "2017-01-06": 
+                [
+                    {"name": "Epiphany", "country": "US", "date": "2015-01-06"}
+                ], 
+            "2017-01-07": 
+                [
+                    {"name": "Orthodox Christmas", "country": "US", "date": "2015-01-07"}
+                ],
+            "2017-01-19": 
+                [
+                    {"name": "Martin Luther King, Jr. Day", "country": "US", "date": "2015-01-19"}
+                ]};
+
+        // You would inject any HTML you wanted for
+        // that particular date here.
+        var numFmt = function (num) {
+            num = num.toString();
+            if (num.length < 2) {
+                num = "0" + num;
+            }
+            return num;
+        };
+
+        var loadContentAsync = true;
+        $log.info("setDayContent.async", loadContentAsync);
+        $scope.setDayContent = function (date) {
+
+            var key = [date.getFullYear(), numFmt(date.getMonth() + 1), numFmt(date.getDate())].join("-");
+            var data = (measurement_event[key] || [{name: ""}])[0].name;
+            if (loadContentAsync) {
+                var deferred = $q.defer();
+                $timeout(function () {
+                    deferred.resolve(data);
+                });
+                return deferred.promise;
+            }
+
+            return data;
 
         };
     }
