@@ -38,6 +38,7 @@
                     return editedDoctor.put();
                 })
                 .then(function (response) {
+                        AuthService.updateUser();
                         $scope.showSimpleToast($translate.instant('DONE'));
                     },
                     function (errors) {

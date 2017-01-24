@@ -3,6 +3,7 @@
 
     angular.module('angularMaterialCardiaCare')
         .config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.when('', '/home/main').when('/', '/home/main').otherwise('/404');
             $stateProvider
                 .state('home', {
                     url: '',
@@ -10,6 +11,30 @@
                     controller: 'MainController',
                     controllerAs: 'vm',
                     abstract: true
+                })
+                .state('home.main', {
+                    url: '/home/main',
+                    resolve: {
+                        data: function ($q, $state, $timeout, AuthService) {
+                            var deferred = $q.defer();
+                            var user = AuthService.getUser();
+                            console.log(user);
+                            $timeout(function () {
+                                if (user.role == 'doctor' || user.role == 'chief') {
+                                    $state.go('home.doctor-dashboard');
+                                    deferred.resolve();
+                                } else if(user.role == 'patient'){
+                                    $state.go('home.profile',{userId: user.person.id});
+                                    deferred.resolve();
+                                } else {
+                                    $state.go('home.login');
+                                    deferred.reject();
+                                }
+                            });
+
+                            return deferred.promise;
+                        }
+                    }
                 })
                 .state('home.profile', {
                     url: '/profile/:userId',
@@ -57,9 +82,6 @@
                     url: '/404',
                     templateUrl: 'app/views/404.html',
                     controller: 'MainController'
-                })
-            ;
-
-            $urlRouterProvider.otherwise('/login');
+                });
         });
 })();
