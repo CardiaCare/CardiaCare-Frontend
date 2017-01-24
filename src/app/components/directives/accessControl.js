@@ -3,9 +3,6 @@ angular.module('app')
     .directive('accessControl', ['AuthService', '$interval', function (AuthService, $interval) {
         return {
             restrict: 'A',
-            scope: {
-                accessControl: '='
-            },
             link: function (scope, element, attr) {
                 var timeout;
                 updateElement();
@@ -14,17 +11,17 @@ angular.module('app')
                 }, 1000);
 
                 function updateElement() {
-                    if (attr.accessControl == 'authorized') {
+                    if (attr.accessControl == 'authorized-only') {
                         if (!AuthService.isAuthorized()) {
-                            element.addClass('not-authorized');
+                            element.hide();
                         } else {
-                            element.removeClass('not-authorized');
+                            element.show();
                         }
-                    } else if (attr.accessControl == 'not-authorized') {
+                    } else if (attr.accessControl == 'not-authorized-only') {
                         if (AuthService.isAuthorized()) {
-                            element.addClass('not-authorized');
+                            element.hide();
                         } else {
-                            element.removeClass('not-authorized');
+                            element.show();
                         }
                     }
                 }

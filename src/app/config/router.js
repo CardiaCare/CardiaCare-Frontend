@@ -18,7 +18,6 @@
                         data: function ($q, $state, $timeout, AuthService) {
                             var deferred = $q.defer();
                             var user = AuthService.getUser();
-                            console.log(user);
                             $timeout(function () {
                                 if (user.role == 'doctor' || user.role == 'chief') {
                                     $state.go('home.doctor-dashboard');
@@ -50,7 +49,23 @@
                 })
                 .state('home.doctor-dashboard', {
                     url: '/doctor',
-                    templateUrl: 'app/views/doctor-dashboard.html'
+                    templateUrl: 'app/views/doctor-dashboard.html',
+                    resolve: {
+                        data: function ($q, $state, $timeout, AuthService) {
+                            var deferred = $q.defer();
+                            var user = AuthService.getUser();
+                            $timeout(function () {
+                                if (user.role == 'doctor' || user.role == 'chief') {
+                                    deferred.resolve();
+                                } else {
+                                    $state.go('403');
+                                    deferred.reject();
+                                }
+                            });
+
+                            return deferred.promise;
+                        }
+                    }
                 })
                 .state('home.registration', {
                     url: '/registration',
