@@ -22,7 +22,7 @@
             }
             var credentials = {email: email, password: password};
             AuthService.login(credentials).then(function (response) {
-                $state.go('home.doctor-dashboard');
+                $state.go('home.main');
             }, function (errors) {
                 //FIXME: Fix error throwing on backend (array instead of object and some standart field-names)
                 vm.errors.push("Incorrect password or email.");

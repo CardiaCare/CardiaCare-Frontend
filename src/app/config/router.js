@@ -81,7 +81,22 @@
                     url: '/login',
                     templateUrl: 'app/views/login.html',
                     controller: 'LoginController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    resolve: {
+                        data: function ($q, $state, $timeout, AuthService) {
+                            var deferred = $q.defer();
+                            $timeout(function () {
+                                if (!AuthService.isAuthorized()) {
+                                    deferred.resolve();
+                                } else {
+                                    $state.go('home.main');
+                                    deferred.reject();
+                                }
+                            });
+
+                            return deferred.promise;
+                        }
+                    }
                 })
                 .state('401', {
                     url: '/401',
