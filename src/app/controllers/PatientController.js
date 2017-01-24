@@ -2,21 +2,28 @@
 
     angular
         .module('app')
-        .controller('PatientController', ['$scope', '$stateParams', 'Restangular', '$mdToast','$translate',
+        .controller('PatientController', [
+            '$scope', '$stateParams', 'Restangular', '$mdToast', '$translate', 'AuthService',
             PatientController
         ]);
 
-    function PatientController($scope, $stateParams, Restangular, $mdToast, $translate ) {
+    function PatientController($scope, $stateParams, Restangular, $mdToast, $translate, AuthService) {
         var vm = this;
+        var user = AuthService.getUser();
 
-        Restangular.one('patients', $stateParams.userId).get()
-            .then(function (response) {
-                $scope.user = response;
-                return Restangular.one('users', response.user_id).get();
-            })
-            .then(function (user) {
-                $scope.patient_email = user.email;
-            });
+        if (user.role == 'patient') {
+            $scope.user = user.person;
+            $scope.patient_email = user.email;
+        } else {
+            Restangular.one('patients', $stateParams.userId).get()
+                .then(function (response) {
+                    $scope.user = response;
+                    return Restangular.one('users', response.user_id).get();
+                })
+                .then(function (user) {
+                    $scope.patient_email = user.email;
+                });
+        }
 
 
         $scope.update = function () {
