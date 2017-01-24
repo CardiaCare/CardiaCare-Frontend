@@ -13,8 +13,8 @@ npm install -g gulp
 Clone the repository:
 
 ```bash
-git clone https://github.com/angular-dashboard-framework/angular-dashboard-framework
-cd angular-dashboard-framework
+git clone https://github.com/CardiaCare/CardiaCare-Frontend.git
+cd CardiaCare-Frontend
 ```
 
 Install dependencies:
