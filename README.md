@@ -21,8 +21,14 @@ Install dependencies:
 
 ```bash
 npm install
-bower install
 ```
+
+You can start the sample app, by using the serve gulp task:
+
+```bash
+gulp serve
+```
+
 
 ## License
 
