@@ -19,3 +19,43 @@
                         day-content="setDayContent"
                         disable-future-selection="disableFutureDates">
 </md-content>
+
+
+<script type="text/ng-template" id="day.tmpl.html">
+<md-dialog aria-label="Events">
+  <form ng-cloak>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Events</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="assets/images/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <md-content>
+            <div layout="row" layout-sm="column" layout-align="space-around">
+                <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
+            </div>
+        <md-list ng-hide="activated" flex>
+            <md-list-item class="noright">
+                <p flex>{{msg}}</p>
+
+            </md-list-item>
+        </md-list>
+        </md-content>
+      </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="cancel()">
+        OK
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
+</script>

@@ -2,11 +2,11 @@
     'use strict';
 
     angular.module('app')
-        .controller('CalendarController', ['$scope', '$filter', '$q', '$timeout', '$log', 'MaterialCalendarData',
+        .controller('CalendarController', ['$scope', '$filter', '$q', '$timeout', '$log', 'MaterialCalendarData', '$mdDialog',
             CalendarController
         ]);
 
-    function CalendarController($scope, $filter,  $q, $timeout, $log, MaterialCalendarData) {
+    function CalendarController($scope, $filter,  $q, $timeout, $log, MaterialCalendarData, $mdDialog) {
 
         $scope.selectedDate = new Date();
         $scope.weekStartsOn = 0;
@@ -44,8 +44,37 @@
             $scope.dayFormat = direction === "vertical" ? "EEEE, MMMM d" : "d";
         };
 
-        $scope.dayClick = function (date) {
+        $scope.dayClick = function (ev, date) {
+            
             $scope.msg = "You clicked " + $filter("date")(date, "MMM d, y h:mm:ss a Z");
+            
+            $mdDialog.show({
+                controller: DayDialogController,
+                templateUrl: 'day.tmpl.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose: true,
+                locals:{dataToPass: date}
+            });
+            
+            function DayDialogController($scope, $mdDialog, dataToPass) {
+                
+                $scope.msg = "You clicked " + $filter("date")(dataToPass, "MMM d, y h:mm:ss a Z");
+                
+                $scope.hide = function () {
+                    $mdDialog.hide();
+                };
+
+                $scope.cancel = function () {
+                    $mdDialog.cancel();
+                };
+
+                $scope.answer = function (answer) {
+                    $mdDialog.hide(answer);
+                };
+            };
+            
+            
         };
 
         $scope.prevMonth = function (data) {
@@ -92,6 +121,7 @@
 
         var loadContentAsync = true;
         $log.info("setDayContent.async", loadContentAsync);
+        
         $scope.setDayContent = function (date) {
 
             var key = [date.getFullYear(), numFmt(date.getMonth() + 1), numFmt(date.getDate())].join("-");
