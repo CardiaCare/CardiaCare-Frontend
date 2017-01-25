@@ -98,11 +98,6 @@
                         }
                     }
                 })
-                .state('401', {
-                    url: '/401',
-                    templateUrl: 'app/views/401.html',
-                    controller: 'MainController'
-                })
                 .state('403', {
                     url: '/403',
                     templateUrl: 'app/views/403.html',

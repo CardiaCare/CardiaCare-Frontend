@@ -72,7 +72,6 @@
                     ENTER_EMAIL: 'Enter email for recovery code sending',
                     SEND:'Send',
                     CANSEL:'Cansel',
-                    LOGOUT:'Logout',
                     SURE_LOGOUT: 'Are you sure you want to log out?',
                     YES:'Yes',
                     NO:'No',

@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('MainController', [
-            '$scope', '$mdSidenav', '$mdBottomSheet', '$log', '$q', '$state',  '$cookies','$mdToast', '$mdDialog','$translate', 'AuthService',
+            '$scope', '$mdSidenav', '$stateParams', '$mdBottomSheet', '$log', '$q', '$state',  '$cookies','$mdToast', '$mdDialog','$translate', 'AuthService',
             MainController
         ]);
 
-    function MainController($scope, $mdSidenav, $mdBottomSheet, $log, $q, $state, $cookies, $mdToast, $mdDialog, $translate, AuthService) {
+    function MainController($scope, $mdSidenav, $stateParams, $mdBottomSheet, $log, $q, $state, $cookies, $mdToast, $mdDialog, $translate, AuthService) {
         var vm = this;
 
         vm.selectItem = selectItem;
@@ -34,6 +34,41 @@
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
+        
+        
+
+        vm.menuItems = [
+            {
+                name: $translate.instant('ACC'),
+                icon: 'person',
+                sref: 'home.main'
+            },
+            {
+                name: $translate.instant('PATIENT'),
+                icon: 'person',
+                sref: 'home.profile({userId: ' + $stateParams.userId + '})'
+            },
+            {
+                name: $translate.instant('BIOSIGNALS'),
+                icon: 'dashboard',
+                sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
+            }
+        ];
+
+//        vm.menuItems = [
+//            {
+//                name: $translate.instant('PROFILE'),
+//                icon: 'person',
+//                sref: 'home.profile({userId: ' + $stateParams.userId + '})'
+//            },
+//            {
+//                name: $translate.instant('BIOSIGNALS'),
+//                icon: 'dashboard',
+//                sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
+//            }
+//        ];
+
+
 
         function toggleItemsList() {
             var pending = $mdBottomSheet.hide() || $q.when(true);
@@ -63,7 +98,7 @@
         $scope.showConfirm = function (ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                .title($translate.instant('LOGOUT'))
+                .title($translate.instant('LOG_OUT'))
                 .textContent($translate.instant('SURE_LOGOUT'))
                 .ariaLabel($translate.instant('SURE_LOGOUT'))
                 .targetEvent(ev)

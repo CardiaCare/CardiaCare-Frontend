@@ -1,3 +1,23 @@
-<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="MainController">
-    <h1>404 Page not found</h1>
-</md-content>
+<div layout="row" layout-align="center start" flex style="padding-top: 50px">
+    <div id="content" flex flex-gt-md="80" flex-gt-lg="70" >
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">404 Not found</h1>
+        </md-toolbar>
+
+        <md-content class="md-padding md-whiteframe-z1" >
+            <h1>Not found <span>:(</span></h1>
+            <p>Sorry, but the page you were trying to view does not exist.</p>
+            <p>It looks like this was the result of either:</p>
+            <ul>
+                <li>a mistyped address</li>
+                <li>an out-of-date link</li>
+            </ul>
+
+            <md-button flex
+                       class="md-raised md-primary"
+                       type="submit"
+                       ui-sref="home.main">Back
+            </md-button>
+        </md-content>
+    </div>
+</div>

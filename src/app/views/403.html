@@ -1,3 +1,22 @@
-<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="MainController">
-    <h1>403 Forbidden</h1>
-</md-content>
+<div layout="row" layout-align="center start" flex style="padding-top: 50px">
+    <div id="content" flex flex-gt-md="80" flex-gt-lg="70" >
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">403 Forbidden</h1>
+        </md-toolbar>
+
+        <md-content class="md-padding md-whiteframe-z1" >
+            <h1>Access is denied <span>:(</span></h1>
+            <p>Sorry, but you do not have permission to view this directory or page using the credentials that you supplied.</p>
+            <p>Most likely causes:</p>
+            <ul>
+                <li>this website requires you to log in</li>
+            </ul>
+
+            <md-button flex
+                       class="md-raised md-primary"
+                       type="submit"
+                       ui-sref="home.main">Back
+            </md-button>
+        </md-content>
+    </div>
+</div>
