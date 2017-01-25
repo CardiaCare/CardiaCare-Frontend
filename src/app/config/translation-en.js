@@ -79,7 +79,8 @@
                     SENT_CODE: "The code sent to your email",
                     ALREADY_SENT: "The code has already been sent",
                     DELETE_QST: 'Do you want to delete the questionnaire?',
-                    ACC: 'Account'
+                    ACC: 'Account',
+                    DASHBOARD: "Dashboard"
                 });
                 
                 $translateProvider.preferredLanguage('ru');

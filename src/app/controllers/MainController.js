@@ -35,38 +35,39 @@
             $mdSidenav('right').toggle();
         }
         
-        
-
-        vm.menuItems = [
-            {
-                name: $translate.instant('ACC'),
-                icon: 'person',
-                sref: 'home.main'
-            },
-            {
-                name: $translate.instant('PATIENT'),
-                icon: 'person',
-                sref: 'home.profile({userId: ' + $stateParams.userId + '})'
-            },
-            {
-                name: $translate.instant('BIOSIGNALS'),
-                icon: 'dashboard',
-                sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
-            }
-        ];
-
-//        vm.menuItems = [
-//            {
-//                name: $translate.instant('PROFILE'),
-//                icon: 'person',
-//                sref: 'home.profile({userId: ' + $stateParams.userId + '})'
-//            },
-//            {
-//                name: $translate.instant('BIOSIGNALS'),
-//                icon: 'dashboard',
-//                sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
-//            }
-//        ];
+        //TODO sidenav        
+        $scope.curentUser = AuthService.getUser();
+        if ($scope.curentUser.role === "doctor" ||
+                $scope.curentUser.role === "chief") 
+        {
+            vm.menuItems = [
+                {
+                    name: $translate.instant('ACC'),
+                    icon: 'person',
+                    sref: 'home.main'
+                },
+                {
+                    name: $translate.instant('DASHBOARD'),
+                    icon: 'dashboard',
+                    sref: 'home.doctor-dashboard'
+                }
+            ];
+        } else {
+            $stateParams.userId = $scope.curentUser.person.id;
+            //console.log($scope.curentUser.person);
+            vm.menuItems = [
+                {
+                    name: $translate.instant('ACC'),
+                    icon: 'person',
+                    sref: 'home.profile({userId: ' + $stateParams.userId + '})'
+                },
+                {
+                    name: $translate.instant('BIOSIGNALS'),
+                    icon: 'dashboard',
+                    sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
+                }
+            ];
+        }
 
 
 

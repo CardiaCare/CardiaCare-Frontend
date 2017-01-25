@@ -20,7 +20,7 @@
                             var user = AuthService.getUser();
                             $timeout(function () {
                                 if (user.role == 'doctor' || user.role == 'chief') {
-                                    $state.go('home.doctor-dashboard');
+                                    $state.go('home.account');
                                     deferred.resolve();
                                 } else if(user.role == 'patient'){
                                     $state.go('home.profile',{userId: user.person.id});
@@ -37,14 +37,20 @@
                 })
                 .state('home.profile', {
                     url: '/profile/:userId',
-                    templateUrl: 'app/views/profile.html',
+                    templateUrl: 'app/views/patient-profile.html',
                     controller: 'ProfileController',
                     controllerAs: 'vm'
                 })
                 .state('home.biosignals', {
                     url: '/profile/:userId/biosignals',
-                    templateUrl: 'app/views/biosignals.html',
+                    templateUrl: 'app/views/patient-dashboard.html',
                     controller: 'BiosignalsController',
+                    controllerAs: 'vm'
+                })
+                .state('home.account', {
+                    url: '/account',
+                    templateUrl: 'app/views/doctor-profile.html',
+                    controller: 'ProfileController',
                     controllerAs: 'vm'
                 })
                 .state('home.doctor-dashboard', {

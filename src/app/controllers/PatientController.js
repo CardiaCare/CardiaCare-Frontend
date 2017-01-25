@@ -27,15 +27,24 @@
 
 
         $scope.update = function () {
-            $scope.user.put()
-                .then(
-                    function (response) {
+            Restangular.one('patients', $stateParams.userId).get()
+                .then(function (doctor) {
+                    for (var property in patient) {
+                        if ($scope.patient.hasOwnProperty(property)) {
+                            patient[property] = $scope.patient[property];
+                        }
+                    }
+                    return patient;
+                })
+                .then(function (editedPatient) {
+                    return editedPatient.put();
+                })
+                .then(function (response) {
+                        AuthService.updateUser();
                         $scope.showSimpleToast($translate.instant('DONE'));
                     },
                     function (errors) {
                         // TODO differrent typer of erroros
-                        if (errors.data.snils !== "")
-                            $scope.showSimpleToast(errors.data.snils);
                     });
         };
 
