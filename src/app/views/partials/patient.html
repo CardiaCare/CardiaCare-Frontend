@@ -17,7 +17,7 @@
             <input ng-model="patient_email" type="email">
         </md-input-container>
     </md-content>
-    <md-content class="md-padding">
+    <md-content class="md-padding" layout-sm="column">
         <form name="userForm">
             <!--            <div layout layout-sm="column">
                             <md-input-container>
@@ -72,9 +72,8 @@
             </div>
         </form>
     </md-content>
-    <md-content class="md-padding">
-        <md-input-container layout-align="center center">
+            <md-input-container layout-align="center center">
             <md-button class="md-raised md-primary" ng-click="update()">{{ 'BUTTON_UP_INFO' | translate }}</md-button>
         </md-input-container>
-    </md-content>
+
 </md-content>

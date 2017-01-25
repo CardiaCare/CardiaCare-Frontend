@@ -19,12 +19,15 @@
         </div>
     </md-button>
     <md-divider ng-repeat-end></md-divider>
+
 </md-sidenav>
 
 <div layout="column" flex>
     <md-toolbar layout="row" layout-align="center center" >
-        <section layout-align="start center" class="md-hue-1 md-whiteframe-z2">
-
+        <section layout-align="start center" layout-fill flex>
+         <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu">
+                <i class="material-icons">menu</i>
+            </md-button>
         </section>
         <section layout-align="start center" layout-fill flex>
         </section>
