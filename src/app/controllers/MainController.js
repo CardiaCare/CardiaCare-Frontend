@@ -34,24 +34,45 @@
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
-        
+
         //TODO sidenav        
         $scope.curentUser = AuthService.getUser();
         if ($scope.curentUser.role === "doctor" ||
-                $scope.curentUser.role === "chief") 
+                $scope.curentUser.role === "chief")
         {
-            vm.menuItems = [
-                {
-                    name: $translate.instant('ACC'),
-                    icon: 'person',
-                    sref: 'home.main'
-                },
-                {
-                    name: $translate.instant('DASHBOARD'),
-                    icon: 'dashboard',
-                    sref: 'home.doctor-dashboard'
-                }
-            ];
+            console.log($state.current.name);
+            if ($state.current.name === 'home.main') {
+                vm.menuItems = [
+                    {
+                        name: $translate.instant('ACC'),
+                        icon: 'person',
+                        sref: 'home.main'
+                    },
+                    {
+                        name: $translate.instant('DASHBOARD'),
+                        icon: 'dashboard',
+                        sref: 'home.doctor-dashboard'
+                    }
+                ];
+            } else {
+                vm.menuItems = [
+                    {
+                        name: $translate.instant('ACC'),
+                        icon: 'person',
+                        sref: 'home.main'
+                    },
+                    {
+                        name: $translate.instant('DASHBOARD'),
+                        icon: 'dashboard',
+                        sref: 'home.doctor-dashboard'
+                    },
+                    {
+                        name: 'Patient Account',
+                        icon: 'person',
+                        sref: 'home.profile({userId:' + $stateParams.userId + '})'
+                    }
+                ];
+            }
         } else {
             $stateParams.userId = $scope.curentUser.person.id;
             //console.log($scope.curentUser.person);

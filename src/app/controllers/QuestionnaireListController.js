@@ -26,7 +26,12 @@
                     .cancel($translate.instant('NO'));
 
             $mdDialog.show(confirm).then(function () {
-                $scope.questionnaires.splice($scope.questionnaires.indexOf(item), 1);
+               
+                item.remove().then(function() {
+                        $scope.questionnaires.splice($scope.questionnaires.indexOf(item), 1);
+                    }, function(error){
+                            vm.showSimpleToast(""+error.data.message);
+                    });
             }, function () {
 
             });
