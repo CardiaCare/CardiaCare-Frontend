@@ -13,8 +13,15 @@
             var user = JSON.parse($cookies.get('user'));
             return user;
         };
+        this.updateUser = function () {
+            var user = this.getUser();
+            Restangular.one('users', user.id).get()
+                .then(function (response) {
+                    setUser(response);
+                });
+
+        };
         function setUser(user) {
-            that.user = user;
             $cookies.put('user', JSON.stringify(user));
         }
 

@@ -1,10 +1,15 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="EcgController">
-    <canvas chart-data="data" 
-            class="chart-line" 
-            chart-labels="labels"
-            chart-options="options"
-            chart-series ="series"
-            chart-colors="colors"
-            chart-dataset-override="datasetOverride" 
-            chart-click="onClick"></canvas>
+    <div class="chartWrapper">
+        <div class="chartAreaWrapper">
+            <canvas chart-data="data"
+                    class="chart-line"
+                    chart-labels="labels"
+                    chart-options="options"
+                    chart-series="series"
+                    chart-colors="colors"
+                    chart-dataset-override="datasetOverride"
+                    chart-click="onClick"
+                    width="1200"></canvas>
+        </div>
+    </div>
 </md-content>

@@ -79,7 +79,8 @@
                     ERROR_CODE: 'Error in code',
                     SENT_CODE: "The code sent to your email",
                     ALREADY_SENT: "The code has already been sent",
-                    DELETE_QST: 'Do you want to delete the questionnaire?'
+                    DELETE_QST: 'Do you want to delete the questionnaire?',
+                    ACC: 'Account'
                 });
                 
                 $translateProvider.preferredLanguage('ru');

@@ -3,7 +3,7 @@
     <md-toolbar layout="row" layout-align="center center" >
         <section layout-align="start center" class="md-hue-1 md-whiteframe-z2">
             <md-button layout="row" layout-align="center center" class="md-toolbar-tools md-raised md-warn"
-                       href="#">
+                       ui-sref="home.main">
                 <h1>CardiaCare</h1>
             </md-button>
         </section>
@@ -27,14 +27,14 @@
                     </md-menu-content>
                 </md-menu >
 
-                <md-menu >
+                <md-menu access-control="authorized-only">
                     <md-button class="md-fab md-primary" aria-label="Doctor" ng-click="$mdOpenMenu()">
                         <md-icon md-svg-src="assets/images/avatar-1.svg"></md-icon>
                     </md-button>
                     <md-menu-content>
                         <md-menu-item>
-                            <md-button ui-sref="home.doctor-dashboard">
-                                {{ 'DOCTOR_ACC' | translate }}
+                            <md-button ui-sref="home.main">
+                                {{ 'ACC' | translate }}
                             </md-button>
                         </md-menu-item>
                         <md-menu-divider></md-menu-divider>

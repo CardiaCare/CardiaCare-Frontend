@@ -3,6 +3,7 @@
 
     angular.module('angularMaterialCardiaCare')
         .config(function ($stateProvider, $urlRouterProvider) {
+            $urlRouterProvider.when('', '/home/main').when('/', '/home/main').otherwise('/404');
             $stateProvider
                 .state('home', {
                     url: '',
@@ -10,6 +11,29 @@
                     controller: 'MainController',
                     controllerAs: 'vm',
                     abstract: true
+                })
+                .state('home.main', {
+                    url: '/home/main',
+                    resolve: {
+                        data: function ($q, $state, $timeout, AuthService) {
+                            var deferred = $q.defer();
+                            var user = AuthService.getUser();
+                            $timeout(function () {
+                                if (user.role == 'doctor' || user.role == 'chief') {
+                                    $state.go('home.doctor-dashboard');
+                                    deferred.resolve();
+                                } else if(user.role == 'patient'){
+                                    $state.go('home.profile',{userId: user.person.id});
+                                    deferred.resolve();
+                                } else {
+                                    $state.go('home.login');
+                                    deferred.reject();
+                                }
+                            });
+
+                            return deferred.promise;
+                        }
+                    }
                 })
                 .state('home.profile', {
                     url: '/profile/:userId',
@@ -25,7 +49,23 @@
                 })
                 .state('home.doctor-dashboard', {
                     url: '/doctor',
-                    templateUrl: 'app/views/doctor-dashboard.html'
+                    templateUrl: 'app/views/doctor-dashboard.html',
+                    resolve: {
+                        data: function ($q, $state, $timeout, AuthService) {
+                            var deferred = $q.defer();
+                            var user = AuthService.getUser();
+                            $timeout(function () {
+                                if (user.role == 'doctor' || user.role == 'chief') {
+                                    deferred.resolve();
+                                } else {
+                                    $state.go('403');
+                                    deferred.reject();
+                                }
+                            });
+
+                            return deferred.promise;
+                        }
+                    }
                 })
                 .state('home.registration', {
                     url: '/registration',
@@ -41,7 +81,22 @@
                     url: '/login',
                     templateUrl: 'app/views/login.html',
                     controller: 'LoginController',
-                    controllerAs: 'vm'
+                    controllerAs: 'vm',
+                    resolve: {
+                        data: function ($q, $state, $timeout, AuthService) {
+                            var deferred = $q.defer();
+                            $timeout(function () {
+                                if (!AuthService.isAuthorized()) {
+                                    deferred.resolve();
+                                } else {
+                                    $state.go('home.main');
+                                    deferred.reject();
+                                }
+                            });
+
+                            return deferred.promise;
+                        }
+                    }
                 })
                 .state('401', {
                     url: '/401',
@@ -57,9 +112,6 @@
                     url: '/404',
                     templateUrl: 'app/views/404.html',
                     controller: 'MainController'
-                })
-            ;
-
-            $urlRouterProvider.otherwise('/login');
+                });
         });
 })();
