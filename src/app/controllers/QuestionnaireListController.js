@@ -51,7 +51,6 @@
             });
 
             function QuestionnireDialogController($scope, $mdDialog) {
-
                 Restangular.one('survey', questionnaire_id).get()
                         .then(function (response) {
                             $scope.questionnaire = response;
