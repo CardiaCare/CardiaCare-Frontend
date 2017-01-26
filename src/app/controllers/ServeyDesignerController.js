@@ -7,6 +7,7 @@
         ]);
     function ServeyDesignerController($mdDialog, $scope) {
         $scope.questions = [];
+        $scope.dichotomous = {};
         $scope.chosenType = '';
         $scope.qtypes = [
             {
@@ -47,6 +48,40 @@
             $scope.questions.push(angular.copy(itemToAdd))
         };
         
+        $scope.fixDichotomous = function (itemToAdd) {
+                       
+            var answerItems = [];
+                answerItems.push({
+                    itemScore: 0,
+                    itemText: $scope.dichotomous.option1,
+                    uri: "empty",
+                    subAnswers:[]
+                });
+                answerItems.push({
+                    itemScore: 0,
+                    itemText: $scope.dichotomous.option2,
+                    uri: "empty",
+                    subAnswers:[]
+                });
+                
+                $scope.answerToAdd = {
+                    items:answerItems,
+                    type: "Dichotomous",
+                    uri:"empty"
+                };
+
+            itemToAdd.answer = $scope.answerToAdd;
+            
+            var index = $scope.itemsToAdd.indexOf(itemToAdd);
+            $scope.itemsToAdd.splice(index, 1);
+            $scope.questions.push(angular.copy(itemToAdd));
+            
+            $scope.vis_dichotomous = !$scope.vis_dichotomous;
+            $scope.dichotomous = {};
+            console.log($scope.questions);
+
+        };
+        
         $scope.addNew = function () {
 
             $scope.itemsToAdd.push({
@@ -59,32 +94,35 @@
         $scope.changeSelected = function (ev, type, answer) {
             switch (type) {
                 case "Dichotomous":
-                    $mdDialog.show({
-                        controller: DichotomouseDialogController,
-                        templateUrl: 'dialog-dichotomouse.tmpl.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true
-                    });
+                     $scope.vis_dichotomous = !$scope.vis_dichotomous;
+//                    $mdDialog.show({
+//                        controller: DichotomouseDialogController,
+//                        templateUrl: 'dialog-dichotomouse.tmpl.html',
+//                        parent: angular.element(document.body),
+//                        targetEvent: ev,
+//                        clickOutsideToClose: true
+//                    });
                     break;
                 case "Bipolar":
-                    $mdDialog.show({
-                        controller: DialogController,
-                        templateUrl: 'dialog-bipolar.tmpl.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true
-                    });
+                    $scope.vis_bipolar = !$scope.vis_bipolar;
+//                    $mdDialog.show({
+//                        controller: DialogController,
+//                        templateUrl: 'dialog-bipolar.tmpl.html',
+//                        parent: angular.element(document.body),
+//                        targetEvent: ev,
+//                        clickOutsideToClose: true
+//                    });
                     break;
                     
                 case "Single Choise":
-                    $mdDialog.show({
-                        controller: DialogController,
-                        templateUrl: 'dialog-choise.tmpl.html',
-                        parent: angular.element(document.body),
-                        targetEvent: ev,
-                        clickOutsideToClose: true
-                    });
+                    $scope.vis_dialog_choise = !$scope.vis_dialog_choise;
+//                    $mdDialog.show({
+//                        controller: DialogController,
+//                        templateUrl: 'dialog-choise.tmpl.html',
+//                        parent: angular.element(document.body),
+//                        targetEvent: ev,
+//                        clickOutsideToClose: true
+//                    });
                     break;
                 case "Multiple Choise":
                     $mdDialog.show({
