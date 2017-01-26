@@ -47,6 +47,7 @@
                     INVITE: 'Приглашение',
                     PATIENT_LIST: 'Список пациентов',
                     QUESTIONNAIRES: 'Анкеты',
+                    QUESTIONNAIRE: 'Анкета',
                     QUESTIONNAIRE_CONS: 'Конструктор анкет',
                     RESET_PWD: 'Обновление пароля',
                     PWD: 'Пароль',
