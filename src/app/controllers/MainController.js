@@ -90,8 +90,6 @@
             ];
         }
 
-
-
         function toggleItemsList() {
             var pending = $mdBottomSheet.hide() || $q.when(true);
 
