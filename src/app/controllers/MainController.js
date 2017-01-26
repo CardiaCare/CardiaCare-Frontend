@@ -34,13 +34,12 @@
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
-
-        //TODO sidenav        
-        $scope.curentUser = AuthService.getUser();
-        if ($scope.curentUser.role === "doctor" ||
-                $scope.curentUser.role === "chief")
+        //TODO sidenav
+        vm.curentUser = AuthService.getUser();
+        if(vm.currentUser){
+            if (vm.curentUser.role === "doctor" ||
+            vm.curentUser.role === "chief")
         {
-            console.log($state.current.name);
             if ($state.current.name === 'home.main') {
                 vm.menuItems = [
                     {
@@ -74,7 +73,7 @@
                 ];
             }
         } else {
-            $stateParams.userId = $scope.curentUser.person.id;
+            $stateParams.userId = vm.curentUser.person.id;
             //console.log($scope.curentUser.person);
             vm.menuItems = [
                 {
@@ -89,6 +88,8 @@
                 }
             ];
         }
+        }
+        
 
         function toggleItemsList() {
             var pending = $mdBottomSheet.hide() || $q.when(true);
