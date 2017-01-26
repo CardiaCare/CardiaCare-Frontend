@@ -3,7 +3,7 @@
     angular
         .module('app')
         .controller('MainController', [
-            '$scope', '$mdSidenav', '$stateParams', '$mdBottomSheet', '$log', '$q', '$state',  '$cookies','$mdToast', '$mdDialog','$translate', 'AuthService',
+            '$scope', '$mdSidenav', '$stateParams', '$mdBottomSheet', '$log', '$q', '$state', '$cookies', '$mdToast', '$mdDialog', '$translate', 'AuthService',
             MainController
         ]);
 
@@ -24,72 +24,73 @@
             }
         }, true);
         // End Init with Auth
-        
-        
+
+
         // INIT translation
         $scope.language = $cookies.get('language');
         $translate.use($scope.language);
 
-        
+
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
+
         //TODO sidenav
-        vm.curentUser = AuthService.getUser();
-        if(vm.currentUser){
+        if (AuthService.isAuthorized()) {
+            vm.curentUser = AuthService.getUser();
+
             if (vm.curentUser.role === "doctor" ||
-            vm.curentUser.role === "chief")
-        {
-            if ($state.current.name === 'home.main') {
-                vm.menuItems = [
-                    {
-                        name: $translate.instant('ACC'),
-                        icon: 'person',
-                        sref: 'home.main'
-                    },
-                    {
-                        name: $translate.instant('DASHBOARD'),
-                        icon: 'dashboard',
-                        sref: 'home.doctor-dashboard'
-                    }
-                ];
+                vm.curentUser.role === "chief") {
+                if ($state.current.name === 'home.main') {
+                    vm.menuItems = [
+                        {
+                            name: $translate.instant('ACC'),
+                            icon: 'person',
+                            sref: 'home.main'
+                        },
+                        {
+                            name: $translate.instant('DASHBOARD'),
+                            icon: 'dashboard',
+                            sref: 'home.doctor-dashboard'
+                        }
+                    ];
+                } else {
+                    vm.menuItems = [
+                        {
+                            name: $translate.instant('ACC'),
+                            icon: 'person',
+                            sref: 'home.main'
+                        },
+                        {
+                            name: $translate.instant('DASHBOARD'),
+                            icon: 'dashboard',
+                            sref: 'home.doctor-dashboard'
+                        },
+                        {
+                            name: 'Patient Account',
+                            icon: 'person',
+                            sref: 'home.profile({userId:' + $stateParams.userId + '})'
+                        }
+                    ];
+                }
             } else {
+                $stateParams.userId = vm.curentUser.person.id;
+                //console.log($scope.curentUser.person);
                 vm.menuItems = [
                     {
                         name: $translate.instant('ACC'),
                         icon: 'person',
-                        sref: 'home.main'
+                        sref: 'home.profile({userId: ' + $stateParams.userId + '})'
                     },
                     {
-                        name: $translate.instant('DASHBOARD'),
+                        name: $translate.instant('BIOSIGNALS'),
                         icon: 'dashboard',
-                        sref: 'home.doctor-dashboard'
-                    },
-                    {
-                        name: 'Patient Account',
-                        icon: 'person',
-                        sref: 'home.profile({userId:' + $stateParams.userId + '})'
+                        sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
                     }
                 ];
             }
-        } else {
-            $stateParams.userId = vm.curentUser.person.id;
-            //console.log($scope.curentUser.person);
-            vm.menuItems = [
-                {
-                    name: $translate.instant('ACC'),
-                    icon: 'person',
-                    sref: 'home.profile({userId: ' + $stateParams.userId + '})'
-                },
-                {
-                    name: $translate.instant('BIOSIGNALS'),
-                    icon: 'dashboard',
-                    sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
-                }
-            ];
         }
-        }
-        
+
 
         function toggleItemsList() {
             var pending = $mdBottomSheet.hide() || $q.when(true);
@@ -129,7 +130,7 @@
             $mdDialog.show(confirm).then(function () {
                 AuthService.logout();
             }, function () {
-                
+
             });
         };
 
