@@ -55,6 +55,7 @@
                         .then(function (response) {
                             $scope.questionnaire = response;
                             $scope.questions = angular.fromJson($scope.questionnaire.data);
+                            console.log($scope.questions );
                         });
 
                 $scope.hide = function () {

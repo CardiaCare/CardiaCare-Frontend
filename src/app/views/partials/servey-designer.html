@@ -24,51 +24,52 @@
                                 {{type.description}}
                             </md-option>
                         </md-select>
-                    </md-input-container>
-                    <md-button class="md-raised md-primary" ng-click="fixDichotomous(itemToAdd)">{{ 'BUTTON_FIX' | translate }}</md-button>
-                </md-content>
 
-                <md-content ng-show="vis_dichotomous" ng-controller="ServeyDesignerController">
-                    <md-input-container>
-                        <label>First answer</label>
-                        <input required ng-model="dichotomous.option1">
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Second answer</label>
-                        <input required ng-model="dichotomous.option2">
-                    </md-input-container>
-                   
-                </md-content>
-                
-                <md-content ng-show="vis_dialog_choise" ng-controller="ServeyDesignerController">
-                    <md-list flex>
-                        <md-list-item  ng-repeat="answer in answers" class="noright">
-                            {{answer.option}}
-                        </md-list-item>
-                    </md-list>
-                    <md-list flex>
-                        <md-list-item ng-repeat="answerToAdd in answersToAdd">
+                        <md-content ng-show="vis_dichotomous" ng-controller="ServeyDesignerController">
                             <md-input-container>
-                                <input required ng-model="answerToAdd.option" type="text">
-                            </md-input-container>  
-                            <md-button class="md-raised md-primary" ng-click="fixAnswer(answerToAdd)">FixAnswer</md-button>
-                        </md-list-item>
-                    </md-list>
-                    <md-button class="md-raised md-primary" ng-click="addNewAnswer()">Add new</md-button>
-                </md-content>
+                                <label>First answer</label>
+                                <input required ng-model="dichotomous.option1">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Second answer</label>
+                                <input required ng-model="dichotomous.option2">
+                            </md-input-container>
+                            <md-button class="md-raised md-primary" ng-click="fixDichotomous(itemToAdd)">{{ 'BUTTON_FIX' | translate }}</md-button>
+                        </md-content>
+
+                        <md-content ng-show="vis_dialog_choise" ng-controller="ServeyDesignerController">
+                            <md-list flex>
+                                <md-list-item  ng-repeat="answer in answers" class="noright">
+                                    {{answer.option}}
+                                </md-list-item>
+                            </md-list>
+                            <md-list flex>
+                                <md-list-item ng-repeat="answerToAdd in answersToAdd">
+                                    <md-input-container>
+                                        <input required ng-model="answerToAdd.option" type="text">
+                                    </md-input-container>  
+                                    <md-button class="md-raised md-primary" ng-click="fixAnswer(answerToAdd)">FixAnswer</md-button>
+                                </md-list-item>
+                            </md-list>
+                            <md-button class="md-raised md-primary" ng-click="addNewAnswer()">Add new</md-button>
+                        </md-content>
 
 
-                <md-content ng-show="vis_bipolar" ng-controller="ServeyDesignerController">
-                    <md-input-container>
-                        <label>Left Border</label>
-                        <input required ng-model="answer.bipolar.option1">
+                        <md-content ng-show="vis_bipolar" ng-controller="ServeyDesignerController">
+                            <md-input-container>
+                                <label>Left Border</label>
+                                <input required ng-model="bipolar.option1">
+                            </md-input-container>
+                            <md-input-container>
+                                <label>Right Border</label>
+                                <input required ng-model="bipolar.option2">
+                            </md-input-container>
+                            <md-button class="md-raised md-primary" ng-click="fixBipolar(itemToAdd)">{{ 'BUTTON_FIX' | translate }}</md-button>
+                        </md-content>
+
+
                     </md-input-container>
-                    <md-input-container>
-                        <label>Right Border</label>
-                        <input required ng-model="answer.bipolar.option2">
-                    </md-input-container>
                 </md-content>
-
             </md-content>
         </md-list-item>
     </md-list>
