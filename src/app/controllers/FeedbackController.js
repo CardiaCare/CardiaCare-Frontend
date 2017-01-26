@@ -1,21 +1,48 @@
-(function(){
+(function () {
 
-  angular
-    .module('app')
-    .controller('FeedbackController', ['$scope',
-      FeedbackController
-    ]);
+    angular
+            .module('app')
+            .controller('FeedbackController', ['$scope', 'Restangular', '$translate', '$mdDialog',
+                FeedbackController
+            ]);
 
-    function FeedbackController($scope) {
+    function FeedbackController($scope, Restangular, $translate, $mdDialog) {
 
-        $scope.feedback = {
- "personUri": "Student", "questionnaireUri": "feedback",
-                        "responses":
-                                [{"questionUri": "http://oss.fruct.org/smartcare#617412",
-                                        "responseItems":
-                                                [{"fileUri": "http://oss.fruct.org/smartcare#191613",
-                                                        "linkedItems": [],
-                                                        "textItem": "SingleChoise",
+        Restangular.one('survey', 4).get()
+                .then(function (response) {
+                    $scope.questionnaire = response;
+                    $scope.questions = angular.fromJson($scope.questionnaire.data);
+                    $scope.feedback = $scope.feedback_server;
+                    
+                    angular.forEach($scope.feedback.responses, function (response) {
+                        angular.forEach($scope.questions.questions, function (question) {
+     
+                            if (response.questionUri === question.uri){
+                                response.questionUri = question.description;
+                                
+                                angular.forEach(response.responseItems, function (responseItem) {
+                                    angular.forEach(question.items, function (item) {
+                                        if (responseItem.uri === item.uri)
+                                            responseItem.uri = item.itemText;
+                                        
+                                        
+                                    });
+                                });
+                            }
+                        });
+                    });
+
+                });
+
+
+        $scope.feedback_server = {
+            "personUri": "Student", "questionnaireUri": "feedback",
+            "responses":
+                    [{"questionUri": "http://oss.fruct.org/smartcare#617412",
+                            "responseItems":
+                                    [{"fileUri": "http://oss.fruct.org/smartcare#191613",
+                                            "linkedItems": [],
+                                            "textItem": "SingleChoise",
                                                         "uri": "http://oss.fruct.org/smartcare#191613"}],
                                         "uri": "http://oss.fruct.org/smartcare#617412"},
                                     {"questionUri": "http://oss.fruct.org/smartcare#7284210",

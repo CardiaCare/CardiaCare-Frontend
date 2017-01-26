@@ -34,24 +34,44 @@
         function toggleRightSidebar() {
             $mdSidenav('right').toggle();
         }
-        
         //TODO sidenav
         vm.curentUser = AuthService.getUser();
-        if (vm.curentUser.role === "doctor" ||
+        if(vm.currentUser){
+            if (vm.curentUser.role === "doctor" ||
             vm.curentUser.role === "chief")
         {
-            vm.menuItems = [
-                {
-                    name: $translate.instant('ACC'),
-                    icon: 'person',
-                    sref: 'home.main'
-                },
-                {
-                    name: $translate.instant('DASHBOARD'),
-                    icon: 'dashboard',
-                    sref: 'home.doctor-dashboard'
-                }
-            ];
+            if ($state.current.name === 'home.main') {
+                vm.menuItems = [
+                    {
+                        name: $translate.instant('ACC'),
+                        icon: 'person',
+                        sref: 'home.main'
+                    },
+                    {
+                        name: $translate.instant('DASHBOARD'),
+                        icon: 'dashboard',
+                        sref: 'home.doctor-dashboard'
+                    }
+                ];
+            } else {
+                vm.menuItems = [
+                    {
+                        name: $translate.instant('ACC'),
+                        icon: 'person',
+                        sref: 'home.main'
+                    },
+                    {
+                        name: $translate.instant('DASHBOARD'),
+                        icon: 'dashboard',
+                        sref: 'home.doctor-dashboard'
+                    },
+                    {
+                        name: 'Patient Account',
+                        icon: 'person',
+                        sref: 'home.profile({userId:' + $stateParams.userId + '})'
+                    }
+                ];
+            }
         } else {
             $stateParams.userId = vm.curentUser.person.id;
             //console.log($scope.curentUser.person);
@@ -68,8 +88,8 @@
                 }
             ];
         }
-
-
+        }
+        
 
         function toggleItemsList() {
             var pending = $mdBottomSheet.hide() || $q.when(true);

@@ -47,6 +47,7 @@
                     INVITE: 'Invite',
                     PATIENT_LIST: 'Patients List',
                     QUESTIONNAIRES: 'Questionnaires',
+                    QUESTIONNAIRE: 'Questionnaire',
                     QUESTIONNAIRE_CONS: 'Questionnaire Constructor',
                     RESET_PWD: 'Reset password',
                     PWD: 'Password',
