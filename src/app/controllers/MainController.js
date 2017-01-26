@@ -35,10 +35,10 @@
             $mdSidenav('right').toggle();
         }
         
-        //TODO sidenav        
-        $scope.curentUser = AuthService.getUser();
-        if ($scope.curentUser.role === "doctor" ||
-                $scope.curentUser.role === "chief") 
+        //TODO sidenav
+        vm.curentUser = AuthService.getUser();
+        if (vm.curentUser.role === "doctor" ||
+            vm.curentUser.role === "chief")
         {
             vm.menuItems = [
                 {
@@ -53,7 +53,7 @@
                 }
             ];
         } else {
-            $stateParams.userId = $scope.curentUser.person.id;
+            $stateParams.userId = vm.curentUser.person.id;
             //console.log($scope.curentUser.person);
             vm.menuItems = [
                 {
