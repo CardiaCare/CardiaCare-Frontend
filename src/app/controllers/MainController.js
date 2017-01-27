@@ -20,7 +20,7 @@
         // INIT with Auth
         $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
             if (!value && oldValue) {
-                $state.go('home.login');
+                $state.go('home.z');
             }
         }, true);
         // End Init with Auth
