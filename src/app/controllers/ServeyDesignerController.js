@@ -44,9 +44,10 @@
 
 
         $scope.fix = function (itemToAdd) {
-            var index = $scope.itemsToAdd.indexOf(itemToAdd);
-            $scope.itemsToAdd.splice(index, 1);
-            $scope.questions.push(angular.copy(itemToAdd))
+            //fix all
+//            var index = $scope.itemsToAdd.indexOf(itemToAdd);
+//            $scope.itemsToAdd.splice(index, 1);
+//            $scope.questions.push(angular.copy(itemToAdd))
         };
         
         $scope.fixDichotomous = function (itemToAdd) {
@@ -123,18 +124,31 @@
         
         $scope.addNew = function () {
             $scope.itemsToAdd.push({
-            description: '',
-            uri: '',
-                answer:{}
+                description: '',
+                uri: '',
+                answer: {}
             })
+        };
+
+        var forms = [
+            "form1.tmpl.html",
+            "form2.tmpl.html",
+            "form3.tmpl.html",
+        ];
+
+        $scope.displayedForms = [];
+
+        $scope.addForm = function (formIndex) {
+            $scope.displayedForms.push(forms[formIndex]);
         };
 
         $scope.changeSelected = function (ev, type, answer) {
             
             switch (type) {
                 case "Dichotomous":
-                     $scope.vis_dichotomous = !$scope.vis_dichotomous;
-                     console.log($scope.vis_dichotomous);
+                    $scope.addForm(0);
+                     //$scope.vis_dichotomous = !$scope.vis_dichotomous;
+                     //console.log($scope.vis_dichotomous);
                     break;
                 case "Bipolar":
                     $scope.vis_bipolar = !$scope.vis_bipolar;

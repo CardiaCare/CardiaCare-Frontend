@@ -24,19 +24,36 @@
                                 {{type.description}}
                             </md-option>
                         </md-select>
+                    </md-input-container>
+                    <div ng-repeat="form in displayedForms track by $index">
+                        <ng-include src="form"></ng-include>
+                    </div>
+                    <script type="text/ng-template" id="form1.tmpl.html">
+    <md-content  ng-controller="ServeyDesignerController">
+        <md-input-container>
+            <label>First answer</label>
+            <input required>
+        </md-input-container>
+        <md-input-container>
+            <label>Second answer</label>
+            <input required>
+        </md-input-container>
+    </md-content>
+</script>
+                </md-content>
+            </md-content>
+        </md-list-item>
+    </md-list>
+    <md-button class="md-raised md-primary" ng-click="addNew()">{{ 'BUTTON_ADD_NEW' | translate }}</md-button>
+    <md-button class="md-raised md-primary" ng-click="fix()">{{ 'BUTTON_FIX' | translate }}</md-button>
+</md-content>
 
-                        <md-content ng-show="vis_dichotomous" ng-controller="ServeyDesignerController">
-                            <md-input-container>
-                                <label>First answer</label>
-                                <input required ng-model="dichotomous.option1">
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Second answer</label>
-                                <input required ng-model="dichotomous.option2">
-                            </md-input-container>
-                            <md-button class="md-raised md-primary" ng-click="fixDichotomous(itemToAdd)">{{ 'BUTTON_FIX' | translate }}</md-button>
-                        </md-content>
 
+
+
+
+
+<script type="text/ng-template" id="form2.tmpl.html">
                         <md-content ng-show="vis_dialog_choise" ng-controller="ServeyDesignerController">
                             <md-list flex>
                                 <md-list-item  ng-repeat="answer in answers" class="noright">
@@ -51,7 +68,6 @@
                                     <md-button class="md-raised md-primary" ng-click="fixAnswer(answerToAdd)">FixAnswer</md-button>
                                 </md-list-item>
                             </md-list>
-                            <md-button class="md-raised md-primary" ng-click="addNewAnswer()">Add new</md-button>
                         </md-content>
 
 
@@ -64,18 +80,8 @@
                                 <label>Right Border</label>
                                 <input required ng-model="bipolar.option2">
                             </md-input-container>
-                            <md-button class="md-raised md-primary" ng-click="fixBipolar(itemToAdd)">{{ 'BUTTON_FIX' | translate }}</md-button>
                         </md-content>
-
-
-                    </md-input-container>
-                </md-content>
-            </md-content>
-        </md-list-item>
-    </md-list>
-    <md-button class="md-raised md-primary" ng-click="addNew()">{{ 'BUTTON_ADD_NEW' | translate }}</md-button>
-</md-content>
-
+</script>
 
 
 
