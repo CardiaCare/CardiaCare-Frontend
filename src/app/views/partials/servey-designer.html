@@ -28,7 +28,18 @@
                     <div ng-repeat="form in displayedForms track by $index">
                         <ng-include src="form"></ng-include>
                     </div>
-                    <script type="text/ng-template" id="form1.tmpl.html">
+
+                </md-content>
+            </md-content>
+        </md-list-item>
+    </md-list>
+    <md-button class="md-raised md-primary" ng-click="addNew()">{{ 'BUTTON_ADD_NEW' | translate }}</md-button>
+    <md-button class="md-raised md-primary" ng-click="fix()">{{ 'BUTTON_FIX' | translate }}</md-button>
+</md-content>
+
+
+
+<script type="text/ng-template" id="form1.tmpl.html">
     <md-content  ng-controller="ServeyDesignerController">
         <md-input-container>
             <label>First answer</label>
@@ -40,21 +51,10 @@
         </md-input-container>
     </md-content>
 </script>
-                </md-content>
-            </md-content>
-        </md-list-item>
-    </md-list>
-    <md-button class="md-raised md-primary" ng-click="addNew()">{{ 'BUTTON_ADD_NEW' | translate }}</md-button>
-    <md-button class="md-raised md-primary" ng-click="fix()">{{ 'BUTTON_FIX' | translate }}</md-button>
-</md-content>
-
-
-
-
 
 
 <script type="text/ng-template" id="form2.tmpl.html">
-                        <md-content ng-show="vis_dialog_choise" ng-controller="ServeyDesignerController">
+                        <md-content ng-controller="ServeyDesignerController">
                             <md-list flex>
                                 <md-list-item  ng-repeat="answer in answers" class="noright">
                                     {{answer.option}}
@@ -69,9 +69,9 @@
                                 </md-list-item>
                             </md-list>
                         </md-content>
-
-
-                        <md-content ng-show="vis_bipolar" ng-controller="ServeyDesignerController">
+</script>
+<script type="text/ng-template" id="form3.tmpl.html">
+                        <md-content ng-controller="ServeyDesignerController">
                             <md-input-container>
                                 <label>Left Border</label>
                                 <input required ng-model="bipolar.option1">

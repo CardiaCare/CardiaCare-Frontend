@@ -151,11 +151,13 @@
                      //console.log($scope.vis_dichotomous);
                     break;
                 case "Bipolar":
-                    $scope.vis_bipolar = !$scope.vis_bipolar;
-                    console.log($scope.vis_bipolar);
+                    $scope.addForm(1);
+//                    $scope.vis_bipolar = !$scope.vis_bipolar;
+//                    console.log($scope.vis_bipolar);
                     break;                    
                 case "Single Choise":
-                    $scope.vis_dialog_choise = !$scope.vis_dialog_choise;
+                    $scope.addForm(2);
+//                    $scope.vis_dialog_choise = !$scope.vis_dialog_choise;
                     break;
                 case "Multiple Choise":
                     break;
