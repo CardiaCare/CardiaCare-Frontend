@@ -20,7 +20,61 @@
         // INIT with Auth
         $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
             if (!value && oldValue) {
-                $state.go('home.z');
+                $state.go('home.login');
+            }
+            if (value) {
+                vm.curentUser = AuthService.getUser();
+
+                if (vm.curentUser.role === "doctor" ||
+                    vm.curentUser.role === "chief") {
+                    if ($state.current.name === 'home.main') {
+                        vm.menuItems = [
+                            {
+                                name: $translate.instant('ACC'),
+                                icon: 'person',
+                                sref: 'home.main'
+                            },
+                            {
+                                name: $translate.instant('DASHBOARD'),
+                                icon: 'dashboard',
+                                sref: 'home.doctor-dashboard'
+                            }
+                        ];
+                    } else {
+                        vm.menuItems = [
+                            {
+                                name: $translate.instant('ACC'),
+                                icon: 'person',
+                                sref: 'home.main'
+                            },
+                            {
+                                name: $translate.instant('DASHBOARD'),
+                                icon: 'dashboard',
+                                sref: 'home.doctor-dashboard'
+                            },
+                            {
+                                name: 'Patient Account',
+                                icon: 'person',
+                                sref: 'home.profile({userId:' + $stateParams.userId + '})'
+                            }
+                        ];
+                    }
+                } else {
+                    $stateParams.userId = vm.curentUser.person.id;
+                    //console.log($scope.curentUser.person);
+                    vm.menuItems = [
+                        {
+                            name: $translate.instant('ACC'),
+                            icon: 'person',
+                            sref: 'home.profile({userId: ' + $stateParams.userId + '})'
+                        },
+                        {
+                            name: $translate.instant('BIOSIGNALS'),
+                            icon: 'dashboard',
+                            sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
+                        }
+                    ];
+                }
             }
         }, true);
         // End Init with Auth
@@ -37,58 +91,7 @@
 
         //TODO sidenav
         if (AuthService.isAuthorized()) {
-            vm.curentUser = AuthService.getUser();
 
-            if (vm.curentUser.role === "doctor" ||
-                vm.curentUser.role === "chief") {
-                if ($state.current.name === 'home.main') {
-                    vm.menuItems = [
-                        {
-                            name: $translate.instant('ACC'),
-                            icon: 'person',
-                            sref: 'home.main'
-                        },
-                        {
-                            name: $translate.instant('DASHBOARD'),
-                            icon: 'dashboard',
-                            sref: 'home.doctor-dashboard'
-                        }
-                    ];
-                } else {
-                    vm.menuItems = [
-                        {
-                            name: $translate.instant('ACC'),
-                            icon: 'person',
-                            sref: 'home.main'
-                        },
-                        {
-                            name: $translate.instant('DASHBOARD'),
-                            icon: 'dashboard',
-                            sref: 'home.doctor-dashboard'
-                        },
-                        {
-                            name: 'Patient Account',
-                            icon: 'person',
-                            sref: 'home.profile({userId:' + $stateParams.userId + '})'
-                        }
-                    ];
-                }
-            } else {
-                $stateParams.userId = vm.curentUser.person.id;
-                //console.log($scope.curentUser.person);
-                vm.menuItems = [
-                    {
-                        name: $translate.instant('ACC'),
-                        icon: 'person',
-                        sref: 'home.profile({userId: ' + $stateParams.userId + '})'
-                    },
-                    {
-                        name: $translate.instant('BIOSIGNALS'),
-                        icon: 'dashboard',
-                        sref: 'home.biosignals({userId:' + $stateParams.userId + '})'
-                    }
-                ];
-            }
         }
 
 
