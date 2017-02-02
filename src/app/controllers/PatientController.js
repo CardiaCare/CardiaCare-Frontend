@@ -3,11 +3,11 @@
     angular
         .module('app')
         .controller('PatientController', [
-            '$scope', '$stateParams', 'Restangular', '$mdToast', '$translate', 'AuthService',
+            '$scope', '$stateParams', 'Restangular', '$mdToast', '$translate', 'AuthService', '$state',
             PatientController
         ]);
 
-    function PatientController($scope, $stateParams, Restangular, $mdToast, $translate, AuthService) {
+    function PatientController($scope, $stateParams, Restangular, $mdToast, $translate, AuthService, $state) {
         var vm = this;
         var user = AuthService.getUser();
 
@@ -17,9 +17,17 @@
         } else {
             Restangular.one('patients', $stateParams.userId).get()
                 .then(function (response) {
-                    $scope.user = response;
-                    return Restangular.one('users', response.user_id).get();
-                })
+                        $scope.user = response;
+                        return Restangular.one('users', response.user_id).get();
+                    },
+                    function (response) {
+                        if(response.status === 404){
+                            $state.go('404')
+                        }
+                        if(response.status === 403){
+                            $state.go('403')
+                        }
+                    })
                 .then(function (user) {
                     $scope.patient_email = user.email;
                 });
