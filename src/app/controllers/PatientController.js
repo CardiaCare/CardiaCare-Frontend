@@ -12,12 +12,12 @@
         var user = AuthService.getUser();
 
         if (user.role == 'patient') {
-            $scope.user = user.person;
+            $scope.patient = user.person;
             $scope.patient_email = user.email;
         } else {
             Restangular.one('patients', $stateParams.userId).get()
                 .then(function (response) {
-                        $scope.user = response;
+                        $scope.patient = response;
                         return Restangular.one('users', response.user_id).get();
                     },
                     function (response) {
@@ -35,16 +35,21 @@
 
 
         $scope.update = function () {
+            console.log("update 1");
             Restangular.one('patients', $stateParams.userId).get()
-                .then(function (doctor) {
+                .then(function (patient) {
                     for (var property in patient) {
+                        console.log("update 2");
                         if ($scope.patient.hasOwnProperty(property)) {
                             patient[property] = $scope.patient[property];
+                            console.log("update 3");
                         }
                     }
+                    console.log(patient);
                     return patient;
                 })
                 .then(function (editedPatient) {
+                    console.log("update 4");
                     return editedPatient.put();
                 })
                 .then(function (response) {

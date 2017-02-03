@@ -2,15 +2,15 @@
     <md-content class="md-padding" layout="column">
         <md-input-container>
             <label>{{ 'FIRST_NAME' | translate }}</label>
-            <input ng-model="user.name">
+            <input ng-model="patient.name">
         </md-input-container>
         <md-input-container>
             <label>{{ 'SERNAME' | translate }}</label>
-            <input ng-model="user.patronymic">
+            <input ng-model="patient.patronymic">
         </md-input-container>
         <md-input-container>
             <label>{{ 'SECOND_NAME' | translate }}</label>
-            <input ng-model="user.surname">
+            <input ng-model="patient.surname">
         </md-input-container>
         <md-input-container>
             <label>{{ 'EMAIL' | translate }}</label>
@@ -36,7 +36,7 @@
             <div layout layout-sm="column">
                 <md-input-container flex >
                     <label>{{ 'SNISL' | translate }}</label>
-                    <input ng-model="user.snils" ng-pattern="/^[0-9]{12}$/" md-maxlength="12" placeholder="12311156522">
+                    <input ng-model="patient.snils" ng-pattern="/^[0-9]{12}$/" md-maxlength="12" placeholder="12311156522">
                     <div ng-messages="user.snils.$error" role="alert" multiple="">
                         <div ng-message="required" class="my-message">{{ 'SNAIL_REQ' | translate }}</div>
                         <div ng-message="pattern" class="my-message">{{ 'SNILS_PAT' | translate }}</div>
@@ -45,7 +45,7 @@
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'INN' | translate }}</label>
-                    <input ng-model="user.inn" ng-pattern="/^[0-9]{10}$/" md-maxlength="10" placeholder="1231115650">
+                    <input ng-model="patient.inn" ng-pattern="/^[0-9]{10}$/" md-maxlength="10" placeholder="1231115650">
                     <div ng-messages="user.inn.$error" role="alert" multiple="">
                         <div ng-message="required" class="my-message">{{ 'INN_REQ' | translate }}</div>
                         <div ng-message="pattern" class="my-message">{{ 'INN_PAT' | translate }}</div>
@@ -56,15 +56,15 @@
             <div layout layout-sm="column">
                 <md-input-container flex>
                     <label>{{ 'BIRTHDAY' | translate }}</label>
-                    <input type="text"   ng-pattern="/^[0-9]{4}-[1-12]{2}-[1-31]{2}$/" placeholder="1991-01-01"  ng-model="user.birthday"/>
+                    <input type="text"   ng-pattern="/^[0-9]{4}-[1-12]{2}-[1-31]{2}$/" placeholder="1991-01-01"  ng-model="patient.birthday"/>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'BIRTHPLACE' | translate }}</label>
-                    <textarea ng-model="user.birthplace"></textarea>
+                    <textarea ng-model="patient.birthplace"></textarea>
                 </md-input-container>
                 <md-input-container flex>
                     <label>{{ 'GENDER' | translate }}</label>
-                    <md-select ng-model="user.gender" class="md-no-underline">
+                    <md-select ng-model="patient.gender" class="md-no-underline">
                         <md-option value="0">{{ 'MALE' | translate }}</md-option>
                         <md-option value="1">{{ 'FEMALE' | translate }}</md-option>
                     </md-select>
