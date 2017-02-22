@@ -8,7 +8,7 @@
 
     function FeedbackController($scope, Restangular, $translate, $mdDialog) {
 
-        Restangular.one('survey', 4).get()
+        Restangular.one('questionnaire', 4).get()
                 .then(function (response) {
                     $scope.questionnaire = response;
                     $scope.questions = angular.fromJson($scope.questionnaire.data);

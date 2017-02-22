@@ -33,11 +33,13 @@
             function SurveyAddDialogController($scope, $mdDialog) {
                 console.log(patient_id);
                 //get all surveys
-                Restangular.all('survey')
+                var questionnaires = Restangular.all('questionnaire')
                         .getList()
                         .then(function (response) {
                             $scope.questionnaires = response;
                         });
+                        
+                        
                 //TODO get checked surveys for this  patient_id       
                         
                 $scope.hide = function () {
@@ -56,6 +58,17 @@
                     if (selected){
                         //TODO add
                         console.log(questionnaire_id);
+
+                        Restangular.one("patients", patient_id)
+                                .one('questionnaires', questionnaire_id)
+                                .post()
+                                .then(function (response) {
+                                }, 
+                                function (response) {
+                                });
+
+                        
+                        
                     } else {
                         //TODO delete
                         console.log("delete");

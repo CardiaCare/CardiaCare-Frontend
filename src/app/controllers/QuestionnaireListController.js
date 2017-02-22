@@ -9,7 +9,7 @@
   
     function QuestionnaireListController($scope, Restangular, $translate, $mdDialog) {
         
-        Restangular.all('survey')
+        Restangular.all('questionnaire')
                 .getList()
                 .then(function (response) {
                     $scope.questionnaires = response;
@@ -51,10 +51,10 @@
             });
 
             function QuestionnireDialogController($scope, $mdDialog) {
-                Restangular.one('survey', questionnaire_id).get()
+                Restangular.one('questionnaire', questionnaire_id).get()
                         .then(function (response) {
                             $scope.questionnaire = response;
-                            $scope.questions = angular.fromJson($scope.questionnaire.data);
+                            $scope.questions = $scope.questionnaire.questions;
                             console.log($scope.questions );
                         });
 
