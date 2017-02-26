@@ -8,7 +8,7 @@ var gutil = require('gulp-util');
 var argv = require('minimist')(process.argv);
 
 // gulp-rsync - https://www.npmjs.com/package/gulp-rsync
-var rsync = require('gulp-rsync');
+var rsync = require('rsync-slim');
 
 // gulp-prompt - https://www.npmjs.com/package/gulp-prompt
 var prompt = require('gulp-prompt');
@@ -16,43 +16,18 @@ var prompt = require('gulp-prompt');
 // gulp-if - https://www.npmjs.com/package/gulp-if
 var gulpif = require('gulp-if');
 gulp.task('deploy', function () {
-    // Dirs and Files to sync
-    var rsyncPaths = [gulp.paths.dist, 'lang', 'lib', 'templates', './*.php', './style.css'];
-
-    // Default options for rsync
     var rsyncConf = {
-        progress: true,
-        incremental: true,
-        relative: true,
-        emptyDirectories: true,
-        recursive: true,
-        clean: true,
-        exclude: []
+        src: 'dist/',
+        options: '-rtvhcz --delete --progress',
+        log: require('gulp-util').log
     };
-
-    // Staging
-    if (argv.staging) {
-
-        rsyncConf.hostname = ''; // hostname
-        rsyncConf.username = ''; // ssh username
-        rsyncConf.destination = ''; // path where uploaded files go
-
-        // Production
-    } else if (argv.production) {
-
-        rsyncConf.hostname = 'cardiacare.ru'; // hostname
-        rsyncConf.username = 'api'; // ssh username
-        rsyncConf.destination = '/home/api/dashboard'; // path where uploaded files go
-
-
-        // Missing/Invalid Target
+    if (argv.production) {
+        rsyncConf.dest = 'lebedev@cardiacare.ru:/home/lebedev/public_html';
     } else {
         throwError('deploy', gutil.colors.red('Missing or invalid target'));
     }
-
-
-    // Use gulp-rsync to sync the files
-    return gulp.src(rsyncPaths)
+    return rsync(rsyncConf);
+    /*gulp.src(rsyncConf)
         .pipe(gulpif(
             argv.production,
             prompt.confirm({
@@ -60,10 +35,9 @@ gulp.task('deploy', function () {
                 default: false
             })
         ))
-        .pipe(rsync(rsyncConf));
+        .pipe(*/
 
 });
-
 function throwError(taskName, msg) {
     throw new gutil.PluginError({
         plugin: taskName,
