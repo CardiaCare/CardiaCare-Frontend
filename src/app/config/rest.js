@@ -3,6 +3,6 @@
 
     angular.module('angularMaterialCardiaCare')
         .config(function (RestangularProvider) {
-            RestangularProvider.setBaseUrl('http://api.cardiacare.ru');
+            RestangularProvider.setBaseUrl('https://api.cardiacare.ru');
         });
 })();

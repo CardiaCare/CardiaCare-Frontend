@@ -104,6 +104,12 @@
                         }
                     }
                 })
+                .state('home.index', {
+                    url: '/index',
+                    templateUrl: 'app/views/index.html',
+                    controller: 'MainController',
+                    controllerAs: 'vm'
+                })
                 .state('403', {
                     url: '/403',
                     templateUrl: 'app/views/403.html',
