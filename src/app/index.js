@@ -29,7 +29,8 @@ angular.module("angularMaterialCardiaCare",
             var isLogin = false;
             if(toState.name === "home.login" 
                     || toState.name === "home.recovery"
-                    || toState.name === "home.registration")
+                    || toState.name === "home.registration"
+                    || toState.name === "home.index")
             {
                 isLogin = true;
             }

@@ -107,7 +107,7 @@
                 .state('home.index', {
                     url: '/index',
                     templateUrl: 'app/views/index.html',
-                    controller: 'MainController',
+                    controller: 'IndexController',
                     controllerAs: 'vm'
                 })
                 .state('403', {
