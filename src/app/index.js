@@ -17,9 +17,9 @@ angular.module("angularMaterialCardiaCare",
                     "chart.js",
                     "materialCalendar"
                 ])
-    .config(function ($qProvider) {
-        $qProvider.errorOnUnhandledRejections(false);
-    })
+    .config(["$qProvider", function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}])
     .run(function ($rootScope, $location, $state, AuthService) {
         /*
          * Redirect to login page when user is not authorized

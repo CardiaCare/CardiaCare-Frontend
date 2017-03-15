@@ -51,11 +51,6 @@
                                 name: $translate.instant('DASHBOARD'),
                                 icon: 'dashboard',
                                 sref: 'home.doctor-dashboard'
-                            },
-                            {
-                                name: 'Patient Account',
-                                icon: 'person',
-                                sref: 'home.profile({userId:' + $stateParams.userId + '})'
                             }
                         ];
                     }

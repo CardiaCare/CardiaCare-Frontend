@@ -26,7 +26,7 @@
                                     $state.go('home.profile',{userId: user.person.id});
                                     deferred.resolve();
                                 } else {
-                                    $state.go('home.login');
+                                    $state.go('home.index');
                                     deferred.reject();
                                 }
                             });

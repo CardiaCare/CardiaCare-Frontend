@@ -2,11 +2,11 @@
 
     angular
         .module('app')
-        .controller('LoginController', ['$scope','$mdDialog', '$translate', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS','$mdToast',
-            LoginController
+        .controller('IndexController', ['$scope','$mdDialog', '$translate', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS','$mdToast',
+            IndexController
         ]);
 
-    function LoginController($scope, $mdDialog, $translate, $state, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
+    function IndexController($scope, $mdDialog, $translate, $state, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
 
         var vm = this;
     }
