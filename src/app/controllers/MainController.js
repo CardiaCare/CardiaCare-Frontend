@@ -13,9 +13,20 @@
         vm.selectItem = selectItem;
         vm.toggleItemsList = toggleItemsList;
         vm.showActions = showActions;
-//        vm.title = $state.current.data.title;
         vm.showSimpleToast = showSimpleToast;
         vm.toggleRightSidebar = toggleRightSidebar;
+
+        /**
+         * Hide navigation block
+         * @type {boolean}
+         */
+        $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
+            $scope.sideNavHide = toState.name === "home.index";
+        });
+
+        /**
+         * End hide navigation block
+         */
 
         // INIT with Auth
         $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {

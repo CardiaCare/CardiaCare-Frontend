@@ -2,13 +2,11 @@
 
     angular
         .module('app')
-        .controller('IndexController', ['$scope','$mdDialog', '$translate', '$state', '$rootScope', 'AuthService', 'AUTH_EVENTS','$mdToast',
+        .controller('IndexController', ['$scope',
             IndexController
         ]);
 
-    function IndexController($scope, $mdDialog, $translate, $state, $rootScope, AuthService, AUTH_EVENTS, $mdToast) {
-
+    function IndexController($scope) {
         var vm = this;
     }
-
 })();
