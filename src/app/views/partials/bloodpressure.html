@@ -1,4 +1,26 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="BloodpressureController">
+    <div class="chartWrapper">
+        <div class="chartAreaWrapper">
+            <canvas chart-data="data"
+                    class="chart-line"
+                    chart-labels="labels"
+                    chart-options="options"
+                    chart-series="series"
+                    chart-colors="colors"
+                    chart-dataset-override="datasetOverride"
+                    chart-click="onClick"></canvas>
+        </div>
+    </div>
+</md-content>
+
+
+
+
+
+
+
+
+<!--<md-content class="md-padding" layout="column" layout-sm="column" ng-controller="BloodpressureController">
     <div layout="row" layout-sm="column" layout-align="space-around">
         <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
     </div>
@@ -12,4 +34,4 @@
         </md-list-item>
         <md-divider ></md-divider>
     </md-list>
-</md-content>
+</md-content>-->

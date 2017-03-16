@@ -12,6 +12,12 @@
                     controllerAs: 'vm',
                     abstract: true
                 })
+                .state('home.index', {
+                    url: '/index',
+                    templateUrl: 'app/views/index.html',
+                    controller: 'IndexController',
+                    controllerAs: 'vm'
+                })
                 .state('home.main', {
                     url: '/home/main',
                     resolve: {
@@ -103,12 +109,6 @@
                             return deferred.promise;
                         }
                     }
-                })
-                .state('home.index', {
-                    url: '/index',
-                    templateUrl: 'app/views/index.html',
-                    controller: 'IndexController',
-                    controllerAs: 'vm'
                 })
                 .state('403', {
                     url: '/403',
