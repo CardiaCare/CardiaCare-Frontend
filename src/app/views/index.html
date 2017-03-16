@@ -3,8 +3,12 @@
             <h1 class="banner">CardiaCare</h1>
             <h2 class="banner">Мобильный сервис диагностики сердечных аритмий</h2>
             <div layout="row" layout-sm="column">           
-                <md-button class="md-raised banner" flex-order-sm="2" ui-sref="home.login">{{ 'SING_IN' | translate }}</md-button>
-                <md-button class="md-raised banner" flex-order-sm="1"  ui-sref="home.registration">{{ 'SING_UP' | translate }}</md-button>
+                <md-button class="md-primary" flex-order-sm="2" ui-sref="home.login">
+                    <span class="account_button">{{ 'SING_IN' | translate }}</span>
+                </md-button>
+                <md-button class="md-primary" flex-order-sm="1"  ui-sref="home.registration">
+                    <span class="account_button">{{ 'SING_UP' | translate }}</span>
+                </md-button>
             </div>
         </md-content>
 </div>
@@ -13,14 +17,13 @@
                 <div style="margin:0 auto; max-width:980px;">-->
 
 
-<div class="md-padding container" layout="row" layout-xs="column">
+<div class="md-padding container" layout-align="center" layout="row" layout-xs="column">
   <md-card flex>
       <img src="assets/images/servey_white.png" class="md-card-image container" alt="Washed Out">
-      <md-card-content>
-        <h2 class="md-title">Опросы о состоянии здоровья</h2>
-        <p>
-            Пациент может проходить периодические опросы для контроля за здоровьем. 
-            Все опросы формируются врачами индивидуально для каждого пациента.															
+      <md-card-content >
+        <h2 class="md-title container">Опросы о состоянии здоровья</h2>
+        <p class="container">
+            Пациент может проходить периодические опросы для контроля за здоровьем.														
         </p>
       </md-card-content>
     </md-card>
@@ -29,8 +32,8 @@
     <md-card flex>
       <img src="assets/images/bpresure.png" class="md-card-image container" alt="Washed Out">
       <md-card-content>
-        <h2 class="md-title">Дневник давления</h2>
-        <p>
+        <h2 class="md-title container">Дневник давления</h2>
+        <p  class="container">
            Каждый раз при измерении давления, результаты следует записывать в электронный дневник. 
         </p>
       </md-card-content>
@@ -40,8 +43,8 @@
     <md-card flex>
       <img src="assets/images/monitor.png" class="md-card-image container" alt="Washed Out">
       <md-card-content>
-        <h2 class="md-title">Мониторинг ЭКГ</h2>
-        <p>
+        <h2 class="md-title container">Мониторинг ЭКГ</h2>
+        <p class="container">
           Возможность контолировать электрокардиограмму с помощью кардиомонитора FRUCT. 
         </p>
       </md-card-content>
@@ -53,6 +56,7 @@
         <p class="footer">Проект создан при поддержке гранта <b>ENPI Karelia KA-179</b></p>
         <p class="footer">Разработчики 
             <a class="footer" href="mailto:aborod@cs.karelia.ru">Александр Бородин</a>,
+            <a class="footer" href="mailto:lebedev@cs.karelia.ru">Николай Лебедев</a>,
             <a class="footer" href="mailto:yzavyalo@cs.karelia.ru">Юлия Завьялова</a>.</p>
         <p class="footer">Copyright &copy; 2017, Лаборатория мобильных и беспроводных технологий ИТ-парка Петрозаводского государственного университета</p>
     </div>

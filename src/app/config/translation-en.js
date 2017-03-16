@@ -82,7 +82,8 @@
                     DELETE_QST: 'Do you want to delete the questionnaire?',
                     DELETE_FDB: 'Do you want to delete the feedback?',
                     ACC: 'Account',
-                    DASHBOARD: "Dashboard"
+                    DASHBOARD: "Dashboard",
+                    HOME:'Home'
                 });
                 
                 $translateProvider.preferredLanguage('ru');

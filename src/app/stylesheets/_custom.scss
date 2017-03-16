@@ -223,10 +223,18 @@ container{
 }
 
 img.container{
-  max-height: 350px;
-  max-width: 350px
+  max-height: 300px;
+  max-width: 300px;
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+h2.container,p.container{
+    color:$text-color;
+    text-align: center;
+    font-weight: 600;
+}
 .footer{
     background:#FFFFFF
 }
@@ -241,3 +249,4 @@ a.footer{
 span.account_button{
     color:#f6f3ec
 }
+
