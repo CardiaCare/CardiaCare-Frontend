@@ -3,7 +3,7 @@
 
     angular.module('angularMaterialCardiaCare')
         .config(function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.when('', '/home/main').when('/', '/home/main').otherwise('/404');
+            $urlRouterProvider.when('', '/index').when('/', '/index').otherwise('/404');
             $stateProvider
                 .state('home', {
                     url: '',
