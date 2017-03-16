@@ -35,22 +35,6 @@
         </section>
         <section layout-align="end center">
             <md-menu-bar>
-                <md-menu >
-                    <md-button class="md-fab md-raised" aria-label="Doctor" ng-click="$mdOpenMenu()">
-                        {{language}}
-                    </md-button>
-                    <md-menu-content>
-                        <md-menu-item>
-                            <md-button aria-label="En" ng-click="enLang()">English
-                            </md-button>
-                        </md-menu-item>
-                        <md-menu-item>
-                            <md-button aria-label="Ru" ng-click="ruLang()">Russian
-                            </md-button>
-                        </md-menu-item>
-                    </md-menu-content>
-                </md-menu >
-
                 <md-menu access-control="authorized-only">
                     <md-button class="md-primary account_button" aria-label="Doctor" ng-click="$mdOpenMenu()">
                         <span class="account_button">Личный кабинет</span>
@@ -69,6 +53,21 @@
                         </md-menu-item>
                     </md-menu-content>
                 </md-menu>
+                <md-menu >
+                    <md-button class="md-fab md-raised" aria-label="Doctor" ng-click="$mdOpenMenu()">
+                        {{language}}
+                    </md-button>
+                    <md-menu-content>
+                        <md-menu-item>
+                            <md-button aria-label="En" ng-click="enLang()">English
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button aria-label="Ru" ng-click="ruLang()">Russian
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu >
             </md-menu-bar>
         </section>
     </md-toolbar>
