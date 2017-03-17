@@ -83,7 +83,8 @@
                     DELETE_FDB: 'Do you want to delete the feedback?',
                     ACC: 'Account',
                     DASHBOARD: "Dashboard",
-                    HOME:'Home'
+                    HOME:'Home',
+                    DOCTORS:'Your doctors'
                 });
                 
                 $translateProvider.preferredLanguage('ru');
