@@ -7,7 +7,7 @@
             <label>{{ 'SEARCH' | translate }}</label>
             <input ng-model="searchText">
         </md-input-container>
-        <md-list-item ng-repeat="item in patients  | filter:searchText" ui-sref="home.biosignals({userId: item.id})" class="secondary-button-padding">
+        <md-list-item ng-repeat="item in patients  | filter:searchText" ui-sref="home.patient({userId: item.id})" class="secondary-button-padding">
 <!--            <img alt="{{ item.surname}}" ng-src="{{ item.img}}" class="md-avatar" />-->
             <p>{{ item.surname}} {{ item.name}} {{ item.patronymic}}</p>
 <!--            <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
@@ -42,8 +42,8 @@
         <md-list-item ng-repeat="item in questionnaires | filter:searchText" class="secondary-button-padding" >
             <p flex>{{ item.description}} {{ item.version}}</p>
             <md-checkbox class="md-secondary" 
-                        ng-model="selected"
-                        ng-change="addQuestionnaire(item.id, selected)"/>
+                        ng-model="item.selected"
+                        ng-change="checkQuestionnaire(item.id, item.selected)"/>
 
             <md-divider ></md-divider>
         </md-list-item>

@@ -49,6 +49,12 @@
                 })
                 .state('home.biosignals', {
                     url: '/profile/:userId/biosignals',
+                    templateUrl: 'app/views/biosignals.html',
+                    controller: 'BiosignalsController',
+                    controllerAs: 'vm'
+                })
+                .state('home.patient', {
+                    url: '/profile/:userId/patient',
                     templateUrl: 'app/views/patient-dashboard.html',
                     controller: 'BiosignalsController',
                     controllerAs: 'vm'

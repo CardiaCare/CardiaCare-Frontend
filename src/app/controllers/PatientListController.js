@@ -1,13 +1,12 @@
 (function () {
 
-
     angular
-        .module('app')
-        .controller('PatientListController', ['$scope', 'Restangular', '$translate', '$mdDialog',
-            PatientListController
-        ]);
+            .module('app')
+            .controller('PatientListController', ['$scope', 'Restangular', '$translate', '$mdDialog', '$stateParams',
+                PatientListController
+            ]);
 
-    function PatientListController($scope, Restangular, $translate, $mdDialog) {
+    function PatientListController($scope, Restangular, $translate, $mdDialog, $stateParams) {
         $scope.patients = [];
         $scope.activated = true;
 
@@ -20,7 +19,7 @@
 
 
         $scope.dialogQuestionnaire = function (ev, patient_id) {
-            $scope.questionniares=[];
+            $scope.questionniares = [];
 
             $mdDialog.show({
                 controller: SurveyAddDialogController,
@@ -31,17 +30,27 @@
             });
 
             function SurveyAddDialogController($scope, $mdDialog) {
-                console.log(patient_id);
                 //get all surveys
-                var questionnaires = Restangular.all('questionnaire')
+                Restangular.all('questionnaire')
                         .getList()
                         .then(function (response) {
                             $scope.questionnaires = response;
                         });
-                        
-                        
-                //TODO get checked surveys for this  patient_id       
-                        
+
+                Restangular.one('patients', patient_id)
+                        .all('questionnaires')
+                        .getList()
+                        .then(function (response) {
+                            $scope.patient_questionnaires = response;
+                            angular.forEach($scope.questionnaires, function (questionnaire) {
+                                angular.forEach($scope.patient_questionnaires, function (patient_questionnaire) {
+                                    if (questionnaire.id === patient_questionnaire.id) {
+                                        questionnaire.selected = true;
+                                    }
+                                });
+                            });
+                        });
+
                 $scope.hide = function () {
                     $mdDialog.hide();
                 };
@@ -54,33 +63,24 @@
                     $mdDialog.hide(answer);
                 };
 
-                $scope.addQuestionnaire = function (questionnaire_id, selected) {
-                    if (selected){
-                        //TODO add
-                        console.log(questionnaire_id);
-
+                $scope.checkQuestionnaire = function (questionnaire_id, selected) {
+                    if (selected) {
                         Restangular.one("patients", patient_id)
                                 .one('questionnaires', questionnaire_id)
                                 .post()
                                 .then(function (response) {
-                                }, 
-                                function (response) {
-                                });
+                                },function (response) {});
 
-                        
-                        
                     } else {
-                        //TODO delete
-                        console.log("delete");
+                        Restangular.one("patients", patient_id)
+                                .one('questionnaires', questionnaire_id)
+                                .remove()
+                                .then(function (response) {
+                                },function (response) {});
                     }
-                    
-                }
-
-            }
-            ;
-
-        }
-
+                };
+            };
+        };
     }
 })();
 

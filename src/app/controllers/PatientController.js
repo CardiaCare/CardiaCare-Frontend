@@ -10,15 +10,18 @@
     function PatientController($scope, $stateParams, Restangular, $mdToast, $translate, AuthService, $state) {
         var vm = this;
         var user = AuthService.getUser();
-
+        $scope.patient_email = null;
         if (user.role == 'patient') {
             $scope.patient = user.person;
             $scope.patient_email = user.email;
         } else {
-            Restangular.one('patients', $stateParams.userId).get()
+                Restangular.one('patients', $stateParams.userId).get()
                 .then(function (response) {
                         $scope.patient = response;
-                        return Restangular.one('users', response.user_id).get();
+                        Restangular.one('users', response.user_id).get()
+                                .then(function(resp){
+                                    $scope.patient_email = resp.email;
+                        });
                     },
                     function (response) {
                         if(response.status === 404){
@@ -27,11 +30,11 @@
                         if(response.status === 403){
                             $state.go('403')
                         }
-                    })
-                .then(function (user) {
-                    $scope.patient_email = user.email;
-                });
+                    });
+                    
         }
+        
+
 
 
         $scope.update = function () {

@@ -1,5 +1,4 @@
-<md-content class="md-padding" layout="row" layout-sm="column" ng-controller="PatientController">
-    <md-content class="md-padding" layout="column">
+<md-content class="md-padding" layout="column" ng-controller="PatientController">
         <md-input-container>
             <label>{{ 'FIRST_NAME' | translate }}</label>
             <input ng-model="patient.name">
@@ -16,8 +15,6 @@
             <label>{{ 'EMAIL' | translate }}</label>
             <input ng-model="patient_email" type="email">
         </md-input-container>
-    </md-content>
-    <md-content class="md-padding" layout-sm="column">
         <form name="userForm">
             <!--            <div layout layout-sm="column">
                             <md-input-container>
@@ -71,9 +68,6 @@
                 </md-input-container>
             </div>
         </form>
-    </md-content>
-            <md-input-container layout-align="center center">
-            <md-button class="md-raised md-primary" ng-click="update()">{{ 'BUTTON_UP_INFO' | translate }}</md-button>
-        </md-input-container>
 
-</md-content>
+        <md-button id="forPatient" class="md-raised md-primary" ng-click="update()">{{ 'BUTTON_UP_INFO' | translate }}</md-button>
+    </md-content>

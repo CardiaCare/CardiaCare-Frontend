@@ -44,15 +44,6 @@
             });
         };
 
-
-        function getById(id, myArray) {
-            return myArray.filter(function (obj) {
-                if (obj.id == id) {
-                    return obj
-                }
-            })[0]
-        }
-
         $scope.openFeedback = function (ev, feedback_id) {
 
             $mdDialog.show({

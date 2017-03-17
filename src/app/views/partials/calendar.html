@@ -1,5 +1,7 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="CalendarController">
-    
+        <div layout="row" layout-sm="column" layout-align="space-around">
+        <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
+    </div>
     <calendar-md id="measurement-calendar"
                         flex layout layout-fill
                         calendar-direction="direction"
