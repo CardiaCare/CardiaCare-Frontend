@@ -20,6 +20,7 @@
          * Hide navigation block
          * @type {boolean}
          */
+        $scope.sideNavHide = $state.$current.name === "home.index";
         $scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
             $scope.sideNavHide = toState.name === "home.index";
         });
@@ -28,6 +29,7 @@
          * End hide navigation block
          */
 
+
         // INIT with Auth
         $scope.$watch(AuthService.isAuthorized, function (value, oldValue) {
             if (!value && oldValue) {
@@ -35,7 +37,6 @@
             }
             if (value) {
                 vm.curentUser = AuthService.getUser();
-
                 if (vm.curentUser.role === "doctor" ||
                     vm.curentUser.role === "chief") {
                     if ($state.current.name === 'home.main') {
