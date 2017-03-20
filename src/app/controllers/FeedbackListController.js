@@ -11,15 +11,45 @@
         var vm = this;
 
         $scope.feedbacks = [];
+        
+        $scope.currentPage = 0;
+        $scope.itemsPerPage = 10;
 
-        Restangular.one('patients', $stateParams.userId).getList("feedback")
+        Restangular.one('patients', $stateParams.userId).getList("feedback",{page:$scope.currentPage+1})
                 .then(function (feedbacks) {
                     $scope.feedbacks = feedbacks;
                 });
-        // HttpService.getFeedbackList($stateParams.userId)
-        //     .then(function (feedbacks) {
-        //         vm.feedbacks = feedbacks;
-        //     });
+                
+        $scope.firstPage = function () {
+            return $scope.currentPage == 0;
+        };
+        $scope.lastPage = function () {
+            var lastPageNum = Math.ceil($scope.feedbacks.length / $scope.itemsPerPage - 1);
+            return $scope.currentPage == lastPageNum;
+        };
+        $scope.numberOfPages = function () {
+            return Math.ceil($scope.feedbacks.length / $scope.itemsPerPage);
+        };
+        $scope.startingItem = function () {
+            return $scope.currentPage * $scope.itemsPerPage;
+        };
+        $scope.pageBack = function () {
+            $scope.currentPage = $scope.currentPage - 1;
+//            Restangular.one('patients', $stateParams.userId).getList("feedback",{page:$scope.$scope.currentPage+1})
+//                .then(function (feedbacks) {
+//                    $scope.feedbacks = feedbacks;
+//                });
+            
+        };
+        $scope.pageForward = function () {
+            $scope.currentPage = $scope.currentPage + 1;
+//            Restangular.one('patients', $stateParams.userId).getList("feedback",{page:$scope.$scope.currentPage+1})
+//                .then(function (feedbacks) {
+//                    $scope.feedbacks = feedbacks;
+//                });
+        };
+
+
 
 
         $scope.deleteFeedback = function (ev, item) {

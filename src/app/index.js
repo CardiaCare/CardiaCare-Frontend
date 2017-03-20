@@ -6,7 +6,6 @@ angular.module("angularMaterialCardiaCare",
                     "app",
                     "ngAnimate",
                     "ngCookies",
-                    "ngTouch",
                     "ngSanitize",
                     "ui.router",
                     "ngMaterial",
@@ -16,6 +15,7 @@ angular.module("angularMaterialCardiaCare",
                     "pascalprecht.translate",
                     "chart.js",
                     "materialCalendar"
+                    
                 ])
     .config(["$qProvider", function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);

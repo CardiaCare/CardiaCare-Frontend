@@ -16,7 +16,12 @@
             <md-icon md-svg-src="assets/images/ic_delete_24px.svg" class="md-secondary" ng-click="deleteFeedback($event, item)" aria-label="Delete"></md-icon>
             <md-divider ></md-divider>
         </md-list-item>
-    </md-list>
+    </md-list> 
+    <div id="pagination" class="row">
+      <md-button class="md-fab md-mini" ng-disabled="firstPage()" ng-click="pageBack()"><</md-button>
+      <span>{{currentPage+1}} из {{numberOfPages()}}</span>
+      <md-button class="md-fab md-mini" ng-disabled="lastPage()" ng-click="pageForward()">></md-button>
+    </div>
 </md-content>
 
 <script type="text/ng-template" id="feedback.tmpl.html">
