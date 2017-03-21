@@ -17,7 +17,8 @@
 
         Restangular.one('patients', $stateParams.userId).getList("feedback",{page:$scope.currentPage+1})
                 .then(function (feedbacks) {
-                    $scope.feedbacks = feedbacks;
+                    $scope.feedbacks = feedbacks.data;
+                    console.log(feedbacks.headers('X-Pagination-Current-Page'));
                 });
                 
         $scope.firstPage = function () {
