@@ -18,11 +18,6 @@
                 Restangular.one('patients', $stateParams.userId).get()
                 .then(function (response) {
                         $scope.patient = response.data;
-                        Restangular.one('users', response.user_id)
-                                .get()
-                                .then(function(resp){
-                                    $scope.patient_email = resp.data.email;
-                        });
                     },
                     function (response) {
                         if(response.status === 404){
@@ -34,10 +29,7 @@
                     });
                     
         }
-        
-
-
-
+ 
         $scope.update = function () {
             Restangular.one('patients', $stateParams.userId).get()
                 .then(function (patient) {

@@ -42,7 +42,7 @@
         this.login = function (credentials) {
             var tokens = Restangular.all('tokens');
             return tokens.post(credentials).then(function (response) {
-                authenticate(response);
+                authenticate(response.data);
             }, function (response) {
                 throw new Error(response.data.errors);
             });
@@ -51,7 +51,7 @@
         this.signup = function (credentials) {
             var users = Restangular.all('users');
             return users.post(credentials).then(function (response) {
-                authenticate(response);
+                authenticate(response.data);
             }, function (response) {
                 console.log("Error when signup");
             });
