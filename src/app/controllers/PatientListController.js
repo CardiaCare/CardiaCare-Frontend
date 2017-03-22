@@ -13,7 +13,7 @@
         Restangular.all('patients')
                 .getList()
                 .then(function (response) {
-                    $scope.patients = response;
+                    $scope.patients = response.data;
                     $scope.activated = false;
                 });
 
@@ -34,14 +34,14 @@
                 Restangular.all('questionnaire')
                         .getList()
                         .then(function (response) {
-                            $scope.questionnaires = response;
+                            $scope.questionnaires = response.data;
                         });
 
                 Restangular.one('patients', patient_id)
                         .all('questionnaires')
                         .getList()
                         .then(function (response) {
-                            $scope.patient_questionnaires = response;
+                            $scope.patient_questionnaires = response.data;
                             angular.forEach($scope.questionnaires, function (questionnaire) {
                                 angular.forEach($scope.patient_questionnaires, function (patient_questionnaire) {
                                     if (questionnaire.id === patient_questionnaire.id) {

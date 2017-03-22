@@ -78,7 +78,7 @@
             
             function InviteDialogController($scope, $mdDialog) {
                 Restangular.all('invites').getList().then(function (response) {
-                    $scope.invites = response;
+                    $scope.invites = response.data;
                 });
                 $scope.hide = function () {
                     $mdDialog.hide();

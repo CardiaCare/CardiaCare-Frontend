@@ -17,7 +17,7 @@
             var user = this.getUser();
             Restangular.one('users', user.id).get()
                 .then(function (response) {
-                    setUser(response);
+                    setUser(response.data);
                 });
 
         };

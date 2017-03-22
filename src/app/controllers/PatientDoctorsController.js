@@ -16,7 +16,7 @@
                 .all('doctors')
                 .getList()
                 .then(function (response) {
-                    $scope.doctors = response;
+                    $scope.doctors = response.data;
                 });
         
         

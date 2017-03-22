@@ -17,7 +17,7 @@
                 .all('bloodpressure')
                 .getList()
                 .then(function (response) {
-                    $scope.bloodpressure = response;
+                    $scope.bloodpressure = response.data;
                 });
 
         $scope.$watch("bloodpressure", function() {

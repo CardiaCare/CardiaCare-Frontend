@@ -12,7 +12,7 @@
         Restangular.all('questionnaire')
                 .getList()
                 .then(function (response) {
-                    $scope.questionnaires = response;
+                    $scope.questionnaires = response.data;
                 });
                 
         
@@ -53,7 +53,7 @@
             function QuestionnireDialogController($scope, $mdDialog) {
                 Restangular.one('questionnaire', questionnaire_id).get()
                         .then(function (response) {
-                            $scope.questionnaire = response;
+                            $scope.questionnaire = response.data;
                             $scope.questions = $scope.questionnaire.questions;
                             console.log($scope.questions );
                         });

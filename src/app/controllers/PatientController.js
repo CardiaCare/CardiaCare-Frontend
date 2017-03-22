@@ -17,10 +17,11 @@
         } else {
                 Restangular.one('patients', $stateParams.userId).get()
                 .then(function (response) {
-                        $scope.patient = response;
-                        Restangular.one('users', response.user_id).get()
+                        $scope.patient = response.data;
+                        Restangular.one('users', response.user_id)
+                                .get()
                                 .then(function(resp){
-                                    $scope.patient_email = resp.email;
+                                    $scope.patient_email = resp.data.email;
                         });
                     },
                     function (response) {
@@ -40,9 +41,9 @@
         $scope.update = function () {
             Restangular.one('patients', $stateParams.userId).get()
                 .then(function (patient) {
-                    for (var property in patient) {
+                    for (var property in patient.data) {
                         if ($scope.patient.hasOwnProperty(property)) {
-                            patient[property] = $scope.patient[property];
+                            patient.data[property] = $scope.patient[property];
                         }
                     }
                     return patient;

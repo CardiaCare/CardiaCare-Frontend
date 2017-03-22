@@ -20,19 +20,19 @@
         } else {
             Restangular.one('doctors', $scope.account.id).get()
                 .then(function (response) {
-                    $scope.doctor = response;
+                    $scope.doctor = response.data;
                 });
         }
 
         $scope.updateInfo = function () {
             Restangular.one('doctors', $scope.doctor.id).get()
                 .then(function (doctor) {
-                    for (var property in doctor) {
+                    for (var property in doctor.data) {
                         if ($scope.doctor.hasOwnProperty(property)) {
-                            doctor[property] = $scope.doctor[property];
+                            doctor.data[property] = $scope.doctor[property];
                         }
                     }
-                    return doctor;
+                    return doctor.data;
                 })
                 .then(function (editedDoctor) {
                     return editedDoctor.put();
