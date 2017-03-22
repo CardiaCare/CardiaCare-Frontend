@@ -11,43 +11,44 @@
         var vm = this;
 
         $scope.feedbacks = [];
-        
+
         $scope.currentPage = 0;
         $scope.itemsPerPage = 10;
+        $scope.lastPageNum = 0;
 
-        Restangular.one('patients', $stateParams.userId).getList("feedback",{page:$scope.currentPage+1})
+        Restangular.one('patients', $stateParams.userId).getList("feedback", {page: $scope.currentPage + 1})
                 .then(function (feedbacks) {
                     $scope.feedbacks = feedbacks.data;
-                    console.log(feedbacks.headers('X-Pagination-Current-Page'));
+                    $scope.currentPage = feedbacks.headers('X-Pagination-Current-Page') - 1;
+                    $scope.lastPageNum = feedbacks.headers('X-Pagination-Page-Count');
                 });
-                
+
         $scope.firstPage = function () {
             return $scope.currentPage == 0;
         };
         $scope.lastPage = function () {
-            var lastPageNum = Math.ceil($scope.feedbacks.length / $scope.itemsPerPage - 1);
-            return $scope.currentPage == lastPageNum;
+            return $scope.currentPage == ($scope.lastPageNum - 1);
         };
         $scope.numberOfPages = function () {
-            return Math.ceil($scope.feedbacks.length / $scope.itemsPerPage);
+            return $scope.lastPageNum;
         };
         $scope.startingItem = function () {
             return $scope.currentPage * $scope.itemsPerPage;
         };
         $scope.pageBack = function () {
             $scope.currentPage = $scope.currentPage - 1;
-//            Restangular.one('patients', $stateParams.userId).getList("feedback",{page:$scope.$scope.currentPage+1})
-//                .then(function (feedbacks) {
-//                    $scope.feedbacks = feedbacks;
-//                });
-            
+            Restangular.one('patients', $stateParams.userId).getList("feedback", {page: $scope.currentPage + 1})
+                    .then(function (feedbacks) {
+                        $scope.feedbacks = feedbacks.data;
+                    });
+
         };
         $scope.pageForward = function () {
             $scope.currentPage = $scope.currentPage + 1;
-//            Restangular.one('patients', $stateParams.userId).getList("feedback",{page:$scope.$scope.currentPage+1})
-//                .then(function (feedbacks) {
-//                    $scope.feedbacks = feedbacks;
-//                });
+            Restangular.one('patients', $stateParams.userId).getList("feedback", {page: $scope.currentPage + 1})
+                    .then(function (feedbacks) {
+                        $scope.feedbacks = feedbacks.data;
+                    });
         };
 
 
@@ -91,14 +92,11 @@
                         .one('feedback', feedback_id)
                         .get()
                         .then(function (responce) {
-                            $scope.feedback = responce;
-                            console.log($scope.feedback);
-
+                            $scope.feedback = responce.data;
 
                             Restangular.one('questionnaire', $scope.feedback.questionnaire_id).get()
                                     .then(function (response) {
-                                        $scope.questionnaire = response;
-                                        console.log($scope.questionnaire);
+                                        $scope.questionnaire = response.data;
 
                                         $scope.questions = $scope.questionnaire.questions;
                                         $scope.responds = $scope.feedback.responds;
@@ -116,13 +114,8 @@
                                                                 
                                                                 angular.forEach(response.responseItems, function (responseItem) {
                                                                     angular.forEach(answer.items, function (item) {
-
-                                                                        console.log(responseItem.linkedItems_id);
-                                                                        console.log(item.id);
                                                                         if (responseItem.linkedItems_id === item.id)
                                                                             responseItem.responseScore = item.itemText;
-                                                                            console.log(item.text);
-
                                                                     });
                                                                 });
 

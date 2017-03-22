@@ -9,14 +9,49 @@
     function PatientListController($scope, Restangular, $translate, $mdDialog, $stateParams) {
         $scope.patients = [];
         $scope.activated = true;
+        
+        $scope.currentPage = 0;
+        $scope.itemsPerPage = 10;
+        $scope.lastPageNum = 0;
 
         Restangular.all('patients')
                 .getList()
                 .then(function (response) {
                     $scope.patients = response.data;
                     $scope.activated = false;
+                    $scope.currentPage = response.headers('X-Pagination-Current-Page') - 1;
+                    $scope.lastPageNum = response.headers('X-Pagination-Page-Count');
                 });
 
+        $scope.pageBack = function () {
+            $scope.currentPage = $scope.currentPage - 1;
+            Restangular.all('patients').getList( {page: $scope.currentPage + 1})
+                    .then(function (response) {
+                        $scope.patients = response.data;
+                    });
+
+        };
+        $scope.pageForward = function () {
+            $scope.currentPage = $scope.currentPage + 1;
+            Restangular.all('patients').getList( {page: $scope.currentPage + 1})
+                    .then(function (response) {
+                        $scope.patients = response.data;
+                    });
+        };
+        
+        $scope.firstPage = function () {
+            return $scope.currentPage == 0;
+        };
+        $scope.lastPage = function () {
+            return $scope.currentPage == ($scope.lastPageNum - 1);
+        };
+        $scope.numberOfPages = function () {
+            return $scope.lastPageNum;
+        };
+        $scope.startingItem = function () {
+            return $scope.currentPage * $scope.itemsPerPage;
+        };
+  
 
         $scope.dialogQuestionnaire = function (ev, patient_id) {
             $scope.questionniares = [];

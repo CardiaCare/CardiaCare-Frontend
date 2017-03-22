@@ -38,7 +38,7 @@
                             patient.data[property] = $scope.patient[property];
                         }
                     }
-                    return patient;
+                    return patient.data;
                 })
                 .then(function (editedPatient) {
                     return editedPatient.put();
