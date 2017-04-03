@@ -84,7 +84,8 @@
                     ACC: 'Account',
                     DASHBOARD: "Dashboard",
                     HOME:'Home',
-                    DOCTORS:'Your doctors'
+                    DOCTORS:'Your doctors',
+                    PERS_ACC:"Account"
                 });
                 
                 $translateProvider.preferredLanguage('ru');
