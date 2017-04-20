@@ -1,5 +1,10 @@
 <md-content class="md-padding" layout="column" layout-sm="column" ng-controller="EcgController">
         <div layout="row" layout-sm="column" layout-align="space-around">
+            
+          <nvd3 options="options" data="data"></nvd3>  
+            
+            
+<!--            with angular-chart.js
         <md-progress-circular ng-hide="!activated" md-mode="indeterminate"></md-progress-circular>
     </div>
     <div class="chartWrapper">
@@ -14,5 +19,5 @@
                     chart-click="onClick"
                     width="1200"></canvas>
         </div>
-    </div>
+    </div>-->
 </md-content>
