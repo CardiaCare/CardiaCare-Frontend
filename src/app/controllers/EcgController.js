@@ -23,7 +23,7 @@
 //                    $scope.ecg_array = ecg_integer_array_data;
 //                    
 //                    //integer array to object array
-//                    for (i = 0; i < ecg_integer_array_data.length; i++) {
+//                    for (i = 0; i < ecg_integer_array_data.length; i = i+15) {
 //                        var obj = {
 //                            x: i,
 //                            y: ecg_integer_array_data[i]
@@ -38,6 +38,7 @@
         $scope.array_length = $scope.ecg_data[$scope.ecg_data.length - 1].x;
         
         //BP data initialization
+        //$scope.bp_data = [{x:1000,y: 160, shape:'circle'},{x: 2000, y:160, shape:'circle'}];
         $scope.bp_data = [{x:10,y: 16, shape:'circle'},{x: 20, y:26, shape:'circle'}];
 
 
