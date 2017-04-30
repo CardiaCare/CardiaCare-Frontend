@@ -25,6 +25,14 @@ gulp.task('inject', ['styles'], function () {
     ignorePath: [paths.src, paths.tmp + '/serve'],
     addRootSlash: false
   };
+  var partialsInjectOptions = {
+    starttag: '<!-- inject:partials -->',
+    ignorePath: [paths.src, paths.tmp + '/serve', paths.tmp],
+    addRootSlash: false
+  };
+  var injectPartials = gulp.src([
+    paths.tmp + '/partials/templateCacheHtml.js'
+  ]).pipe($.angularFilesort());
 
   var wiredepOptions = {
     directory: 'bower_components',
@@ -34,6 +42,7 @@ gulp.task('inject', ['styles'], function () {
   return gulp.src(paths.src + '/*.html')
     .pipe($.inject(injectStyles, injectOptions))
     .pipe($.inject(injectScripts, injectOptions))
+      .pipe($.inject(injectPartials, partialsInjectOptions))
     .pipe(wiredep(wiredepOptions))
     .pipe(gulp.dest(paths.tmp + '/serve'));
 

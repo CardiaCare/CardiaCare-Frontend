@@ -2,11 +2,11 @@
 
     angular
             .module('app')
-            .controller('InvitesController', ['$mdDialog', '$scope', '$mdToast', 'Restangular', '$translate', 
+            .controller('InvitesController', ['$mdDialog', '$scope', '$mdToast', 'Restangular', '$translate','$templateCache',
                 InvitesController
             ]);
 
-    function InvitesController($mdDialog, $scope, $mdToast, Restangular, $translate ) {
+    function InvitesController($mdDialog, $scope, $mdToast, Restangular, $translate,$templateCache ) {
         var vm = this;
 
         vm.invite = {
@@ -70,7 +70,7 @@
             
             $mdDialog.show({
                 controller: InviteDialogController,
-                templateUrl: 'dialog1.tmpl.html',
+                templateUrl: 'app/views/dialogs/invites-list.tpl.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
                 clickOutsideToClose: true
@@ -104,7 +104,5 @@
                 };
             };
         };
-
-
     }
 })();
