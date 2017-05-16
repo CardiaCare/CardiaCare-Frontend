@@ -95,6 +95,11 @@
                     templateUrl: 'app/views/recovery.html',
                     controllerAs: 'vm'
                 })
+                .state('home.license', {
+                    url: '/license',
+                    templateUrl: 'app/views/license.html',
+                    controllerAs: 'vm'
+                })
                 .state('home.login', {
                     url: '/login',
                     templateUrl: 'app/views/login.html',
